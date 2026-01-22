@@ -1,14 +1,14 @@
 """
-Signal Capture MVP - Main Entry Point
-Captures camera + microphone signals for behavioral analysis.
+AI Interview - Signal Capture Stage
+Main Entry Point for candidate behavioral signal capture.
 
 Usage:
     python main.py
 
 Controls:
-    - Enter User ID when prompted
-    - Press 's' to start session
-    - Press 'q' to stop session and save data
+    - Enter Candidate ID when prompted
+    - Press 's' to start interview capture
+    - Press 'q' to stop and save data
 """
 import sys
 import time
@@ -20,10 +20,11 @@ from camera.camera_capture import CameraCapture
 from camera.face_logger import FaceLogger
 from audio.audio_capture import AudioCapture
 from audio.voice_activity import VoiceActivityDetector
+from ui.overlay import OverlayRenderer
 
 
-class SignalCaptureMVP:
-    """Main application for signal capture demo."""
+class AIInterviewCapture:
+    """Main application for AI Interview signal capture."""
     
     def __init__(self):
         self.session_manager = SessionManager()
@@ -31,13 +32,16 @@ class SignalCaptureMVP:
         self.face_logger: FaceLogger = None
         self.audio: AudioCapture = None
         self.vad: VoiceActivityDetector = None
+        self.overlay: OverlayRenderer = None
         self.is_running = False
+        self.current_signal_data = {}
+        self.voice_active = False
     
-    def setup_session(self, user_id: str) -> bool:
-        """Initialize session with user ID."""
+    def setup_session(self, candidate_id: str) -> bool:
+        """Initialize interview capture session."""
         # Create session directory
-        session_dir = self.session_manager.create_session(user_id)
-        print(f"Session directory: {session_dir}")
+        session_dir = self.session_manager.create_session(candidate_id)
+        print(f"Interview capture directory: {session_dir}")
         
         # Initialize camera capture
         self.camera = CameraCapture(
@@ -62,8 +66,8 @@ class SignalCaptureMVP:
         return True
     
     def start(self) -> bool:
-        """Start the capture session."""
-        print("\nStarting capture session...")
+        """Start the interview capture."""
+        print("\nStarting interview capture...")
         
         # Start session timing
         self.session_manager.start_session()
@@ -79,12 +83,21 @@ class SignalCaptureMVP:
             print("Error: Failed to start camera")
             return False
         
+        # Initialize overlay renderer after camera starts
+        # Default to 640x480 if we can't get actual dimensions
+        frame = self.camera.get_current_frame()
+        if frame is not None:
+            h, w = frame.shape[:2]
+        else:
+            w, h = 640, 480
+        self.overlay = OverlayRenderer(w, h)
+        
         # Start audio capture
         if not self.audio.start():
             print("Warning: Failed to start audio capture")
         
         self.is_running = True
-        print("Capture started! Press 'q' in the video window to stop.\n")
+        print("Interview capture started! Press 'q' in the video window to stop.\n")
         
         return True
     
@@ -93,6 +106,19 @@ class SignalCaptureMVP:
         # Process frame through face logger
         entry = self.face_logger.process_frame(frame, timestamp)
         self.session_manager.increment_frame_count()
+        
+        # Store current signal data for overlay
+        self.current_signal_data = {
+            "face_present": entry["face_present"],
+            "eye_direction": entry["eye_direction"],
+            "head_movement": entry["head_movement"],
+            "blink": entry["blink"],
+            "voice_active": self.voice_active
+        }
+        
+        # Update integrity signals
+        if self.overlay:
+            self.overlay.update_integrity(entry["face_present"])
         
         # Print status occasionally
         if self.session_manager.frame_count % 30 == 0:
@@ -107,26 +133,27 @@ class SignalCaptureMVP:
     
     def _on_audio_chunk(self, chunk, frames: int) -> None:
         """Callback for each audio chunk."""
-        self.vad.process_chunk(chunk, frames)
+        self.voice_active = self.vad.process_chunk(chunk, frames)
     
     def run_display_loop(self) -> None:
-        """Run the display loop for live preview."""
+        """Run the display loop with full overlay UI."""
         while self.is_running:
             frame = self.camera.get_current_frame()
             
-            if frame is not None:
-                # Add status overlay
-                cv2.putText(frame, "Recording... Press 'q' to stop",
-                           (10, 30), cv2.FONT_HERSHEY_SIMPLEX,
-                           0.7, (0, 255, 0), 2)
+            if frame is not None and self.overlay is not None:
+                # Render full overlay UI
+                display_frame = self.overlay.render_full_overlay(frame, self.current_signal_data)
                 
-                # Show FPS
+                # Show FPS in title bar area
                 fps_text = f"FPS: {self.camera.get_fps():.1f}"
-                cv2.putText(frame, fps_text,
-                           (10, 60), cv2.FONT_HERSHEY_SIMPLEX,
-                           0.7, (0, 255, 0), 2)
+                cv2.putText(display_frame, fps_text,
+                           (self.overlay.frame_width - 100, 25), cv2.FONT_HERSHEY_SIMPLEX,
+                           0.45, (150, 150, 150), 1)
                 
-                cv2.imshow("Signal Capture MVP", frame)
+                cv2.imshow("AI Interview - Signal Capture Stage", display_frame)
+            elif frame is not None:
+                # Fallback if overlay not ready
+                cv2.imshow("AI Interview - Signal Capture Stage", frame)
             
             # Check for quit key
             key = cv2.waitKey(1) & 0xFF
@@ -139,8 +166,8 @@ class SignalCaptureMVP:
         cv2.destroyAllWindows()
     
     def stop(self) -> None:
-        """Stop the capture session and save all data."""
-        print("\n\nStopping capture session...")
+        """Stop the interview capture and save all data."""
+        print("\n\nStopping interview capture...")
         self.is_running = False
         
         # Stop camera
@@ -166,40 +193,40 @@ class SignalCaptureMVP:
         
         # End session and save metadata
         self.session_manager.end_session()
-        print("Session metadata saved.")
+        print("Interview metadata saved.")
         
         print(f"\n✓ All files saved to: {self.session_manager.session_dir}")
 
 
 def main():
     """Main entry point."""
-    print("=" * 50)
-    print("  SIGNAL CAPTURE MVP")
-    print("  Behavioral Signal Recording System")
-    print("=" * 50)
+    print("=" * 55)
+    print("  AI INTERVIEW - SIGNAL CAPTURE STAGE")
+    print("  Multimodal Candidate Behavioral Analysis")
+    print("=" * 55)
     
-    # Get user ID
-    user_id = input("\nEnter User ID: ").strip()
-    if not user_id:
-        print("Error: User ID cannot be empty")
+    # Get candidate ID
+    candidate_id = input("\nEnter Candidate ID: ").strip()
+    if not candidate_id:
+        print("Error: Candidate ID cannot be empty")
         sys.exit(1)
     
     # Create application
-    app = SignalCaptureMVP()
+    app = AIInterviewCapture()
     
     # Handle Ctrl+C gracefully
     def signal_handler(sig, frame):
-        print("\n\nInterrupt received, stopping...")
+        print("\n\nInterrupt received, stopping interview capture...")
         app.stop()
         sys.exit(0)
     
     signal.signal(signal.SIGINT, signal_handler)
     
     # Setup and start session
-    print(f"\nSetting up session for user: {user_id}")
-    app.setup_session(user_id)
+    print(f"\nSetting up interview capture for candidate: {candidate_id}")
+    app.setup_session(candidate_id)
     
-    print("\nPress 's' to start recording, or 'q' to quit...")
+    print("\nPress 's' to start interview capture, or 'q' to quit...")
     
     while True:
         key = input().strip().lower()
@@ -219,7 +246,7 @@ def main():
     # Stop and save
     app.stop()
     
-    print("\n✓ Session complete!")
+    print("\n✓ Interview capture complete!")
 
 
 if __name__ == "__main__":

@@ -1,26 +1,33 @@
-# Signal Capture MVP
+# AI Interview - Signal Capture Stage
 
-A local-only, offline demo system that captures visual and audio behavioral signals from users using a webcam and microphone.
+A multimodal candidate behavioral signal capture system — Stage 1 of an AI-powered hiring pipeline.
+
+## Overview
+
+This system captures visual and audio behavioral signals during candidate interviews:
+- **Video recording** with face, eye, and head tracking
+- **Audio recording** with voice activity detection
+- **Session integrity monitoring**
+- **Per-candidate data isolation**
+
+> **Note:** This is the Signal Capture Stage. Evaluation and scoring are handled in subsequent stages.
 
 ## Features
 
-- **Camera-based detection**
-  - Face presence detection per frame
-  - Eye blink detection (EAR-based)
-  - Eye direction classification (left/right/center)
-  - Head movement intensity (low/medium/high)
-  - Video recording to MP4
+### Active in This Stage
+- ✅ Face presence detection
+- ✅ Eye blink detection (EAR-based)
+- ✅ Eye direction tracking (left/right/center)
+- ✅ Head movement intensity (low/medium/high)
+- ✅ Voice activity detection
+- ✅ Video + audio recording
+- ✅ Session integrity signals
 
-- **Audio-based detection**
-  - Voice activity detection (energy threshold)
-  - Speaking duration tracking
-  - Average volume measurement
-  - Audio recording to WAV
-
-- **Per-user session isolation**
-  - Unique folder per user
-  - JSON-based logging
-  - Session metadata
+### Disabled in Demo (Future Stages)
+- ○ Speech-to-text
+- ○ Answer relevance scoring
+- ○ Behavioral analysis
+- ○ Composite candidate scoring
 
 ## Installation
 
@@ -34,45 +41,28 @@ pip install -r requirements.txt
 python main.py
 ```
 
-1. Enter your User ID when prompted
-2. Press `s` to start recording
+1. Enter Candidate ID when prompted
+2. Press `s` to start interview capture
 3. Press `q` in the video window to stop and save
 
 ## Output Files
 
-All outputs are saved to `data/user_<id>/`:
+All outputs are saved to `data/user_<candidate_id>/`:
 
 | File | Description |
 |------|-------------|
-| `video.mp4` | Recorded video stream |
-| `audio.wav` | Recorded audio stream |
-| `face_log.json` | Per-frame face detection data |
+| `video.mp4` | Interview video recording |
+| `audio.wav` | Interview audio recording |
+| `face_log.json` | Per-frame behavioral signals |
 | `audio_log.json` | Voice activity summary |
-| `session_meta.json` | Session metadata |
+| `session_meta.json` | Interview capture metadata |
 
-### face_log.json format
+## Candidate Lifecycle
 
-```json
-[
-  {
-    "frame_timestamp": 0.033,
-    "face_present": true,
-    "eye_direction": "center",
-    "blink": false,
-    "head_movement": "low"
-  }
-]
 ```
-
-### audio_log.json format
-
-```json
-{
-  "voice_detected": true,
-  "total_speaking_time_sec": 38.5,
-  "total_duration_sec": 120.0,
-  "average_volume": -20.3
-}
+[■ Capture] → [○ Analysis] → [○ Review] → [○ Shortlist]
+     ↑
+  You are here
 ```
 
 ## Project Structure
@@ -91,8 +81,11 @@ project_root/
 ├── storage/
 │   ├── session_manager.py  # Session lifecycle
 │   └── json_writer.py      # JSON utilities
+├── ui/
+│   ├── overlay.py          # Interview context panels
+│   └── styles.py           # UI styling
 ├── data/                   # Output directory
-│   └── user_<id>/          # Per-user data
+├── doc/                    # Documentation
 ├── requirements.txt
 └── README.md
 ```
@@ -106,7 +99,7 @@ project_root/
 
 ## Tech Stack
 
-- OpenCV - Video capture and recording
-- MediaPipe Face Mesh - Facial landmark detection
-- SoundDevice - Audio capture
-- SciPy - WAV file handling
+- **OpenCV** — Video capture and recording
+- **MediaPipe Face Mesh** — Facial landmark detection
+- **SoundDevice** — Audio capture
+- **SciPy** — WAV file handling

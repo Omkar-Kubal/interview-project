@@ -1,0 +1,2788 @@
+[
+  {
+    "frame_timestamp": 3.508,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 3.578,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 3.636,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 3.701,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "high"
+  },
+  {
+    "frame_timestamp": 3.746,
+    "face_present": true,
+    "eye_direction": "left",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 3.802,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 3.839,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 3.899,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 3.933,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 3.965,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.0,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 4.024,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 4.059,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 4.115,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 4.147,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 4.175,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 4.212,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 4.245,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 4.279,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 4.314,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 4.348,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.384,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.431,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.466,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.496,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.534,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.57,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.6,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.633,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.658,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.695,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.722,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.75,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.775,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.805,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.827,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.852,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.912,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.934,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 4.961,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.011,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.045,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.073,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.109,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.143,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.164,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.197,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.215,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.24,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.31,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.329,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.347,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 5.404,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.423,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.442,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.502,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.518,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.534,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 5.595,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 5.613,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 5.629,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 5.711,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 5.732,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 5.75,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 5.803,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 5.82,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 5.836,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 5.899,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.915,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 5.931,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 5.996,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.019,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.037,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 6.108,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.126,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.142,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.205,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.222,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.24,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.299,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.315,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.332,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.394,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.413,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.439,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.508,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.524,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.545,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.604,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.622,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.638,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.703,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.754,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.78,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.813,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.838,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.864,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 6.918,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.952,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 6.977,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.004,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.022,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.039,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.102,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.125,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.147,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.197,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.22,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.238,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.292,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.308,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.324,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.405,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.422,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.438,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.5,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.518,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.536,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.599,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.616,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.633,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.692,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.712,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.73,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.804,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.82,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.836,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.899,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.915,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 7.932,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 7.995,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 8.011,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 8.028,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.092,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 8.109,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 8.131,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.206,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.222,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.238,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.301,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.316,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.333,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.396,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.413,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.429,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.492,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.509,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.526,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.604,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 8.62,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 8.635,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.704,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 8.723,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 8.742,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 8.797,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.813,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.833,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.891,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 8.912,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 8.928,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 9.004,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 9.02,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 9.037,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 9.098,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.115,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.134,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.197,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.219,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.236,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.292,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.313,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 9.331,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 9.405,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.422,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.44,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.499,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.515,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.532,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.595,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.61,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.628,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 9.693,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 9.715,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.733,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.805,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 9.82,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 9.838,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 9.9,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.916,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.937,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 9.995,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.012,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 10.028,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 10.092,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 10.108,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 10.124,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 10.208,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 10.225,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 10.244,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 10.301,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 10.318,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 10.334,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.395,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.411,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.428,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.492,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.508,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.524,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.605,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.621,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.637,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.699,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.717,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.739,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.795,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.812,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.834,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.892,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.907,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 10.922,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.004,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.02,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.034,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.099,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.115,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.133,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.197,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.214,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.232,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.296,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.312,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.328,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.405,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.426,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.442,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.5,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.518,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.535,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.595,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.612,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.629,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.692,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.713,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 11.731,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.805,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.824,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.841,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.899,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.915,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.932,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 11.996,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 12.01,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.028,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.092,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.11,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.133,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.206,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.224,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.24,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.3,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.317,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.333,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.397,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.413,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.43,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.492,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.507,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.523,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 12.603,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 12.62,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 12.7,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 12.724,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 12.742,
+    "face_present": true,
+    "eye_direction": "right",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 12.758,
+    "face_present": true,
+    "eye_direction": "right",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 12.797,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 12.814,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 12.831,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 12.894,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.912,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.926,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 12.986,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.001,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.1,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.12,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.137,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.152,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.197,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.216,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.234,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.291,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.31,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.325,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.391,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.413,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.499,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.516,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.534,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.554,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.596,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.612,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.63,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.692,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.718,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 13.735,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.788,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.805,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.9,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.918,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.934,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.954,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 13.994,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 14.009,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 14.026,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 14.092,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.109,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.125,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.188,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.21,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.299,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.316,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.333,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.348,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.396,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.412,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.429,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.492,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.507,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.523,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.589,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.606,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.7,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.722,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.74,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.755,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.795,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.809,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 14.828,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 14.892,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 14.91,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 14.925,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 14.99,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.007,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.1,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.116,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.134,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.15,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.196,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.216,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.233,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.292,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.308,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.325,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.388,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.403,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.501,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.517,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.533,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.55,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.595,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.61,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.625,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.692,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.718,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.736,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.788,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.812,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 15.899,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.913,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.931,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "medium"
+  },
+  {
+    "frame_timestamp": 15.947,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.0,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.018,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.04,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.095,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.114,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.131,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.188,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.21,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.302,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.32,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.334,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.357,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.393,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.41,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.426,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.49,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.509,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.524,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.585,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.602,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.705,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.733,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.753,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.776,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.805,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.828,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.85,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  },
+  {
+    "frame_timestamp": 16.897,
+    "face_present": true,
+    "eye_direction": "center",
+    "blink": false,
+    "head_movement": "low"
+  }
+]

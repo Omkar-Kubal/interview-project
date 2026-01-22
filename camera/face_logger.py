@@ -48,12 +48,12 @@ class FaceLogger:
         else:
             relative_time = 0.0
         
-        # Create log entry
+        # Create log entry (convert numpy bools to Python bools for JSON)
         entry = {
             "frame_timestamp": round(relative_time, 3),
-            "face_present": face_present,
+            "face_present": bool(face_present),
             "eye_direction": eye_direction if face_present else "unknown",
-            "blink": blink if face_present else False,
+            "blink": bool(blink) if face_present else False,
             "head_movement": head_movement if face_present else "unknown"
         }
         
