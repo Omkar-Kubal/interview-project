@@ -1,0 +1,8 @@
+opencv-python
+mediapipe
+numpy
+sounddevice
+scipy
+fastapi
+uvicorn[standard]
+python-multipart

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AI Interview - Signal Capture Console</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "science-bg": "#f4f4f5",
+                        "science-card": "#ffffff",
+                        "science-border": "#e4e4e7",
+                        "science-text": "#18181b",
+                        "science-muted": "#71717a",
+                        "science-accent": "#27272a"
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "mono": ["IBM Plex Mono", "monospace"]
+                    },
+                    borderRadius: { DEFAULT: "0px", none: "0px" }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        *,
+        *::before,
+        *::after {
+            border-radius: 0 !important;
+        }
+    </style>
+</head>
+
+<body
+    class="relative flex h-screen w-full flex-col bg-science-bg text-science-text font-sans overflow-hidden antialiased">
+
+    <!-- HEADER -->
+    <header class="flex items-center justify-between border-b border-science-border px-6 py-4 bg-white">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-science-accent text-[24px]">science</span>
+            <h2 class="text-science-text text-sm font-mono uppercase tracking-widest font-semibold">AI Interview -
+                Signal Capture</h2>
+        </div>
+        <div class="flex items-center gap-4">
+            <div id="status-badge"
+                class="flex items-center gap-2 px-3 py-1 bg-gray-50 border border-gray-200 text-xs font-mono text-science-muted">
+                <span class="material-symbols-outlined text-[14px]">radio_button_checked</span>
+                <span id="status-text">SYSTEM READY</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- LANDING PAGE CONTENT -->
+    <main class="flex-1 flex flex-col items-center justify-center p-6 relative">
+        <div class="absolute inset-0 pointer-events-none opacity-[0.03]"
+            style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 40px 40px;">
+        </div>
+        <div
+            class="w-full max-w-[480px] bg-science-card border border-science-border shadow-sm flex flex-col relative z-10">
+            <div class="bg-gray-50 border-b border-science-border px-6 py-3 flex justify-between items-center">
+                <span class="text-xs font-mono text-science-muted uppercase tracking-wider">Module: INPUT_01</span>
+                <span class="material-symbols-outlined text-science-muted text-[18px]">drag_handle</span>
+            </div>
+            <div class="p-8 sm:p-10 flex flex-col">
+                <div class="mb-6 self-start border border-science-border p-3 bg-white text-science-accent inline-flex">
+                    <span class="material-symbols-outlined text-[28px]">graphic_eq</span>
+                </div>
+                <h1 class="text-science-text font-mono text-xl sm:text-2xl font-bold leading-tight mb-2 tracking-tight">
+                    SIGNAL CAPTURE CONSOLE
+                </h1>
+                <p class="text-science-muted text-sm leading-relaxed max-w-sm">
+                    Raw multimodal signal acquisition for AI interview systems
+                </p>
+                <div class="w-full mt-8 space-y-6">
+                    <div class="flex flex-col text-left space-y-2">
+                        <label class="text-science-text font-mono text-xs uppercase tracking-wide font-medium">
+                            Candidate ID
+                        </label>
+                        <div class="relative">
+                            <input id="candidate-id"
+                                class="form-input flex w-full min-w-0 resize-none text-science-text focus:outline-0 focus:ring-0 focus:border-science-accent border border-science-border bg-gray-50 h-12 placeholder:text-gray-400 px-4 pl-10 text-sm font-mono"
+                                placeholder="e.g. candidate_001" type="text" />
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <span class="material-symbols-outlined text-science-muted text-[18px]">tag</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="btn-start"
+                        class="flex w-full cursor-pointer items-center justify-center h-12 px-6 bg-science-accent hover:bg-black text-white text-sm font-mono uppercase tracking-wider transition-colors border border-transparent">
+                        Begin Capture
+                    </button>
+                    <p id="error-msg" class="text-red-500 text-xs text-center hidden"></p>
+                </div>
+            </div>
+            <div class="bg-white px-8 py-4 border-t border-science-border">
+                <div class="flex items-center justify-between text-xs text-science-muted font-mono">
+                    <span class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">cloud_off</span>
+                        OFFLINE MODE
+                    </span>
+                    <span>V2.0.0</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-4 px-4 bg-white border-t border-science-border">
+        <div class="max-w-[960px] mx-auto text-center">
+            <p class="text-xs text-science-muted font-mono">
+                This demo captures raw visual and audio signals only. No AI analysis, scoring, or hiring decisions are
+                performed.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/static/scripts/session.js"></script>
+    <script src="/static/scripts/ui.js"></script>
+    <script>
+        // Landing page logic
+        const candidateInput = document.getElementById('candidate-id');
+        const errorMsg = document.getElementById('error-msg');
+        const btnStart = document.getElementById('btn-start');
+
+        btnStart.addEventListener('click', async () => {
+            const candidateId = candidateInput.value.trim();
+
+            if (!candidateId) {
+                errorMsg.textContent = 'Please enter a Candidate ID';
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+
+            errorMsg.classList.add('hidden');
+            btnStart.textContent = 'Starting...';
+            btnStart.disabled = true;
+
+            try {
+                // Start session via API
+                const result = await startSession(candidateId);
+                console.log('Session started:', result);
+
+                // Store candidate ID for capture page
+                storeSessionData('candidateId', candidateId);
+                storeSessionData('sessionDir', result.session_dir);
+
+                // Navigate to capture page
+                window.location.href = '/capture';
+
+            } catch (error) {
+                console.error('Start error:', error);
+                errorMsg.textContent = error.message || 'Connection failed. Is the server running?';
+                errorMsg.classList.remove('hidden');
+                btnStart.textContent = 'Begin Capture';
+                btnStart.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>
