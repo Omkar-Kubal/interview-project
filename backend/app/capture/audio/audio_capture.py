@@ -61,7 +61,7 @@ class AudioCapture:
         
         # Process through callback for voice activity detection
         if self.chunk_callback:
-            self.chunk_callback(indata, frames)
+            self.chunk_callback(indata, frames, status)
     
     def get_buffer_copy(self) -> np.ndarray:
         """Get a copy of the current audio buffer."""

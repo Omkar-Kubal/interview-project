@@ -36,7 +36,8 @@ class CameraCapture:
     
     def start(self) -> bool:
         """Start the camera capture and recording."""
-        self.cap = cv2.VideoCapture(self.camera_index)
+        # Use DirectShow on Windows for better compatibility
+        self.cap = cv2.VideoCapture(self.camera_index, cv2.CAP_DSHOW)
         
         if not self.cap.isOpened():
             print("Error: Could not open camera")
@@ -76,6 +77,7 @@ class CameraCapture:
             ret, frame = self.cap.read()
             
             if not ret:
+                print("[CAMERA DEBUG] cap.read() returned False - no frame!")
                 continue
             
             # Store current frame thread-safely
@@ -86,9 +88,17 @@ class CameraCapture:
             self.writer.write(frame)
             frame_count += 1
             
-            # Process frame through callback
+            if frame_count % 30 == 0:
+                print(f"[CAMERA DEBUG] Written {frame_count} frames to video file")
+            
+            # Process frame through callback (wrapped to prevent thread death)
             if self.frame_callback:
-                self.frame_callback(frame, time.time())
+                try:
+                    self.frame_callback(frame, time.time())
+                except Exception as e:
+                    # Log but don't crash - MediaPipe/protobuf errors are common
+                    if frame_count % 100 == 0:  # Don't spam logs
+                        print(f"[CAMERA] Frame callback error (non-fatal): {e}")
             
             # Calculate and report FPS
             elapsed = time.time() - start_time

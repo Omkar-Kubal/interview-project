@@ -2,13 +2,15 @@
 FastAPI Server - Main entry point for Signal Capture API.
 """
 import os
+import time
 from pathlib import Path
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import asyncio
+import cv2
 
 from app.api.session import get_session, create_session, clear_session
 
@@ -175,6 +177,46 @@ async def health_check():
         "status": "healthy",
         "session_active": session.is_running if session else False
     }
+
+
+async def generate_frames():
+    """Generate MJPEG frames from current session (async for non-blocking)."""
+    print("[MJPEG] Starting async frame generator...")
+    frame_counter = 0
+    
+    while True:
+        session = get_session()
+        if session and session.is_running:
+            frame = session.get_current_frame()
+            if frame is not None:
+                # Encode frame to JPEG
+                ret, buffer = cv2.imencode('.jpg', frame)
+                if ret:
+                    frame_bytes = buffer.tobytes()
+                    frame_counter += 1
+                    if frame_counter % 30 == 0:
+                        print(f"[MJPEG] Streamed {frame_counter} frames")
+                    yield (b'--frame\r\n'
+                           b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+            else:
+                # No frame available yet, wait briefly
+                await asyncio.sleep(0.05)
+        else:
+            # No active session - wait briefly
+            await asyncio.sleep(0.1)
+        
+        # Small sleep to prevent CPU overload and yield control
+        await asyncio.sleep(0.033)  # ~30 FPS max
+
+
+@app.get("/video_feed")
+async def video_feed():
+    """MJPEG video stream endpoint."""
+    return StreamingResponse(
+        generate_frames(),
+        media_type="multipart/x-mixed-replace; boundary=frame"
+    )
+
 
 
 # Run with: uvicorn app.main:app --reload

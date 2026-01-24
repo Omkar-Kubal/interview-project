@@ -34,7 +34,7 @@ class FaceLogger:
             Dictionary containing the logged data
         """
         # Get eye tracking data
-        face_present_eye, blink, eye_direction = self.eye_tracker.process_frame(frame)
+        face_present_eye, blink, eye_direction, multiple_faces = self.eye_tracker.process_frame(frame)
         
         # Get head movement data
         face_present_head, head_movement = self.head_tracker.process_frame(frame)
@@ -54,7 +54,8 @@ class FaceLogger:
             "face_present": bool(face_present),
             "eye_direction": eye_direction if face_present else "unknown",
             "blink": bool(blink) if face_present else False,
-            "head_movement": head_movement if face_present else "unknown"
+            "head_movement": head_movement if face_present else "unknown",
+            "multiple_faces": bool(multiple_faces)
         }
         
         # Append to log

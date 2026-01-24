@@ -3,6 +3,7 @@ Session Manager - Handles user session lifecycle and directory structure.
 """
 import os
 import json
+import uuid
 from datetime import datetime
 from pathlib import Path
 
@@ -12,17 +13,19 @@ class SessionManager:
     
     def __init__(self, base_path: str = "data"):
         self.base_path = Path(base_path)
-        self.user_id = None
+        self.session_id = None
+        self.candidate_id = None
         self.session_dir = None
         self.session_start = None
         self.session_end = None
         self.frame_count = 0
         self.fps_samples = []
     
-    def create_session(self, user_id: str) -> Path:
-        """Create a new session directory for the given user."""
-        self.user_id = user_id
-        self.session_dir = self.base_path / f"user_{user_id}"
+    def create_session(self, candidate_id: str) -> Path:
+        """Create a new session directory."""
+        self.session_id = str(uuid.uuid4())
+        self.candidate_id = candidate_id
+        self.session_dir = self.base_path / "interviews" / self.session_id
         self.session_dir.mkdir(parents=True, exist_ok=True)
         return self.session_dir
     
@@ -53,7 +56,8 @@ class SessionManager:
         avg_fps = sum(self.fps_samples) / len(self.fps_samples) if self.fps_samples else 0.0
         
         meta = {
-            "user_id": self.user_id,
+            "session_id": self.session_id,
+            "candidate_id": self.candidate_id,
             "session_start": self.session_start.isoformat() if self.session_start else None,
             "session_end": self.session_end.isoformat() if self.session_end else None,
             "fps_avg": round(avg_fps, 2),

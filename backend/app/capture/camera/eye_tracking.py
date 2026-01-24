@@ -37,7 +37,7 @@ class EyeTracker:
     def __init__(self):
         self.mp_face_mesh = mp.solutions.face_mesh
         self.face_mesh = self.mp_face_mesh.FaceMesh(
-            max_num_faces=1,
+            max_num_faces=2,  # Detect up to 2 faces for integrity check
             refine_landmarks=True,  # Enables iris landmarks
             min_detection_confidence=0.5,
             min_tracking_confidence=0.5
@@ -50,15 +50,19 @@ class EyeTracker:
         Process a frame and detect face presence, blinks, and eye direction.
         
         Returns:
-            Tuple of (face_present, blink_detected, eye_direction)
+            Tuple of (face_present, blink_detected, eye_direction, multiple_faces)
         """
         # Convert BGR to RGB for MediaPipe
         rgb_frame = frame[:, :, ::-1]
         results = self.face_mesh.process(rgb_frame)
         
         if not results.multi_face_landmarks:
-            return False, False, "center"
+            return False, False, "center", False
         
+        # Check for multiple faces
+        multiple_faces = len(results.multi_face_landmarks) > 1
+        
+        # Always track the first face
         landmarks = results.multi_face_landmarks[0].landmark
         h, w = frame.shape[:2]
         
@@ -74,7 +78,7 @@ class EyeTracker:
         # Detect eye direction using iris position
         eye_direction = self._calculate_gaze_direction(landmarks, w, h)
         
-        return True, blink_detected, eye_direction
+        return True, blink_detected, eye_direction, multiple_faces
     
     def _calculate_ear(self, landmarks, w: int, h: int, is_left: bool) -> float:
         """

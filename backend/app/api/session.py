@@ -12,6 +12,7 @@ from app.capture.camera.camera_capture import CameraCapture
 from app.capture.camera.face_logger import FaceLogger
 from app.capture.audio.audio_capture import AudioCapture
 from app.capture.audio.voice_activity import VoiceActivityDetector
+from app.persistence.repository import save_session
 
 
 
@@ -43,6 +44,7 @@ class CaptureSession:
         self._face_present_count = 0
         self._total_frame_count = 0
         self._multiple_faces_detected = False
+        self._multiple_faces_latch = False
         self._audio_interruptions = False
     
     def setup(self, candidate_id: str) -> str:
@@ -96,12 +98,25 @@ class CaptureSession:
     def _on_frame(self, frame, timestamp: float) -> None:
         """Process each frame."""
         entry = self.face_logger.process_frame(frame, timestamp)
+        
+        # DEBUG LOGGING => Check if faces are being detected
+        if self._total_frame_count % 30 == 0:  # Log every ~1 second
+            print(f"[DEBUG] Frame {self._total_frame_count}: Face Present? {entry.get('face_present')} | Signals: {entry}")
+            
         self.session_manager.increment_frame_count()
         
         # Update tracking
         self._total_frame_count += 1
         if entry["face_present"]:
             self._face_present_count += 1
+            
+        # Update integrity (instantaneous for live demo)
+        multiple_faces = entry.get("multiple_faces", False)
+        self._multiple_faces_detected = multiple_faces
+        
+        # Update latch for persistence
+        if multiple_faces:
+            self._multiple_faces_latch = True
         
         # Update signals thread-safely
         with self._signal_lock:
@@ -114,13 +129,22 @@ class CaptureSession:
         """Record FPS."""
         self.session_manager.record_fps(fps)
     
-    def _on_audio_chunk(self, chunk, frames: int) -> None:
+    def _on_audio_chunk(self, chunk, frames: int, status) -> None:
         """Process audio chunk."""
+        if status:
+            self._audio_interruptions = True
+            
         voice_active = self.vad.process_chunk(chunk, frames)
         
         with self._signal_lock:
             self._current_signals["voice_activity"] = "active" if voice_active else "silent"
     
+    def get_current_frame(self) -> Optional[any]:
+        """Get current video frame (if available)."""
+        if self.camera:
+            return self.camera.get_current_frame()
+        return None
+
     def get_current_signals(self) -> Dict[str, Any]:
         """Get current signal state (thread-safe)."""
         with self._signal_lock:
@@ -166,6 +190,23 @@ class CaptureSession:
         
         # End session
         self.session_manager.end_session()
+        
+        # Save to database
+        try:
+            session_data = {
+                "session_id": self.session_manager.session_id,
+                "candidate_id": self.candidate_id,
+                "role": "Sr. Machine Learning Engineer",  # Hardcoded for demo
+                "started_at": self.session_manager.session_start,
+                "ended_at": self.session_manager.session_end,
+                "video_path": str(self.session_manager.get_video_path()),
+                "audio_path": str(self.session_manager.get_audio_path()),
+                "multiple_faces_detected": self._multiple_faces_latch,
+                "audio_interruptions_detected": self._audio_interruptions
+            }
+            save_session(session_data)
+        except Exception as e:
+            print(f"Error saving session to DB: {e}")
         
         return {
             "candidate_id": self.candidate_id,
