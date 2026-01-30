@@ -47,14 +47,14 @@
 </head>
 
 <body
-    class="relative flex h-screen w-full flex-col bg-science-bg text-science-text font-sans overflow-hidden antialiased">
+    class="relative flex min-h-screen w-full flex-col bg-science-bg text-science-text font-sans overflow-y-auto antialiased">
 
     <!-- HEADER -->
     <header class="flex items-center justify-between border-b border-science-border px-6 py-4 bg-white">
         <div class="flex items-center gap-3">
             <span class="material-symbols-outlined text-science-accent text-[24px]">science</span>
             <h2 class="text-science-text text-sm font-mono uppercase tracking-widest font-semibold">AI Interview -
-                Signal Capture</h2>
+                Signal Capture V2</h2>
         </div>
         <div class="flex items-center gap-4">
             <div id="status-badge"
@@ -70,8 +70,9 @@
         <div class="max-w-[1200px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
             <!-- Video Feed -->
             <div class="lg:col-span-8 flex flex-col gap-2">
-                <div id="video-container" class="relative w-full aspect-video bg-black border border-science-border">
-                    <video id="video-feed" autoplay playsinline muted class="w-full h-full object-cover"></video>
+                <div id="video-container"
+                    class="relative w-full aspect-video max-h-[70vh] bg-black border border-science-border">
+                    <img id="video-feed" class="w-full h-full object-contain" src="" alt="Video Feed" />
                     <div class="absolute top-4 left-4 bg-white/90 px-2 py-0.5 border border-science-border">
                         <span
                             class="text-black text-[10px] font-bold font-mono uppercase tracking-widest">Recording</span>
@@ -161,7 +162,7 @@
 
     <!-- Scripts -->
     <script src="/static/scripts/session.js"></script>
-    <script src="/static/scripts/media.js"></script>
+    <script src="/static/scripts/capture_v2.js"></script>
     <script src="/static/scripts/signals.js"></script>
     <script src="/static/scripts/ui.js"></script>
     <script>
@@ -172,10 +173,32 @@
 
         // Start media capture ONLY when this page loads (after navigation)
         async function initCapture() {
-            console.log('Capture page loaded, starting media capture...');
+            console.log('Capture page loaded, connecting to telemetry...');
+
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            const token = sessionStorage.getItem('token');
+            const appId = sessionStorage.getItem('active_application_id');
+
+            if (!token || !user || user.role !== 'seeker') {
+                window.location.href = '/login';
+                return;
+            }
+
+            if (!appId) {
+                alert('No active application found. Redirecting to dashboard.');
+                window.location.href = '/dashboard';
+                return;
+            }
 
             try {
+                // Initialize the session on the backend
+                console.log(`Starting session for candidate ${user.id} and application ${appId}`);
+                await startSession(user.id.toString(), appId ? parseInt(appId) : null);
+
+                // Attach to the backend MJPEG stream
                 await startMediaCapture(videoFeed);
+
+                // Connect to live signal updates
                 connectSignals(updateSignalDisplay);
             } catch (error) {
                 console.error('Failed to start media:', error);
@@ -192,7 +215,7 @@
             btnStop.disabled = true;
 
             try {
-                // Stop media first
+                // Stop UI updates and clear stream src
                 stopMediaCapture(videoFeed);
                 disconnectSignals();
 
@@ -204,11 +227,15 @@
                 const summary = await getSessionSummary();
                 storeSessionData('summary', summary);
 
+                // Clear active application to prevent re-capture
+                sessionStorage.removeItem('active_application_id');
+
                 // Navigate to summary page
                 window.location.href = '/summary';
 
             } catch (error) {
                 console.error('Stop error:', error);
+                alert('Error stopping session: ' + error.message);
                 btnStop.textContent = 'End Session';
                 btnStop.disabled = false;
             }

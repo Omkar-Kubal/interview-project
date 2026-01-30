@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Application Form Console - Refined</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "off-white": "#f2f2f2",
+                        "surface": "#ffffff",
+                        "border-dark": "#000000",
+                        "text-main": "#000000",
+                        "text-muted": "#666666",
+                    },
+                    fontFamily: {
+                        "mono": ["Space Grotesk", "monospace"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "sm": "0px",
+                        "md": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px" 
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", monospace;
+        }::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ffffff; 
+            border-left: 1px solid #e5e5e5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000000; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #333333; 
+        }
+    </style>
+</head>
+<body class="bg-off-white text-text-main h-screen flex flex-col overflow-hidden font-mono">
+<header class="flex-none flex items-center justify-between whitespace-nowrap border-b border-border-dark bg-surface px-6 py-3 h-14">
+<div class="flex items-center gap-4">
+<div class="size-6 text-white bg-black border border-black flex items-center justify-center select-none">
+<span class="text-sm font-bold tracking-tighter">///</span>
+</div>
+<h1 class="text-black text-sm font-bold tracking-widest uppercase">
+            SIGNAL CAPTURE CONSOLE <span class="text-text-muted mx-2">//</span> APPLICATION FORM
+        </h1>
+</div>
+<div class="flex gap-2">
+<div class="px-3 py-1 border border-black text-[10px] font-bold uppercase hover:bg-black hover:text-white cursor-pointer transition-colors flex items-center">
+            CONFIG
+        </div>
+<div class="px-3 py-1 border border-black text-[10px] font-bold uppercase hover:bg-black hover:text-white cursor-pointer transition-colors flex items-center">
+            LOGS
+        </div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto bg-[#ebebeb] p-4 md:p-10 flex flex-col items-center">
+<div class="w-full max-w-2xl flex flex-col gap-8">
+<div class="border border-black bg-surface p-6 shadow-none">
+<h3 class="text-xs text-black font-bold mb-4 uppercase tracking-wider border-b border-black pb-2 flex justify-between items-center">
+<span>USER_PROFILE_DATA</span>
+<span class="bg-black text-white px-1.5 py-0.5 text-[10px]">READ_ONLY</span>
+</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-1.5">
+<label class="text-[10px] uppercase font-bold text-gray-500 tracking-wider">APPLICANT_NAME</label>
+<div class="border border-gray-300 bg-gray-50 px-3 py-2 text-sm font-bold text-black select-none">
+                        CANDIDATE_REF_8921X
+                    </div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-[10px] uppercase font-bold text-gray-500 tracking-wider">REGISTERED_EMAIL</label>
+<div class="border border-gray-300 bg-gray-50 px-3 py-2 text-sm font-bold text-black select-none">
+                        session_user@secure.link
+                    </div>
+</div>
+</div>
+</div>
+<div class="border-2 border-dashed border-black bg-surface p-8 relative group hover:bg-gray-50 transition-colors cursor-pointer min-h-[200px] flex flex-col items-center justify-center">
+<div class="absolute top-0 left-0 bg-black text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider border-b border-r border-black">
+                SOURCE: PDF_REQUIRED
+             </div>
+<div class="flex flex-col items-center justify-center text-center gap-4">
+<div class="w-6 h-6 border-b-2 border-r-2 border-black rotate-45 transform -translate-y-1 mt-2"></div>
+<div class="flex flex-col gap-1">
+<span class="text-sm font-bold uppercase tracking-widest text-black">INITIATE_UPLOAD_SEQUENCE</span>
+<span class="text-[10px] font-medium text-gray-500 uppercase tracking-wider">[ DRAG PACKET HERE ]</span>
+</div>
+</div>
+</div>
+<div class="border border-black bg-surface p-6 shadow-none">
+<div class="flex items-center justify-between mb-3 border-b border-black pb-2">
+<h3 class="text-xs text-black font-bold uppercase tracking-wider">CANDIDATE_SUMMARY</h3>
+<span class="text-[10px] uppercase font-bold text-gray-400">PLAIN_TEXT</span>
+</div>
+<div class="relative group">
+<textarea class="w-full h-48 bg-white text-sm text-black p-4 border border-black focus:border-black focus:ring-1 focus:ring-black outline-none resize-none font-mono placeholder-gray-400" placeholder="&gt; ENTER PITCH MANIFEST..."></textarea>
+<div class="absolute bottom-2 right-2 text-[10px] bg-black text-white px-1.5 py-0.5 uppercase tracking-wide opacity-50 group-focus-within:opacity-100 transition-opacity">
+                    AWAITING_INPUT
+                </div>
+</div>
+</div>
+<button class="w-full bg-black text-white h-14 border border-black text-sm font-bold tracking-[0.25em] uppercase hover:bg-white hover:text-black transition-all flex items-center justify-center group">
+<span>SUBMIT_APPLICATION</span>
+<span class="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-4 transition-all duration-300"> &gt;&gt;</span>
+</button>
+</div>
+</main>
+<footer class="flex-none bg-white border-t border-black h-10 px-6 flex items-center justify-between text-[11px] font-mono tracking-widest text-black uppercase">
+<div class="flex gap-8">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-black"></div>
+<span class="font-bold">OFFLINE MODE</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 border border-black bg-transparent"></div>
+<span class="font-bold">SYSTEM READY</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-gray-500">
+<span class="font-bold">NO AI SCORING APPLIED</span>
+</div>
+</footer>
+
+</body></html>

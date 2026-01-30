@@ -1,42 +1,52 @@
-"""
-Database Module - Handles SQLite connection and schema initialization.
-"""
-import sqlite3
+from sqlmodel import SQLModel, create_engine, Session
 from pathlib import Path
+import os
 
-DB_PATH = Path("interview.db")
+DB_FILE = "interview.db"
+sqlite_url = f"sqlite:///./{DB_FILE}"
 
-def get_connection():
-    """Get SQLite database connection."""
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
+# Connect args needed for SQLite to avoid threading issues in FastAPI
+connect_args = {"check_same_thread": False}
+engine = create_engine(sqlite_url, connect_args=connect_args)
 
 def init_db():
-    """Initialize database schema."""
-    conn = get_connection()
-    cursor = conn.cursor()
+    """Create all tables and seed initial data if empty."""
+    from app.models.schemas import User, Job, Application, InterviewSession, UserRole
+    from app.core.auth import get_password_hash
+    from sqlmodel import select
     
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS interview_sessions (
-        session_id UUID PRIMARY KEY,
-        candidate_id TEXT NOT NULL,
-        role TEXT,
-        started_at TIMESTAMP NOT NULL,
-        ended_at TIMESTAMP NOT NULL,
-
-        video_path TEXT NOT NULL,
-        audio_path TEXT NOT NULL,
-
-        multiple_faces_detected BOOLEAN DEFAULT FALSE,
-        audio_interruptions_detected BOOLEAN DEFAULT FALSE,
-
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
-    """)
+    SQLModel.metadata.create_all(engine)
     
-    conn.commit()
-    conn.close()
+    # Simple seed logic
+    with Session(engine) as session:
+        # Check if we have users
+        user_count = session.exec(select(User)).first()
+        if not user_count:
+            print("[DB] Seeding initial data...")
+            # 1. Create a Recruiter
+            recruiter = User(
+                email="admin@example.com",
+                full_name="System Admin",
+                password_hash=get_password_hash("admin123"),
+                role=UserRole.ADMIN
+            )
+            session.add(recruiter)
+            session.commit()
+            session.refresh(recruiter)
+            
+            # 2. Create a sample Job
+            job = Job(
+                title="Sr. Machine Learning Engineer",
+                description="We are looking for an expert in computer vision and signal processing.",
+                location="Remote / San Francisco",
+                salary_range="$150k - $220k",
+                recruiter_id=recruiter.id
+            )
+            session.add(job)
+            session.commit()
+            print(f"[DB] Seed complete. Admin: admin@example.com / admin123")
 
-# Initialize on module load
-init_db()
+def get_db():
+    """Dependency for getting database session"""
+    with Session(engine) as session:
+        yield session

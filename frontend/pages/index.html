@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>AI Interview - Signal Capture Console</title>
+    <title>AI Interview | Multimodal Infrastructure</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
@@ -47,130 +47,143 @@
 </head>
 
 <body
-    class="relative flex h-screen w-full flex-col bg-science-bg text-science-text font-sans overflow-hidden antialiased">
+    class="relative flex min-h-screen w-full flex-col bg-science-bg text-science-text font-sans antialiased overflow-hidden">
 
-    <!-- HEADER -->
-    <header class="flex items-center justify-between border-b border-science-border px-6 py-4 bg-white">
+    <!-- Grid Background -->
+    <div class="absolute inset-0 pointer-events-none opacity-[0.03]"
+        style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 40px 40px;">
+    </div>
+
+    <!-- Header -->
+    <header class="flex items-center justify-between border-b border-science-border px-6 py-4 bg-white relative z-10">
         <div class="flex items-center gap-3">
             <span class="material-symbols-outlined text-science-accent text-[24px]">science</span>
-            <h2 class="text-science-text text-sm font-mono uppercase tracking-widest font-semibold">AI Interview -
-                Signal Capture</h2>
+            <h2 class="text-science-text text-sm font-mono uppercase tracking-widest font-semibold">Signal_Capture_Infra
+            </h2>
         </div>
-        <div class="flex items-center gap-4">
-            <div id="status-badge"
-                class="flex items-center gap-2 px-3 py-1 bg-gray-50 border border-gray-200 text-xs font-mono text-science-muted">
-                <span class="material-symbols-outlined text-[14px]">radio_button_checked</span>
-                <span id="status-text">SYSTEM READY</span>
-            </div>
+        <div id="auth-status" class="flex items-center gap-4">
+            <a href="/login"
+                class="text-xs font-mono text-science-muted hover:text-black uppercase tracking-widest px-4 border-r border-science-border">Sign
+                In</a>
+            <a href="/register"
+                class="text-xs font-mono text-science-accent font-bold hover:underline uppercase tracking-widest">Register</a>
         </div>
     </header>
 
-    <!-- LANDING PAGE CONTENT -->
-    <main class="flex-1 flex flex-col items-center justify-center p-6 relative">
-        <div class="absolute inset-0 pointer-events-none opacity-[0.03]"
-            style="background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); background-size: 40px 40px;">
-        </div>
-        <div
-            class="w-full max-w-[480px] bg-science-card border border-science-border shadow-sm flex flex-col relative z-10">
-            <div class="bg-gray-50 border-b border-science-border px-6 py-3 flex justify-between items-center">
-                <span class="text-xs font-mono text-science-muted uppercase tracking-wider">Module: INPUT_01</span>
-                <span class="material-symbols-outlined text-science-muted text-[18px]">drag_handle</span>
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col items-center justify-center p-6 relative z-10">
+        <div class="w-full max-w-[800px] flex flex-col items-center">
+
+            <div class="mb-8 border border-science-border p-4 bg-white text-science-accent">
+                <span class="material-symbols-outlined text-[48px]">hub</span>
             </div>
-            <div class="p-8 sm:p-10 flex flex-col">
-                <div class="mb-6 self-start border border-science-border p-3 bg-white text-science-accent inline-flex">
-                    <span class="material-symbols-outlined text-[28px]">graphic_eq</span>
-                </div>
-                <h1 class="text-science-text font-mono text-xl sm:text-2xl font-bold leading-tight mb-2 tracking-tight">
-                    SIGNAL CAPTURE CONSOLE
-                </h1>
-                <p class="text-science-muted text-sm leading-relaxed max-w-sm">
-                    Raw multimodal signal acquisition for AI interview systems
-                </p>
-                <div class="w-full mt-8 space-y-6">
-                    <div class="flex flex-col text-left space-y-2">
-                        <label class="text-science-text font-mono text-xs uppercase tracking-wide font-medium">
-                            Candidate ID
-                        </label>
-                        <div class="relative">
-                            <input id="candidate-id"
-                                class="form-input flex w-full min-w-0 resize-none text-science-text focus:outline-0 focus:ring-0 focus:border-science-accent border border-science-border bg-gray-50 h-12 placeholder:text-gray-400 px-4 pl-10 text-sm font-mono"
-                                placeholder="e.g. candidate_001" type="text" />
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <span class="material-symbols-outlined text-science-muted text-[18px]">tag</span>
-                            </div>
-                        </div>
+
+            <h1 class="text-4xl md:text-6xl font-black text-black tracking-tighter text-center uppercase mb-4">
+                Career_Portal_Control
+            </h1>
+
+            <p class="text-science-muted font-mono text-sm uppercase tracking-[0.2em] mb-12 text-center max-w-lg">
+                High-fidelity multimodal signal acquisition & recruitment orchestration.
+            </p>
+
+            <!-- Navigation Hub -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+
+                <!-- Candidate Pathway -->
+                <div id="candidate-card"
+                    class="bg-white border border-science-border p-8 flex flex-col gap-6 hover:border-black transition-all group">
+                    <div class="flex justify-between items-start">
+                        <span
+                            class="material-symbols-outlined text-science-muted group-hover:text-black">person_search</span>
+                        <span
+                            class="text-[10px] font-mono text-science-muted uppercase tracking-widest">Client_Side</span>
                     </div>
-                    <button id="btn-start"
-                        class="flex w-full cursor-pointer items-center justify-center h-12 px-6 bg-science-accent hover:bg-black text-white text-sm font-mono uppercase tracking-wider transition-colors border border-transparent">
-                        Begin Capture
-                    </button>
-                    <p id="error-msg" class="text-red-500 text-xs text-center hidden"></p>
+                    <div>
+                        <h3 class="font-mono font-bold text-lg mb-2">CANDIDATE_ACCESS</h3>
+                        <p class="text-xs text-science-muted leading-relaxed">Browse live roles, manage applications,
+                            and initialize AI signal capture sessions.</p>
+                    </div>
+                    <a href="/jobs"
+                        class="inline-flex items-center justify-center h-12 bg-black text-white text-xs font-mono uppercase tracking-widest hover:bg-science-accent transition-colors">
+                        Launch Job Board
+                    </a>
                 </div>
-            </div>
-            <div class="bg-white px-8 py-4 border-t border-science-border">
-                <div class="flex items-center justify-between text-xs text-science-muted font-mono">
-                    <span class="flex items-center gap-1">
-                        <span class="material-symbols-outlined text-[14px]">cloud_off</span>
-                        OFFLINE MODE
-                    </span>
-                    <span>V2.0.0</span>
+
+                <!-- Recruiter Pathway -->
+                <div id="recruiter-card"
+                    class="bg-white border border-science-border p-8 flex flex-col gap-6 hover:border-black transition-all group">
+                    <div class="flex justify-between items-start">
+                        <span
+                            class="material-symbols-outlined text-science-muted group-hover:text-black">monitoring</span>
+                        <span
+                            class="text-[10px] font-mono text-science-muted uppercase tracking-widest">Admin_Side</span>
+                    </div>
+                    <div>
+                        <h3 class="font-mono font-bold text-lg mb-2">RECRUITER_ACCESS</h3>
+                        <p class="text-xs text-science-muted leading-relaxed">Monitor incoming signals, review candidate
+                            integrity, and manage workforce demand.</p>
+                    </div>
+                    <a href="/admin"
+                        class="inline-flex items-center justify-center h-12 border border-black text-black text-xs font-mono uppercase tracking-widest hover:bg-gray-50 transition-colors">
+                        Command Center
+                    </a>
                 </div>
+
             </div>
+
+            <!-- Dashboard Direct Link (Only visible if logged in) -->
+            <div id="dashboard-link" class="mt-8 hidden">
+                <a href="/dashboard"
+                    class="text-xs font-mono text-science-accent font-bold hover:underline uppercase tracking-widest flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[16px]">dashboard</span> Resume Active Session
+                </a>
+            </div>
+
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="w-full py-4 px-4 bg-white border-t border-science-border">
-        <div class="max-w-[960px] mx-auto text-center">
-            <p class="text-xs text-science-muted font-mono">
-                This demo captures raw visual and audio signals only. No AI analysis, scoring, or hiring decisions are
-                performed.
-            </p>
+    <footer
+        class="w-full py-6 px-8 border-t border-science-border bg-white relative z-10 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-[10px] font-mono text-science-muted uppercase tracking-widest">
+            Module: CONTROL_HUB_v2.0.1
+        </div>
+        <div class="flex items-center gap-6">
+            <span class="flex items-center gap-2 text-[10px] font-mono text-science-muted">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                CORE_SYSTEM_READY
+            </span>
+            <span class="text-[10px] font-mono text-science-muted border-l border-science-border pl-6">
+                ENV: LOCAL_LAPTOP
+            </span>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="/static/scripts/session.js"></script>
-    <script src="/static/scripts/ui.js"></script>
     <script>
-        // Landing page logic
-        const candidateInput = document.getElementById('candidate-id');
-        const errorMsg = document.getElementById('error-msg');
-        const btnStart = document.getElementById('btn-start');
+        // Auth state handling for landing page
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        const token = sessionStorage.getItem('token');
 
-        btnStart.addEventListener('click', async () => {
-            const candidateId = candidateInput.value.trim();
+        if (token && user) {
+            document.getElementById('auth-status').innerHTML = `
+                <span class="text-[10px] font-mono text-science-muted uppercase tracking-widest mr-4">User: ${user.full_name}</span>
+                <button onclick="sessionStorage.clear(); window.location.reload();" class="text-[10px] font-mono text-red-600 hover:underline uppercase tracking-widest font-bold">Logout</button>
+            `;
+            document.getElementById('dashboard-link').classList.remove('hidden');
 
-            if (!candidateId) {
-                errorMsg.textContent = 'Please enter a Candidate ID';
-                errorMsg.classList.remove('hidden');
-                return;
+            // Link pathways visibility to role
+            if (user.role === 'seeker') {
+                document.getElementById('recruiter-card').classList.add('opacity-30', 'pointer-events-none');
+            } else if (user.role === 'admin' || user.role === 'recruiter') {
+                document.getElementById('candidate-card').classList.add('opacity-30', 'pointer-events-none');
+                document.getElementById('dashboard-link').classList.add('hidden');
             }
+        }
 
-            errorMsg.classList.add('hidden');
-            btnStart.textContent = 'Starting...';
-            btnStart.disabled = true;
-
-            try {
-                // Start session via API
-                const result = await startSession(candidateId);
-                console.log('Session started:', result);
-
-                // Store candidate ID for capture page
-                storeSessionData('candidateId', candidateId);
-                storeSessionData('sessionDir', result.session_dir);
-
-                // Navigate to capture page
-                window.location.href = '/capture';
-
-            } catch (error) {
-                console.error('Start error:', error);
-                errorMsg.textContent = error.message || 'Connection failed. Is the server running?';
-                errorMsg.classList.remove('hidden');
-                btnStart.textContent = 'Begin Capture';
-                btnStart.disabled = false;
-            }
-        });
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = '/login';
+        }
     </script>
 </body>
 

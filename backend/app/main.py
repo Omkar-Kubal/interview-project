@@ -13,11 +13,14 @@ import asyncio
 import cv2
 
 from app.api.session import get_session, create_session, clear_session
+from app.persistence.database import init_db
+from app.api import auth, jobs, applications
 
 
 # Request/Response models
 class StartRequest(BaseModel):
     candidate_id: str
+    application_id: Optional[int] = None
 
 
 class StartResponse(BaseModel):
@@ -53,6 +56,22 @@ frontend_path = Path(__file__).parent.parent.parent / "frontend"
 if frontend_path.exists():
     app.mount("/static", StaticFiles(directory=str(frontend_path)), name="static")
 
+# Mount data for media replay
+data_path = Path(__file__).parent.parent.parent / "backend" / "data"
+if data_path.exists():
+    app.mount("/data", StaticFiles(directory=str(data_path)), name="data")
+
+# Include Routers
+app.include_router(auth.router)
+app.include_router(jobs.router)
+app.include_router(applications.router)
+
+@app.on_event("startup")
+def on_startup():
+    """Initialize database and common resources."""
+    init_db()
+    print("[SERVER] Database initialized.")
+
 
 @app.get("/", response_class=HTMLResponse)
 async def root():
@@ -81,6 +100,78 @@ async def summary_page():
     return HTMLResponse("<h1>Summary page not found</h1>")
 
 
+@app.get("/login", response_class=HTMLResponse)
+async def login_page():
+    """Serve login page."""
+    login_path = frontend_path / "pages" / "login.html"
+    if login_path.exists():
+        return FileResponse(str(login_path))
+    return HTMLResponse("<h1>Login page not found</h1>")
+
+
+@app.get("/register", response_class=HTMLResponse)
+async def register_page():
+    """Serve registration page."""
+    register_path = frontend_path / "pages" / "register.html"
+    if register_path.exists():
+        return FileResponse(str(register_path))
+    return HTMLResponse("<h1>Registration page not found</h1>")
+
+
+@app.get("/jobs", response_class=HTMLResponse)
+async def jobs_page():
+    """Serve job board page."""
+    jobs_path = frontend_path / "pages" / "jobs.html"
+    if jobs_path.exists():
+        return FileResponse(str(jobs_path))
+    return HTMLResponse("<h1>Job board page not found</h1>")
+
+
+@app.get("/apply", response_class=HTMLResponse)
+async def apply_page():
+    """Serve job application page."""
+    apply_path = frontend_path / "pages" / "apply.html"
+    if apply_path.exists():
+        return FileResponse(str(apply_path))
+    return HTMLResponse("<h1>Application page not found</h1>")
+
+
+@app.get("/dashboard", response_class=HTMLResponse)
+async def dashboard_page():
+    """Serve candidate dashboard page."""
+    dashboard_path = frontend_path / "pages" / "dashboard.html"
+    if dashboard_path.exists():
+        return FileResponse(str(dashboard_path))
+    return HTMLResponse("<h1>Dashboard page not found</h1>")
+
+
+@app.get("/admin", response_class=HTMLResponse)
+async def admin_page():
+    """Serve recruiter admin page."""
+    admin_path = frontend_path / "pages" / "admin.html"
+    if admin_path.exists():
+        return FileResponse(str(admin_path))
+    return HTMLResponse("<h1>Admin page not found</h1>")
+
+
+@app.get("/replay", response_class=HTMLResponse)
+async def replay_page():
+    """Serve session replay page."""
+    replay_path = frontend_path / "pages" / "replay.html"
+    if replay_path.exists():
+        return FileResponse(str(replay_path))
+    return HTMLResponse("<h1>Replay page not found</h1>")
+
+
+@app.get("/summary", response_class=HTMLResponse)
+async def summary_page():
+    """Serve session summary page."""
+    summary_path = frontend_path / "pages" / "summary.html"
+    if summary_path.exists():
+        return FileResponse(str(summary_path))
+    return HTMLResponse("<h1>Summary page not found</h1>")
+
+
 @app.post("/api/session/start", response_model=StartResponse)
 async def start_session(request: StartRequest):
     """Start a new capture session."""
@@ -91,12 +182,16 @@ async def start_session(request: StartRequest):
     
     # Create and setup session
     session = create_session()
-    session_dir = session.setup(request.candidate_id)
     
     # Start capture
-    if not session.start():
+    try:
+        session_dir = session.setup(request.candidate_id, application_id=request.application_id)
+        if not session.start():
+            clear_session()
+            raise HTTPException(status_code=500, detail="Failed to start capture: Camera or Microphone may be unavailable")
+    except Exception as e:
         clear_session()
-        raise HTTPException(status_code=500, detail="Failed to start capture")
+        raise HTTPException(status_code=500, detail=f"Capture error: {str(e)}")
     
     return StartResponse(
         status="started",
@@ -112,7 +207,12 @@ async def stop_session():
     if not session:
         raise HTTPException(status_code=400, detail="No active session")
     
-    result = session.stop()
+    # Stop capture
+    try:
+        result = session.stop()
+    except Exception as e:
+        print(f"Error during session stop: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to stop session: {str(e)}")
     
     return StopResponse(
         status="stopped",

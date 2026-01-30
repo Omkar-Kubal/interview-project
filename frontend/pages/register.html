@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AI Interview - Register</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "science-bg": "#f4f4f5",
+                        "science-card": "#ffffff",
+                        "science-border": "#e4e4e7",
+                        "science-text": "#18181b",
+                        "science-muted": "#71717a",
+                        "science-accent": "#27272a"
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "mono": ["IBM Plex Mono", "monospace"]
+                    },
+                    borderRadius: { DEFAULT: "0px", none: "0px" }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        *,
+        *::before,
+        *::after {
+            border-radius: 0 !important;
+        }
+    </style>
+</head>
+
+<body
+    class="relative flex min-h-screen w-full flex-col bg-science-bg text-science-text font-sans antialiased items-center justify-center p-6">
+
+    <div
+        class="w-full max-w-[480px] bg-science-card border border-science-border shadow-sm flex flex-col relative z-10">
+        <div class="bg-gray-50 border-b border-science-border px-6 py-3 flex justify-between items-center">
+            <span class="text-xs font-mono text-science-muted uppercase tracking-wider">Registration: USER_NEW</span>
+            <span class="material-symbols-outlined text-science-muted text-[18px]">person_add</span>
+        </div>
+        <div class="p-10 flex flex-col">
+            <div class="mb-8 self-center border border-science-border p-4 bg-white text-science-accent inline-flex">
+                <span class="material-symbols-outlined text-[32px]">group</span>
+            </div>
+            <h1 class="text-science-text font-mono text-2xl font-bold leading-tight mb-2 tracking-tight text-center">
+                CREATE ACCOUNT
+            </h1>
+            <p class="text-science-muted text-xs text-center uppercase tracking-widest mb-8">
+                Join the Multidmodal Network
+            </p>
+
+            <form id="register-form" class="space-y-5">
+                <div class="flex flex-col space-y-2">
+                    <label class="text-science-text font-mono text-[10px] uppercase tracking-widest font-bold">
+                        Full Name
+                    </label>
+                    <div class="relative">
+                        <input id="full_name" required
+                            class="form-input flex w-full min-w-0 resize-none text-science-text focus:outline-0 focus:ring-0 focus:border-science-accent border border-science-border bg-gray-50 h-11 placeholder:text-gray-300 px-4 pl-10 text-sm font-mono"
+                            placeholder="John Doe" type="text" />
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-science-muted text-[18px]">person</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col space-y-2">
+                    <label class="text-science-text font-mono text-[10px] uppercase tracking-widest font-bold">
+                        Email Address
+                    </label>
+                    <div class="relative">
+                        <input id="email" required
+                            class="form-input flex w-full min-w-0 resize-none text-science-text focus:outline-0 focus:ring-0 focus:border-science-accent border border-science-border bg-gray-50 h-11 placeholder:text-gray-300 px-4 pl-10 text-sm font-mono"
+                            placeholder="user@example.com" type="email" />
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <span
+                                class="material-symbols-outlined text-science-muted text-[18px]">alternate_email</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col space-y-2">
+                    <label class="text-science-text font-mono text-[10px] uppercase tracking-widest font-bold">
+                        Password
+                    </label>
+                    <div class="relative">
+                        <input id="password" required
+                            class="form-input flex w-full min-w-0 resize-none text-science-text focus:outline-0 focus:ring-0 focus:border-science-accent border border-science-border bg-gray-50 h-11 placeholder:text-gray-300 px-4 pl-10 text-sm font-mono"
+                            placeholder="Min. 8 characters" type="password" />
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <span class="material-symbols-outlined text-science-muted text-[18px]">password</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col space-y-2">
+                    <label class="text-science-text font-mono text-[10px] uppercase tracking-widest font-bold">
+                        Account Type
+                    </label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="role" value="seeker" checked class="hidden peer" />
+                            <div
+                                class="border border-science-border p-3 text-center peer-checked:bg-science-accent peer-checked:text-white transition-all">
+                                <span class="text-[10px] font-mono uppercase tracking-widest">Candidate</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="role" value="recruiter" class="hidden peer" />
+                            <div
+                                class="border border-science-border p-3 text-center peer-checked:bg-science-accent peer-checked:text-white transition-all">
+                                <span class="text-[10px] font-mono uppercase tracking-widest">Recruiter</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" id="btn-register"
+                    class="flex w-full cursor-pointer items-center justify-center h-12 px-6 bg-science-accent hover:bg-black text-white text-sm font-mono uppercase tracking-widest transition-colors border border-transparent mt-4">
+                    Initialize Profile
+                </button>
+
+                <p id="error-msg"
+                    class="text-red-600 text-[10px] font-mono text-center hidden uppercase bg-red-50 border border-red-100 py-2">
+                </p>
+                <p id="success-msg"
+                    class="text-green-600 text-[10px] font-mono text-center hidden uppercase bg-green-50 border border-green-100 py-2">
+                </p>
+            </form>
+
+            <div class="mt-8 pt-8 border-t border-science-border flex flex-col items-center gap-4">
+                <p class="text-[10px] text-science-muted font-mono uppercase tracking-wider">Already have an account?
+                </p>
+                <a href="/login"
+                    class="text-xs font-mono text-science-accent hover:underline uppercase tracking-widest font-bold">Sign
+                    In Instead</a>
+            </div>
+        </div>
+        <div class="bg-gray-50 px-8 py-4 border-t border-science-border text-center">
+            <span class="text-[10px] text-science-muted font-mono uppercase tracking-tighter">Legal: Data processed in
+                secured local infrastructure</span>
+        </div>
+    </div>
+
+    <script>
+        // Check if already logged in
+        const existingUser = JSON.parse(sessionStorage.getItem('user'));
+        const existingToken = sessionStorage.getItem('token');
+        if (existingToken && existingUser) {
+            window.location.href = existingUser.role === 'ADMIN' ? '/admin' : '/dashboard';
+        }
+
+        const registerForm = document.getElementById('register-form');
+        const errorMsg = document.getElementById('error-msg');
+        const successMsg = document.getElementById('success-msg');
+        const btnRegister = document.getElementById('btn-register');
+
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            errorMsg.classList.add('hidden');
+            successMsg.classList.add('hidden');
+            btnRegister.innerText = 'Initializing...';
+            btnRegister.disabled = true;
+
+            const payload = {
+                full_name: document.getElementById('full_name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                role: document.querySelector('input[name="role"]:checked').value
+            };
+
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.detail || 'Registration failed');
+                }
+
+                successMsg.innerText = 'Account Created. Redirecting...';
+                successMsg.classList.remove('hidden');
+
+                // Auto-login or redirect to login after 2 seconds
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 1500);
+
+            } catch (error) {
+                console.error('Registration error:', error);
+                errorMsg.innerText = error.message;
+                errorMsg.classList.remove('hidden');
+                btnRegister.innerText = 'Initialize Profile';
+                btnRegister.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -6,18 +6,29 @@
 /**
  * Start a new capture session
  * @param {string} candidateId - The candidate identifier
+ * @param {number} [applicationId] - Optional job application ID
  * @returns {Promise<Object>} Session start result
  */
-async function startSession(candidateId) {
+async function startSession(candidateId, applicationId = null) {
     const response = await fetch('/api/session/start', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ candidate_id: candidateId })
+        body: JSON.stringify({
+            candidate_id: candidateId,
+            application_id: applicationId
+        })
     });
 
     if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.detail || 'Failed to start session');
+        let errorMessage = 'Failed to start session';
+        try {
+            const data = await response.json();
+            errorMessage = data.detail || errorMessage;
+        } catch (e) {
+            // Not a JSON response
+            errorMessage = await response.text() || errorMessage;
+        }
+        throw new Error(errorMessage);
     }
 
     return response.json();
@@ -33,8 +44,14 @@ async function stopSession() {
     });
 
     if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.detail || 'Failed to stop session');
+        let errorMessage = 'Failed to stop session';
+        try {
+            const data = await response.json();
+            errorMessage = data.detail || errorMessage;
+        } catch (e) {
+            errorMessage = await response.text() || errorMessage;
+        }
+        throw new Error(errorMessage);
     }
 
     return response.json();
@@ -48,8 +65,14 @@ async function getSessionSummary() {
     const response = await fetch('/api/session/summary');
 
     if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.detail || 'Failed to get summary');
+        let errorMessage = 'Failed to get summary';
+        try {
+            const data = await response.json();
+            errorMessage = data.detail || errorMessage;
+        } catch (e) {
+            errorMessage = await response.text() || errorMessage;
+        }
+        throw new Error(errorMessage);
     }
 
     return response.json();

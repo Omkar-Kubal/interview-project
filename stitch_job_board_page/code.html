@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clinical Job Board | Signal Capture Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "secondary": "#333333",
+                        "background-light": "#ffffff",
+                        "background-dark": "#0a0a0a",
+                        "surface": "#f4f4f5",
+                        "border-color": "#e4e4e7"
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "none": "0px",
+                        "sm": "0px",
+                        "md": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "2xl": "0px",
+                        "full": "0px" 
+                    },
+                    boxShadow: {
+                        "none": "none",
+                        "sm": "none",
+                        "md": "none",
+                        "lg": "none",
+                        "xl": "none"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .mono-label {
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555; 
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen text-gray-900 antialiased selection:bg-gray-200 selection:text-black">
+<header class="sticky top-0 z-50 bg-white border-b border-black h-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+<div class="flex items-center justify-between h-full">
+<div class="flex items-center gap-3">
+<div class="bg-black text-white p-1 flex items-center justify-center size-8">
+<svg class="size-5" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="2"></path>
+<path d="M2 17L12 22L22 17" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="2"></path>
+<path d="M2 12L12 17L22 12" stroke="currentColor" stroke-linecap="square" stroke-linejoin="miter" stroke-width="2"></path>
+</svg>
+</div>
+<span class="text-lg font-bold text-black tracking-tight font-mono">SIGNAL_CAPTURE</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-black border-b-2 border-black py-5 mono-label" href="#">Jobs</a>
+<a class="text-sm font-medium text-gray-500 hover:text-black transition-colors mono-label" href="#">Applications</a>
+<a class="text-sm font-medium text-gray-500 hover:text-black transition-colors mono-label" href="#">System</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex px-4 py-2 text-xs font-bold text-black hover:bg-gray-100 border border-transparent transition-colors mono-label">
+                    For Employers
+                </button>
+<button class="bg-black text-white px-5 py-2 text-xs font-bold hover:bg-gray-800 transition-colors mono-label border border-black">
+                    Sign In
+                </button>
+<div class="size-8 bg-gray-200 border border-black bg-cover bg-center grayscale" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBYPhUw0LlymPlcGcnypnGBuIAMIqGIB2Pds5UFmxpAz_0Y9-QKN8n2FRI-VrqiAnX4i0xQXJzjlc547bAXHgj15Eh7iLHYMqEcrvDOaHo3ODa-Q3R-XKw9dXFgKlbHNe8D_rkWukny0xjRKf88Nto8KPgIidajqc7ZsVKZzkPihbkiC-wSUX75vZIrdYePJIvM9nH4kTH_OeBfrIDnZEJVL_g39pdba9TDIZ80bGsdJ23WS9_VsRrm_xVR4aDDueESVla6RkXmWI');">
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 py-12">
+<section class="mb-12">
+<div class="mb-8 border-l-4 border-black pl-4">
+<h1 class="text-4xl font-bold text-black tracking-tight">ROLE_DISCOVERY_MODULE</h1>
+<p class="text-gray-500 font-mono text-sm mt-1">Initialize parameters to filter candidates.</p>
+</div>
+<div class="bg-white p-6 border border-black flex flex-col md:flex-row gap-6 items-end">
+<div class="w-full flex-1">
+<label class="flex flex-col text-left group">
+<span class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 font-mono group-focus-within:text-black">Keyword_Input</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">terminal</span>
+<input class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-300 focus:border-black focus:ring-0 text-black placeholder:text-gray-400 font-mono text-sm transition-colors" placeholder="TITLE, SKILL, OR ID" type="text"/>
+</div>
+</label>
+</div>
+<div class="w-full md:w-72">
+<label class="flex flex-col text-left group">
+<span class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 font-mono group-focus-within:text-black">Geo_Lock</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">radar</span>
+<input class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-300 focus:border-black focus:ring-0 text-black placeholder:text-gray-400 font-mono text-sm transition-colors" placeholder="COORDINATES / CITY" type="text"/>
+</div>
+</label>
+</div>
+<button class="w-full md:w-auto px-8 h-[46px] bg-black text-white font-bold hover:bg-gray-800 transition-all flex items-center justify-center gap-2 mono-label text-sm border border-black">
+                EXECUTE_SEARCH
+            </button>
+</div>
+<div class="flex flex-wrap gap-2 mt-4">
+<button class="flex items-center gap-2 px-3 py-1.5 border border-gray-300 text-xs font-bold text-gray-600 hover:border-black hover:text-black hover:bg-gray-50 transition-colors font-mono uppercase bg-white">
+                [ ] Full-time
+            </button>
+<button class="flex items-center gap-2 px-3 py-1.5 border border-gray-300 text-xs font-bold text-gray-600 hover:border-black hover:text-black hover:bg-gray-50 transition-colors font-mono uppercase bg-white">
+                [ ] Contract
+            </button>
+<button class="flex items-center gap-2 px-3 py-1.5 border border-gray-300 text-xs font-bold text-gray-600 hover:border-black hover:text-black hover:bg-gray-50 transition-colors font-mono uppercase bg-white">
+                [ ] Salary_Range
+            </button>
+<button class="flex items-center gap-2 px-3 py-1.5 border border-black text-xs font-bold text-black bg-gray-100 transition-colors font-mono uppercase">
+                [x] Remote <span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+</section>
+<div class="space-y-0 border-t border-gray-200">
+<div class="flex justify-between items-center py-4 px-1 border-b border-gray-200 bg-gray-50/50">
+<p class="text-xs font-mono text-gray-500 uppercase">Status: <span class="text-black font-bold">124 POSITIONS DETECTED</span></p>
+<div class="flex items-center gap-2 text-xs font-mono text-gray-500 uppercase">
+<span>Sort_Sequence:</span>
+<button class="font-bold text-black flex items-center hover:underline">Newest <span class="material-symbols-outlined text-sm ml-1">arrow_drop_down</span></button>
+</div>
+</div>
+<div class="group relative bg-white border-b border-x border-gray-200 p-6 hover:bg-gray-50 hover:border-gray-400 transition-all duration-150">
+<div class="flex flex-col md:flex-row gap-6">
+<div class="size-16 bg-white border border-gray-200 flex items-center justify-center p-2 flex-shrink-0 grayscale group-hover:grayscale-0 transition-all">
+<img class="w-full h-full object-contain" data-alt="System Admin Company Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgiyKbz2-w2h6ud4abqHUfFE_q05ApQVm_a02Vb_d5OwXqMMTRatcjw91FISKLZlO89nnN1ReiZi59Iqll5RIj0YLkLqaxcGnaugZ4lOR5w4uZR6vP0eM0rWmmUFRqlhdLf-vx-eys7lFK46zmBsuc83wUiyCyqgmZNBR6aunX7F3z3fFECVs2JiIn3HomKWDxyVTDC-ceIb3g4gZynXpZi6ysS8HjcEYOsZFKIKUfwwRA9cOWCcSEHQ5dVa_bjG0-cmXKw_QraK4"/>
+</div>
+<div class="flex-1">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div>
+<h3 class="text-xl font-bold text-black group-hover:underline decoration-2 underline-offset-4">Senior Software Engineer</h3>
+<div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-2">
+<span class="text-xs font-mono text-gray-600 flex items-center gap-1.5 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px]">domain</span> System Admin
+                                </span>
+<span class="text-xs font-mono text-gray-600 flex items-center gap-1.5 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px]">attach_money</span> 120k - 150k
+                                </span>
+<span class="text-xs font-mono text-gray-500 flex items-center gap-1.5 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px]">schedule</span> T-minus 2 days
+                                </span>
+</div>
+</div>
+<div class="flex items-center gap-2 self-start">
+<span class="px-2 py-1 border border-gray-300 text-[10px] font-bold uppercase tracking-wider text-gray-600 font-mono">Full Time</span>
+<span class="px-2 py-1 border border-black bg-black text-white text-[10px] font-bold uppercase tracking-wider font-mono">Urgent</span>
+<span class="px-2 py-1 border border-gray-300 text-[10px] font-bold uppercase tracking-wider text-gray-600 font-mono">Remote</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-3 mt-6">
+<button class="size-10 flex items-center justify-center border border-gray-300 text-gray-500 hover:text-black hover:border-black hover:bg-white transition-colors">
+<span class="material-symbols-outlined">bookmark_add</span>
+</button>
+<button class="px-6 h-10 bg-white border border-black text-black font-bold text-xs uppercase hover:bg-black hover:text-white transition-colors font-mono">
+                            Apply_Now
+                        </button>
+</div>
+</div>
+</div>
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-black transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom"></div>
+</div>
+<div class="group relative bg-white border-b border-x border-gray-200 p-6 hover:bg-gray-50 hover:border-gray-400 transition-all duration-150">
+<div class="flex flex-col md:flex-row gap-6">
+<div class="size-16 bg-white border border-gray-200 flex items-center justify-center p-2 flex-shrink-0 grayscale group-hover:grayscale-0 transition-all">
+<img class="w-full h-full object-contain" data-alt="AI Tech Startup Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdbDNT12GFSAD-_aIkLZhs9OQbMWaIYETnqAAB6-eggkEbxY4m_i6I4wx9bI0Fc0HgtNRzR63q4GhMlkwdVe1yVfgzvaiqP3qHBg0XY8Ovx7WR7lXIVNjnY7aBKfyql7UC6TShhJ2e-g7hqBxayO53jSMxFLy6OAYjtfpg2JJyOc4NU4FA85N6fSbzLMxPgLTeWJKzbn3TdDaw9KhMMN14qyENtmdnIjSRM0Ywr7dZg0UNRWbL93nTX70LiedUiH_NLw8gUvFHAy4"/>
+</div>
+<div class="flex-1">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div>
+<h3 class="text-xl font-bold text-black group-hover:underline decoration-2 underline-offset-4">Machine Learning Researcher</h3>
+<div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-2">
+<span class="text-xs font-mono text-gray-600 flex items-center gap-1.5 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px]">domain</span> NeuralFlow AI
+                                </span>
+<span class="text-xs font-mono text-gray-600 flex items-center gap-1.5 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px]">attach_money</span> 160k - 210k
+                                </span>
+<span class="text-xs font-mono text-gray-500 flex items-center gap-1.5 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px]">schedule</span> T-minus 5 hours
+                                </span>
+</div>
+</div>
+<div class="flex items-center gap-2 self-start">
+<span class="px-2 py-1 border border-gray-300 text-[10px] font-bold uppercase tracking-wider text-gray-600 font-mono">Full Time</span>
+<span class="px-2 py-1 border border-gray-300 text-[10px] font-bold uppercase tracking-wider text-gray-600 font-mono">Multi-Hire</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-3 mt-6">
+<button class="size-10 flex items-center justify-center border border-gray-300 text-gray-500 hover:text-black hover:border-black hover:bg-white transition-colors">
+<span class="material-symbols-outlined">bookmark_add</span>
+</button>
+<button class="px-6 h-10 bg-white border border-black text-black font-bold text-xs uppercase hover:bg-black hover:text-white transition-colors font-mono">
+                            Apply_Now
+                        </button>
+</div>
+</div>
+</div>
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-black transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom"></div>
+</div>
+<div class="group relative bg-white border-b border-x border-gray-200 p-6 hover:bg-gray-50 hover:border-gray-400 transition-all duration-150">
+<div class="flex flex-col md:flex-row gap-6">
+<div class="size-16 bg-white border border-gray-200 flex items-center justify-center p-2 flex-shrink-0 grayscale group-hover:grayscale-0 transition-all">
+<img class="w-full h-full object-contain" data-alt="Design Studio Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLP0ahNdD3EB-7a9dtdAeYNLX1BBFdb3_LC9aA2Lt7ZPhIUYMHDZmvGyyc9E7tX2H26xgrJKqlyCRd8ouAufCQ74INVwpCkeDJAPjY4xUbDFa-yCErlrS0lyYM3RV0i3WlrxoJTasc_4OOEh8cmenWHJ9p6J2SxjSGN3EGICwk3Z_8V-XydJDbJWg0hml5S5wODwcQLNNMXpEHrKww2Iz1BEuaY-j9b5ftfohuRQCIDXciESd0qrH29Zl8kro9qMP4d-hIF1nD7QU"/>
+</div>
+<div class="flex-1">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div>
+<h3 class="text-xl font-bold text-black group-hover:underline decoration-2 underline-offset-4">Product Designer</h3>
+<div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-2">
+<span class="text-xs font-mono text-gray-600 flex items-center gap-1.5 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px]">domain</span> Creative Labs
+                                </span>
+<span class="text-xs font-mono text-gray-600 flex items-center gap-1.5 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px]">attach_money</span> 95k - 130k
+                                </span>
+<span class="text-xs font-mono text-gray-500 flex items-center gap-1.5 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px]">schedule</span> T-minus 3 days
+                                </span>
+</div>
+</div>
+<div class="flex items-center gap-2 self-start">
+<span class="px-2 py-1 border border-gray-300 text-[10px] font-bold uppercase tracking-wider text-gray-600 font-mono">Contract</span>
+<span class="px-2 py-1 border border-gray-300 text-[10px] font-bold uppercase tracking-wider text-gray-600 font-mono">Remote</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-3 mt-6">
+<button class="size-10 flex items-center justify-center border border-gray-300 text-gray-500 hover:text-black hover:border-black hover:bg-white transition-colors">
+<span class="material-symbols-outlined">bookmark_add</span>
+</button>
+<button class="px-6 h-10 bg-white border border-black text-black font-bold text-xs uppercase hover:bg-black hover:text-white transition-colors font-mono">
+                            Apply_Now
+                        </button>
+</div>
+</div>
+</div>
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-black transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom"></div>
+</div>
+<div class="group relative bg-white border-b border-x border-gray-200 p-6 hover:bg-gray-50 hover:border-gray-400 transition-all duration-150">
+<div class="flex flex-col md:flex-row gap-6">
+<div class="size-16 bg-white border border-gray-200 flex items-center justify-center p-2 flex-shrink-0 grayscale group-hover:grayscale-0 transition-all">
+<img class="w-full h-full object-contain" data-alt="Cloud Systems Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkK911feFoyNhZslGFUY5qhIzHb0R6FTBmpsL-Gv4kv_H0VoiOHvNdojgSqX2f10tHURn6RowvUQ8tr9Q1Wqhne1C34oaZPGzgcaWV1chYcaAicPz7xeE3igLiT2Upa0njyxtFvDAxHVE8cFGti1TQ9qrvLx6e11WUGRxnonrppWSYKcw0Q6Wo7RD5o15Gl2VNyNHn4DIaQtALI53rM_YAurXIwPcC6SXzjIFoCd9Y5KrIykh8fqgifhQfZPWDUcvuf_wwprSXe5I"/>
+</div>
+<div class="flex-1">
+<div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
+<div>
+<h3 class="text-xl font-bold text-black group-hover:underline decoration-2 underline-offset-4">DevOps Specialist</h3>
+<div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-2">
+<span class="text-xs font-mono text-gray-600 flex items-center gap-1.5 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px]">domain</span> SkyScale Systems
+                                </span>
+<span class="text-xs font-mono text-gray-600 flex items-center gap-1.5 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px]">attach_money</span> 140k - 175k
+                                </span>
+<span class="text-xs font-mono text-gray-500 flex items-center gap-1.5 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[16px]">schedule</span> T-minus 1 week
+                                </span>
+</div>
+</div>
+<div class="flex items-center gap-2 self-start">
+<span class="px-2 py-1 border border-gray-300 text-[10px] font-bold uppercase tracking-wider text-gray-600 font-mono">Full Time</span>
+<span class="px-2 py-1 border border-black bg-black text-white text-[10px] font-bold uppercase tracking-wider font-mono">Urgent</span>
+</div>
+</div>
+<div class="flex items-center justify-end gap-3 mt-6">
+<button class="size-10 flex items-center justify-center border border-gray-300 text-gray-500 hover:text-black hover:border-black hover:bg-white transition-colors">
+<span class="material-symbols-outlined">bookmark_add</span>
+</button>
+<button class="px-6 h-10 bg-white border border-black text-black font-bold text-xs uppercase hover:bg-black hover:text-white transition-colors font-mono">
+                            Apply_Now
+                        </button>
+</div>
+</div>
+</div>
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-black transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom"></div>
+</div>
+</div>
+<div class="mt-12 flex justify-center items-center gap-2 font-mono">
+<button class="size-10 flex items-center justify-center border border-gray-200 text-gray-400 cursor-not-allowed">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="size-10 flex items-center justify-center bg-black text-white font-bold text-sm">1</button>
+<button class="size-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-black hover:text-black transition-colors text-sm">2</button>
+<button class="size-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-black hover:text-black transition-colors text-sm">3</button>
+<span class="px-2 text-gray-400">...</span>
+<button class="size-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-black hover:text-black transition-colors text-sm">12</button>
+<button class="size-10 flex items-center justify-center border border-gray-200 text-gray-600 hover:border-black hover:text-black transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</main>
+<footer class="mt-12 border-t border-black py-12 bg-white">
+<div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="size-4 bg-black"></div>
+<span class="text-sm font-bold text-black uppercase tracking-wider font-mono">Signal_Capture_System v2.4</span>
+</div>
+<div class="flex gap-8">
+<a class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-black font-mono" href="#">Terms</a>
+<a class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-black font-mono" href="#">Privacy</a>
+<a class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-black font-mono" href="#">Docs</a>
+<a class="text-xs font-bold uppercase tracking-wider text-gray-500 hover:text-black font-mono" href="#">Status</a>
+</div>
+<p class="text-xs text-gray-400 font-mono">© 2024 AI Screening Inc.</p>
+</div>
+</footer>
+
+</body></html>

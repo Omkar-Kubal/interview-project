@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Session Replay Console | Signal Capture</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "off-white": "#f2f2f2",
+                        "surface": "#ffffff",
+                        "border-dark": "#000000",
+                        "text-main": "#000000",
+                        "text-muted": "#666666",
+                    },
+                    fontFamily: {
+                        "mono": ["Space Grotesk", "monospace"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "none": "0px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: "Space Grotesk", monospace;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+            border-left: 1px solid #e5e5e5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #333333;
+        }
+
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-off-white text-text-main h-screen flex flex-col overflow-hidden font-mono">
+    <header
+        class="flex-none flex items-center justify-between whitespace-nowrap border-b border-border-dark bg-surface px-6 py-3 h-14">
+        <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='/admin'">
+            <div class="size-6 text-black border border-black flex items-center justify-center">
+                <span class="material-symbols-outlined text-[18px]">terminal</span>
+            </div>
+            <h1 class="text-black text-sm font-bold tracking-widest uppercase">
+                SIGNAL CAPTURE CONSOLE <span class="text-text-muted mx-2">//</span> SESSION REPLAY
+            </h1>
+        </div>
+        <div class="flex gap-2">
+            <button onclick="window.location.href='/admin'"
+                class="bg-black text-white px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest border border-black hover:bg-white hover:text-black transition-all">
+                Close_Session
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 flex flex-col lg:flex-row min-h-0">
+        <!-- Center/Left: Video Feed -->
+        <div class="flex-1 flex flex-col min-w-0 border-r border-border-dark bg-[#ebebeb]">
+            <div class="flex-1 flex flex-col p-6 min-h-0 overflow-y-auto">
+                <div class="flex justify-between items-end mb-2">
+                    <div class="inline-flex items-center gap-2 border border-black bg-white px-2 py-1">
+                        <span
+                            class="material-symbols-outlined text-black text-[14px] filled-icon">fiber_manual_record</span>
+                        <span id="source-label"
+                            class="text-black text-xs font-bold tracking-wider uppercase">VIDEO_SOURCE:
+                            LOADING...</span>
+                    </div>
+                </div>
+
+                <div
+                    class="relative w-full bg-black border border-black flex-grow flex items-center justify-center group overflow-hidden">
+                    <video id="replay-video" class="w-full h-full object-contain"></video>
+
+                    <!-- Overlay Overlay -->
+                    <div
+                        class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,255,255,0.03),rgba(0,0,0,0.01))] z-10 bg-[length:100%_2px,3px_100%] pointer-events-none">
+                    </div>
+
+                    <div class="absolute top-4 right-4 z-20 flex flex-col items-end gap-1">
+                        <div id="integrity-badge"
+                            class="text-[10px] bg-white text-black px-2 py-0.5 border border-black font-bold uppercase">
+                            SIGNAL_STABLE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integrity Checklist -->
+            <div class="flex-none p-6 pt-0">
+                <div class="border border-black bg-surface p-4">
+                    <h3 class="text-xs text-black font-bold mb-3 uppercase tracking-wider border-b border-black pb-2">
+                        Signal Integrity Audit</h3>
+                    <div id="integrity-checks" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="flex items-center justify-between bg-white p-2 border border-black">
+                            <span class="text-xs text-text-muted font-bold">FACE CONTINUOUS</span>
+                            <div class="flex items-center gap-2">
+                                <span id="check-face-status"
+                                    class="text-xs font-bold text-black uppercase">PENDING</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between bg-white p-2 border border-black">
+                            <span class="text-xs text-text-muted font-bold">MULTIPLE FACES</span>
+                            <div class="flex items-center gap-2">
+                                <span id="check-multi-face"
+                                    class="text-xs font-bold text-black uppercase">PENDING</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between bg-white p-2 border border-black">
+                            <span class="text-xs text-text-muted font-bold">AUDIO INTERRUPTIONS</span>
+                            <div class="flex items-center gap-2">
+                                <span id="check-audio" class="text-xs font-bold text-black uppercase">PENDING</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Telemetry & Log -->
+        <div class="lg:w-[400px] flex-none flex flex-col bg-surface border-l border-border-dark min-h-0">
+            <div class="flex-1 overflow-y-auto p-6 border-b border-border-dark">
+                <div class="flex items-center justify-between mb-4 pb-2 border-b border-gray-200">
+                    <h3 class="text-sm font-bold text-black uppercase tracking-wider">Signal Telemetry Log</h3>
+                    <span
+                        class="text-[10px] text-black border border-black px-1.5 py-0.5 font-bold">HISTORIC_SYNC</span>
+                </div>
+
+                <div class="space-y-3">
+                    <!-- Gaze -->
+                    <div class="bg-off-white border border-black p-3 hover:bg-white transition-colors">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs text-black font-bold uppercase">Eye Tracking</span>
+                            <span class="material-symbols-outlined text-[16px] text-black">visibility</span>
+                        </div>
+                        <div id="telemetry-gaze" class="font-mono text-xs flex justify-between items-center mt-2">
+                            <div id="gaze-center" class="flex items-center gap-1.5 transition-opacity">
+                                <span class="material-symbols-outlined text-[10px] filled-icon">lens</span>
+                                <span class="font-bold text-black">CENTER</span>
+                            </div>
+                            <div id="gaze-left" class="flex items-center gap-1.5 text-gray-400 opacity-30">
+                                <span class="material-symbols-outlined text-[10px]">radio_button_unchecked</span>
+                                <span>LEFT</span>
+                            </div>
+                            <div id="gaze-right" class="flex items-center gap-1.5 text-gray-400 opacity-30">
+                                <span class="material-symbols-outlined text-[10px]">radio_button_unchecked</span>
+                                <span>RIGHT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Head -->
+                    <div class="bg-off-white border border-black p-3 hover:bg-white transition-colors">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs text-black font-bold uppercase">Head Movement</span>
+                            <span
+                                class="material-symbols-outlined text-[16px] text-black">face_retouching_natural</span>
+                        </div>
+                        <div id="telemetry-head" class="font-mono text-xs flex justify-between items-center mt-2">
+                            <div id="head-low" class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[10px] filled-icon">lens</span>
+                                <span class="font-bold text-black">LOW</span>
+                            </div>
+                            <div id="head-med" class="flex items-center gap-1.5 text-gray-400 opacity-30">
+                                <span class="material-symbols-outlined text-[10px]">radio_button_unchecked</span>
+                                <span>MED</span>
+                            </div>
+                            <div id="head-high" class="flex items-center gap-1.5 text-gray-400 opacity-30">
+                                <span class="material-symbols-outlined text-[10px]">radio_button_unchecked</span>
+                                <span>HIGH</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Voice -->
+                    <div class="bg-off-white border border-black p-3 hover:bg-white transition-colors">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs text-black font-bold uppercase">Voice Activity</span>
+                            <span class="material-symbols-outlined text-[16px] text-black">graphic_eq</span>
+                        </div>
+                        <div id="telemetry-voice" class="font-mono text-xs flex items-center gap-6 mt-2">
+                            <div id="voice-active" class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[10px] filled-icon text-black">lens</span>
+                                <span class="font-bold text-black">ACTIVE</span>
+                            </div>
+                            <div id="voice-silent" class="flex items-center gap-1.5 text-gray-400 opacity-30">
+                                <span class="material-symbols-outlined text-[10px]">radio_button_unchecked</span>
+                                <span>SILENT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-none p-6 bg-[#f8f8f8]">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-sm font-bold text-black uppercase tracking-wider">Recruiter Observations</h3>
+                    <span class="material-symbols-outlined text-black text-[16px]">edit_note</span>
+                </div>
+                <div class="relative">
+                    <textarea id="observations"
+                        class="w-full h-40 bg-white text-sm text-black p-3 border border-black focus:border-black focus:ring-1 focus:ring-black outline-none resize-none font-mono placeholder-gray-400"
+                        placeholder="Manual observations logged here..."></textarea>
+                    <div class="absolute bottom-2 right-2 text-[10px] bg-black text-white px-1">READ-ONLY</div>
+                </div>
+                <button
+                    class="mt-4 w-full bg-black text-white text-xs font-bold py-3 uppercase tracking-widest hover:bg-gray-800 transition-all font-mono">
+                    Save_Assessment_Report
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        const token = sessionStorage.getItem('token');
+
+        if (!token || (user.role !== 'admin' && user.role !== 'recruiter')) {
+            window.location.href = '/login';
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const appId = urlParams.get('application_id');
+        const video = document.getElementById('replay-video');
+
+        let faceLogs = [];
+
+        async function initReplay() {
+            if (!appId) return;
+
+            try {
+                // 1. Get Session for application
+                const response = await fetch(`/api/applications/${appId}/sessions`);
+                const sessions = await response.json();
+
+                if (sessions.length === 0) {
+                    alert('No session found for this application.');
+                    return;
+                }
+
+                const session = sessions[0];
+                document.getElementById('source-label').innerText = `SESSION_LOG: ${session.session_id.slice(0, 8)}.MP4`;
+
+                // 2. Set Video Path
+                // Convert absolute path to relative web path
+                // Backend provides: d:\...\interviews\<id>\video.mp4
+                // We mount 'interviews' under /data
+                const videoRelPath = session.video_path.split('interviews')[1];
+                video.src = `/data/interviews${videoRelPath}`;
+                video.controls = true;
+
+                // 3. Load Telemetry
+                const logPath = session.video_path.replace('video.mp4', 'face_log.json');
+                const logRelPath = logPath.split('interviews')[1];
+                const logRes = await fetch(`/data/interviews${logRelPath}`);
+                faceLogs = await logRes.json();
+
+                // 4. Update Integrity Checks
+                document.getElementById('check-face-status').innerText = session.multiple_faces_detected ? 'FAIL' : 'PASS';
+                document.getElementById('check-multi-face').innerText = session.multiple_faces_detected ? 'DETECTED' : 'SAFE';
+                document.getElementById('check-audio').innerText = session.audio_interruptions_detected ? 'DETECTED' : 'CLEAN';
+
+                if (session.multiple_faces_detected) {
+                    document.getElementById('integrity-badge').className = "text-[10px] bg-red-600 text-white px-2 py-0.5 border border-black font-bold uppercase";
+                    document.getElementById('integrity-badge').innerText = "SIGNAL_COMPROMISED";
+                }
+
+                // 5. Sync Telemetry with Video
+                video.ontimeupdate = () => {
+                    const currentTime = video.currentTime;
+                    syncTelemetry(currentTime);
+                };
+
+            } catch (error) {
+                console.error('Replay Init Error:', error);
+            }
+        }
+
+        function syncTelemetry(time) {
+            // Find the closest log entry for current time
+            // faceLogs is array of { timestamp: string, elapsed_sec: float, gaze: string, head: string }
+            const log = faceLogs.find(entry => Math.abs(entry.elapsed_sec - time) < 0.2);
+
+            if (log) {
+                // Update Gaze
+                updateTelemetryGroup('gaze', log.gaze.toLowerCase());
+                // Update Head
+                updateTelemetryGroup('head', log.head.toLowerCase());
+            }
+        }
+
+        function updateTelemetryGroup(group, value) {
+            const elements = {
+                gaze: ['center', 'left', 'right'],
+                head: ['low', 'med', 'high'],
+                voice: ['active', 'silent']
+            };
+
+            elements[group].forEach(state => {
+                const el = document.getElementById(`${group}-${state}`);
+                if (state === value) {
+                    el.className = "flex items-center gap-1.5 font-bold text-black opacity-100";
+                    el.querySelector('.material-symbols-outlined').innerText = 'lens';
+                    el.querySelector('.material-symbols-outlined').classList.add('filled-icon');
+                } else {
+                    el.className = "flex items-center gap-1.5 text-gray-400 opacity-30";
+                    el.querySelector('.material-symbols-outlined').innerText = 'radio_button_unchecked';
+                    el.querySelector('.material-symbols-outlined').classList.remove('filled-icon');
+                }
+            });
+        }
+
+        initReplay();
+    </script>
+</body>
+
+</html>

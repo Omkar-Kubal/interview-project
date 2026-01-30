@@ -15,16 +15,18 @@ class SessionManager:
         self.base_path = Path(base_path)
         self.session_id = None
         self.candidate_id = None
+        self.application_id = None
         self.session_dir = None
         self.session_start = None
         self.session_end = None
         self.frame_count = 0
         self.fps_samples = []
     
-    def create_session(self, candidate_id: str) -> Path:
+    def create_session(self, candidate_id: str, application_id: int = None) -> Path:
         """Create a new session directory."""
         self.session_id = str(uuid.uuid4())
         self.candidate_id = candidate_id
+        self.application_id = application_id
         self.session_dir = self.base_path / "interviews" / self.session_id
         self.session_dir.mkdir(parents=True, exist_ok=True)
         return self.session_dir
@@ -58,6 +60,7 @@ class SessionManager:
         meta = {
             "session_id": self.session_id,
             "candidate_id": self.candidate_id,
+            "application_id": self.application_id,
             "session_start": self.session_start.isoformat() if self.session_start else None,
             "session_end": self.session_end.isoformat() if self.session_end else None,
             "fps_avg": round(avg_fps, 2),

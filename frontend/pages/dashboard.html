@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>SIGNAL CAPTURE CONSOLE - DASHBOARD</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "background-light": "#ffffff",
+                        "background-dark": "#ffffff",
+                        "border-console": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["monospace"],
+                    },
+                    borderRadius: { "DEFAULT": "0", "lg": "0", "xl": "0", "full": "0" },
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+            border-left: 1px solid #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #000000;
+            border: 1px solid #000000;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #333333;
+        }
+
+        .console-border {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-white min-h-screen flex flex-col font-display antialiased text-black overflow-x-hidden selection:bg-black selection:text-white">
+    <header
+        class="w-full border-b-2 border-black bg-white px-6 py-5 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='/'">
+            <div class="text-black material-symbols-outlined text-4xl">terminal</div>
+            <div>
+                <h1 class="text-xs uppercase tracking-[0.2em] text-black font-bold mb-1">SIGNAL CAPTURE CONSOLE -
+                    DASHBOARD</h1>
+                <h2 id="candidate-display-id"
+                    class="text-sm font-bold leading-none tracking-widest font-mono text-black border border-black px-2 py-0.5 inline-block uppercase">
+                    CANDIDATE_ID: ID_PENDING</h2>
+            </div>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="hidden md:flex flex-col items-end">
+                <span id="user-fullname" class="text-[10px] text-black uppercase tracking-widest font-bold">System
+                    User</span>
+                <span id="current-date" class="text-xs font-mono text-black">2026-01-29 14:02:59 UTC</span>
+            </div>
+            <button onclick="sessionStorage.clear(); window.location.href='/login';"
+                class="text-[10px] font-mono border border-black px-3 py-1 hover:bg-black hover:text-white uppercase font-bold transition-all">
+                LOGOUT
+            </button>
+        </div>
+    </header>
+    <main class="flex-1 flex flex-col items-center w-full px-4 sm:px-8 py-8 md:py-12">
+        <div class="w-full max-w-[1200px] flex flex-col gap-10">
+            <section aria-label="Stats Overview" class="w-full">
+                <div class="flex items-center gap-2 mb-4 border-b border-black pb-1">
+                    <span class="w-2 h-2 bg-black"></span>
+                    <h3 class="text-sm font-bold tracking-[0.2em] text-black uppercase">Stats Overview</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div
+                        class="bg-white border border-black p-6 flex flex-col justify-between h-32 hover:bg-black hover:text-white transition-colors group">
+                        <p class="text-xs font-bold tracking-widest uppercase group-hover:text-white transition-colors">
+                            Total Applications</p>
+                        <p id="stat-total" class="text-5xl font-bold font-mono mt-auto">0</p>
+                    </div>
+                    <div
+                        class="bg-white border border-black p-6 flex flex-col justify-between h-32 hover:bg-black hover:text-white transition-colors group relative">
+                        <p class="text-xs font-bold tracking-widest uppercase group-hover:text-white transition-colors">
+                            Interview Required</p>
+                        <div class="flex items-baseline justify-between mt-auto">
+                            <p id="stat-pending" class="text-5xl font-bold font-mono">0</p>
+                            <span
+                                class="text-[10px] border border-black px-1 py-0.5 font-mono uppercase group-hover:border-white group-hover:text-white">Action
+                                Req</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white border border-black p-6 flex flex-col justify-between h-32 hover:bg-black hover:text-white transition-colors group">
+                        <p class="text-xs font-bold tracking-widest uppercase group-hover:text-white transition-colors">
+                            Offers Pending</p>
+                        <p id="stat-offers" class="text-5xl font-bold font-mono mt-auto">0</p>
+                    </div>
+                </div>
+            </section>
+            <section aria-label="Application Activity" class="w-full flex-1">
+                <div class="flex items-end justify-between mb-4 pb-2">
+                    <h3 class="text-xl font-bold tracking-tight text-black uppercase border-b-2 border-black pr-8">
+                        Application Activity</h3>
+                </div>
+                <div class="w-full overflow-x-auto border-t border-black">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b-2 border-black bg-white">
+                                <th
+                                    class="px-6 py-4 text-xs font-bold text-black uppercase tracking-widest w-[30%] border-r border-black font-mono">
+                                    Job_Title</th>
+                                <th
+                                    class="px-6 py-4 text-xs font-bold text-black uppercase tracking-widest w-[20%] border-r border-black font-mono">
+                                    Applied_Date</th>
+                                <th
+                                    class="px-6 py-4 text-xs font-bold text-black uppercase tracking-widest w-[20%] border-r border-black font-mono">
+                                    Current_Status</th>
+                                <th
+                                    class="px-6 py-4 text-xs font-bold text-black uppercase tracking-widest w-[30%] text-right font-mono">
+                                    Link_Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="applications-body" class="divide-y divide-black border-b border-black">
+                            <!-- Populated dynamically -->
+                            <tr>
+                                <td colspan="4"
+                                    class="px-6 py-12 text-center font-mono text-gray-400 uppercase tracking-widest">
+                                    QUERYING DATABASE...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="w-full bg-white border-t-2 border-black py-4 px-6 mt-auto">
+        <div
+            class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono tracking-wider font-bold uppercase">
+            <div class="flex items-center gap-6 text-black w-full md:w-auto justify-center md:justify-start">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
+                    <span>ENCRYPTED ACCESS</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm" data-icon="dns">dns</span>
+                    <span>NODE: LOCALHOST</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="px-4 py-1.5 bg-black text-white font-bold uppercase flex items-center gap-2">
+                    <span class="material-symbols-outlined text-sm">check_circle</span>
+                    SYSTEM READY
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Auth State
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        const token = sessionStorage.getItem('token');
+
+        if (!token || !user || user.role !== 'seeker') {
+            window.location.href = '/login';
+        }
+
+        // UI Initial Setup
+        document.getElementById('candidate-display-id').innerText = `CANDIDATE_ID: ${user.id}-${user.email.split('@')[0].slice(0, 3).toUpperCase()}`;
+        document.getElementById('user-fullname').innerText = user.full_name;
+        document.getElementById('current-date').innerText = new Date().toISOString().replace('T', ' ').split('.')[0] + ' UTC';
+
+        async function fetchDashboardData() {
+            try {
+                // Fetch applications for current user
+                // We need to fetch the job details as well. The current API might only return application schemas.
+                // For demo, we'll fetch apps then fetch job titles if needed, or assume the backend joins them.
+                const response = await fetch(`/api/applications/me?seeker_id=${user.id}`);
+                const applications = await response.json();
+
+                renderDashboard(applications);
+            } catch (error) {
+                console.error('Dashboard Load Error:', error);
+                document.getElementById('applications-body').innerHTML = `
+                    <tr>
+                        <td colspan="4" class="px-6 py-12 text-center font-mono text-red-500 uppercase">
+                            EXECUTION_ERROR: ${error.message}
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        async function renderDashboard(apps) {
+            const body = document.getElementById('applications-body');
+
+            if (apps.length === 0) {
+                body.innerHTML = '<tr><td colspan="4" class="px-6 py-12 text-center font-mono text-gray-400 uppercase tracking-widest">NO_RECORDS_FOUND</td></tr>';
+                return;
+            }
+
+            // Update Stats
+            document.getElementById('stat-total').innerText = apps.length.toString().padStart(2, '0');
+            const interviewReady = apps.filter(a => a.status === 'Interview Required').length;
+            document.getElementById('stat-pending').innerText = interviewReady.toString().padStart(2, '0');
+
+            // Render Rows
+            body.innerHTML = '';
+
+            for (const app of apps) {
+                // Fetch Job Title (Assuming we don't have it in the app object yet)
+                let jobTitle = "ID: " + app.job_id;
+                try {
+                    const jobRes = await fetch(`/api/jobs/${app.job_id}`);
+                    const job = await jobRes.json();
+                    jobTitle = job.title;
+                } catch (e) { }
+
+                const date = new Date(app.created_at).toISOString().split('T')[0];
+
+                let statusClass = "border-gray-400 text-gray-600 bg-transparent";
+                if (app.status === 'Interview Required') statusClass = "bg-black text-white border-black";
+                if (app.status === 'Rejected') statusClass = "border-black text-black line-through italic";
+
+                const buttonHtml = app.status === 'Interview Required'
+                    ? `<button onclick="startInterview(${app.id})" class="bg-black hover:bg-gray-800 text-white text-xs font-bold py-2 px-6 uppercase tracking-widest transition-all flex items-center justify-center gap-2 ml-auto w-48 font-mono">
+                      <span class="material-symbols-outlined text-sm">play_arrow</span> START_AI_CAPTURE
+                      </button>`
+                    : `<span class="text-gray-400 text-[10px] font-mono uppercase tracking-widest">Locked: Pending_Review</span>`;
+
+                const row = document.createElement('tr');
+                row.className = "group hover:bg-gray-50 transition-colors";
+                row.innerHTML = `
+                    <td class="px-6 py-5 border-r border-black">
+                        <div class="flex flex-col">
+                            <span class="text-black font-bold text-sm uppercase tracking-wide">${jobTitle}</span>
+                            <span class="text-xs text-gray-500 font-mono mt-1">APP_UID: APP-${app.id}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-5 border-r border-black">
+                        <span class="text-black font-mono text-sm">${date}</span>
+                    </td>
+                    <td class="px-6 py-5 border-r border-black">
+                        <span class="inline-flex items-center px-3 py-1 border text-[10px] font-bold uppercase tracking-widest ${statusClass}">
+                            ${app.status}
+                        </span>
+                    </td>
+                    <td class="px-6 py-5 text-right">
+                        ${buttonHtml}
+                    </td>
+                `;
+                body.appendChild(row);
+            }
+        }
+
+        function startInterview(appId) {
+            // Store target application ID in session for capture page to link
+            sessionStorage.setItem('active_application_id', appId);
+            // Redirect to capture page
+            window.location.href = '/capture';
+        }
+
+        // Initial fetch
+        fetchDashboardData();
+    </script>
+</body>
+
+</html>

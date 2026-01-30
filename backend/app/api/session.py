@@ -47,10 +47,10 @@ class CaptureSession:
         self._multiple_faces_latch = False
         self._audio_interruptions = False
     
-    def setup(self, candidate_id: str) -> str:
+    def setup(self, candidate_id: str, application_id: int = None) -> str:
         """Initialize session for candidate."""
         self.candidate_id = candidate_id
-        session_dir = self.session_manager.create_session(candidate_id)
+        session_dir = self.session_manager.create_session(candidate_id, application_id=application_id)
         
         # Initialize camera
         self.camera = CameraCapture(
