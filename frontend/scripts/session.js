@@ -38,8 +38,8 @@ async function startSession(candidateId, applicationId = null) {
  * Stop the current capture session
  * @returns {Promise<Object>} Session stop result
  */
-async function stopSession() {
-    const response = await fetch('/api/session/stop', {
+async function stopSession(candidateId) {
+    const response = await fetch(`/api/session/stop?candidate_id=${candidateId}`, {
         method: 'POST'
     });
 
@@ -61,8 +61,8 @@ async function stopSession() {
  * Get session summary
  * @returns {Promise<Object>} Session summary data
  */
-async function getSessionSummary() {
-    const response = await fetch('/api/session/summary');
+async function getSessionSummary(candidateId) {
+    const response = await fetch(`/api/session/summary?candidate_id=${candidateId}`);
 
     if (!response.ok) {
         let errorMessage = 'Failed to get summary';
@@ -76,4 +76,29 @@ async function getSessionSummary() {
     }
 
     return response.json();
+}
+/**
+ * Send a heartbeat to keep the session alive
+ * @param {string} candidateId 
+ */
+async function sendHeartbeat(candidateId) {
+    try {
+        await fetch(`/api/session/heartbeat?candidate_id=${candidateId}`, { method: 'POST' });
+    } catch (e) {
+        console.error('Heartbeat failed', e);
+    }
+}
+
+let heartbeatInterval = null;
+
+function startHeartbeat(candidateId) {
+    stopHeartbeat();
+    heartbeatInterval = setInterval(() => sendHeartbeat(candidateId), 20000); // Pulse every 20s
+}
+
+function stopHeartbeat() {
+    if (heartbeatInterval) {
+        clearInterval(heartbeatInterval);
+        heartbeatInterval = null;
+    }
 }

@@ -13,6 +13,22 @@ from app.capture.camera.face_logger import FaceLogger
 from app.capture.audio.audio_capture import AudioCapture
 from app.capture.audio.voice_activity import VoiceActivityDetector
 from app.persistence.repository import save_session
+from pydantic import BaseModel
+
+# Request/Response models
+class StartRequest(BaseModel):
+    candidate_id: str
+    application_id: Optional[int] = None
+
+class StartResponse(BaseModel):
+    status: str
+    candidate_id: str
+    session_dir: str
+
+class StopResponse(BaseModel):
+    status: str
+    candidate_id: str
+    duration_sec: float
 
 
 
@@ -20,46 +36,85 @@ class CaptureSession:
     """Manages a capture session with thread-safe signal access."""
     
     def __init__(self):
-        self.session_manager = SessionManager()
-        self.camera: Optional[CameraCapture] = None
+        self.is_running = False
+        self.candidate_id = None
+        self.application_id = None
+        self.start_time = None
+        self.session_dir = None
+        self.last_heartbeat = time.time()
+        
+        # Capture objects
+        self.cap = None # This seems to replace CameraCapture, but CameraCapture is still used later.
+                        # I will keep CameraCapture for now and add video_writer.
+        self.camera: Optional[CameraCapture] = None # Keeping existing camera object
         self.face_logger: Optional[FaceLogger] = None
         self.audio: Optional[AudioCapture] = None
         self.vad: Optional[VoiceActivityDetector] = None
+        self.audio_stream = None # This seems to replace AudioCapture, but AudioCapture is still used later.
+                                 # I will keep AudioCapture for now.
+        self.video_writer: Optional[cv2.VideoWriter] = None
+        self.video_path: Optional[Path] = None
         
-        self.is_running = False
-        self.candidate_id: Optional[str] = None
-        self.start_time: Optional[float] = None
+        # Threading
+        self.capture_thread = None
+        self._stop_event = threading.Event()
         
-        # Current signal state (thread-safe)
+        # Signals state
+        # Merging new signals structure with existing _current_signals and integrity tracking
         self._signal_lock = threading.Lock()
         self._current_signals: Dict[str, Any] = {
             "face_detected": False,
             "eye_direction": "unknown",
             "head_movement": "unknown",
             "blink": False,
-            "voice_activity": "silent"
+            "voice_activity": "silent",
+            "integrity": {
+                "face_continuous": True,
+                "multiple_faces": False,
+                "audio_interruptions": False
+            },
+            "elapsed_sec": 0,
+            "session_active": False # This is new
         }
         
-        # Integrity tracking
+        # Integrity tracking (existing)
         self._face_present_count = 0
         self._total_frame_count = 0
         self._multiple_faces_detected = False
         self._multiple_faces_latch = False
         self._audio_interruptions = False
+
+        self.current_frame = None # This is new
+        self.lock = threading.Lock() # This seems to replace _signal_lock, but I'll keep both for now to avoid breaking existing logic.
+                                     # The user's diff implies a full replacement, but the instruction is additive.
+                                     # I will use _signal_lock for signals and self.lock for current_frame if needed.
+                                     # For now, I'll just add it.
+
+    def update_heartbeat(self):
+        """Update the last seen time for this session."""
+        self.last_heartbeat = time.time()
     
     def setup(self, candidate_id: str, application_id: int = None) -> str:
         """Initialize session for candidate."""
         self.candidate_id = candidate_id
-        session_dir = self.session_manager.create_session(candidate_id, application_id=application_id)
+        self.application_id = application_id # New attribute from diff
+        self.start_time = datetime.now() # Changed from time.time() to datetime.now() as per diff
         
-        # Initialize camera
+        # Create session directory (new logic from diff, replacing session_manager.create_session)
+        timestamp = self.start_time.strftime("%Y%m%d_%H%M%S")
+        self.session_dir = Path("backend/data/sessions") / f"{candidate_id}_{timestamp}"
+        self.session_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Set video path (new logic from diff)
+        self.video_path = self.session_dir / "recording.mp4"
+
+        # Initialize camera (existing logic, but now using self.session_dir directly)
         self.camera = CameraCapture(
-            output_path=self.session_manager.get_video_path()
+            output_path=self.video_path # Changed from self.session_manager.get_video_path()
         )
         
-        # Initialize face logger
+        # Initialize face logger (existing logic, but now using self.session_dir directly)
         self.face_logger = FaceLogger(
-            log_path=self.session_manager.get_face_log_path()
         )
         
         # Initialize audio
@@ -232,23 +287,33 @@ class CaptureSession:
         }
 
 
-# Global session instance
-_current_session: Optional[CaptureSession] = None
+# Global session registry: {candidate_id: CaptureSession}
+_active_sessions: Dict[str, CaptureSession] = {}
 
 
-def get_session() -> Optional[CaptureSession]:
-    """Get current session."""
-    return _current_session
+def get_session(candidate_id: Optional[str] = None) -> Optional[CaptureSession]:
+    """Get session for a specific candidate, or the first active one if no ID provided."""
+    global _active_sessions
+    if candidate_id and candidate_id in _active_sessions:
+        return _active_sessions[candidate_id]
+    
+    # Fallback for MJPEG stream/Websocket which might not know the ID immediately
+    if not candidate_id and _active_sessions:
+        return next(iter(_active_sessions.values()))
+        
+    return None
 
 
-def create_session() -> CaptureSession:
-    """Create new session."""
-    global _current_session
-    _current_session = CaptureSession()
-    return _current_session
+def create_session(candidate_id: str) -> CaptureSession:
+    """Create and register a new session."""
+    global _active_sessions
+    session = CaptureSession()
+    _active_sessions[candidate_id] = session
+    return session
 
 
-def clear_session() -> None:
-    """Clear current session."""
-    global _current_session
-    _current_session = None
+def clear_session(candidate_id: str) -> None:
+    """Remove a session from the registry."""
+    global _active_sessions
+    if candidate_id in _active_sessions:
+        del _active_sessions[candidate_id]

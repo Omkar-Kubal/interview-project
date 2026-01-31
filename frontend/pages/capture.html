@@ -179,7 +179,7 @@
             const token = sessionStorage.getItem('token');
             const appId = sessionStorage.getItem('active_application_id');
 
-            if (!token || !user || user.role !== 'seeker') {
+            if (!token || !user || (user.role !== 'seeker' && user.role !== 'admin')) {
                 window.location.href = '/login';
                 return;
             }
@@ -196,10 +196,13 @@
                 await startSession(user.id.toString(), appId ? parseInt(appId) : null);
 
                 // Attach to the backend MJPEG stream
-                await startMediaCapture(videoFeed);
+                await startMediaCapture(videoFeed, user.id);
 
                 // Connect to live signal updates
-                connectSignals(updateSignalDisplay);
+                connectSignals(updateSignalDisplay, user.id);
+
+                // Start heartbeat watchdog
+                startHeartbeat(user.id);
             } catch (error) {
                 console.error('Failed to start media:', error);
                 showMediaError(videoContainer);
@@ -220,11 +223,14 @@
                 disconnectSignals();
 
                 // Stop session via API
-                const result = await stopSession();
+                const result = await stopSession(user.id);
                 console.log('Session stopped:', result);
 
+                // Stop heartbeat
+                stopHeartbeat();
+
                 // Get summary for next page
-                const summary = await getSessionSummary();
+                const summary = await getSessionSummary(user.id);
                 storeSessionData('summary', summary);
 
                 // Clear active application to prevent re-capture
@@ -245,6 +251,7 @@
         window.addEventListener('beforeunload', () => {
             stopMediaCapture(videoFeed);
             disconnectSignals();
+            stopHeartbeat();
         });
     </script>
 </body>

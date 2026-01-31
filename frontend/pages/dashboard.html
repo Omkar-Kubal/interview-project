@@ -181,7 +181,7 @@
         const user = JSON.parse(sessionStorage.getItem('user'));
         const token = sessionStorage.getItem('token');
 
-        if (!token || !user || user.role !== 'seeker') {
+        if (!token || !user || (user.role !== 'seeker' && user.role !== 'admin')) {
             window.location.href = '/login';
         }
 
@@ -190,11 +190,23 @@
         document.getElementById('user-fullname').innerText = user.full_name;
         document.getElementById('current-date').innerText = new Date().toISOString().replace('T', ' ').split('.')[0] + ' UTC';
 
+        if (user.role === 'admin') {
+            const nav = document.querySelector('header nav');
+            const adminLink = document.createElement('a');
+            adminLink.href = '/admin';
+            adminLink.className = 'text-xs font-bold text-white bg-black px-4 py-2 hover:bg-gray-800 transition-all uppercase tracking-widest';
+            adminLink.innerText = 'Go to Recruiter Console';
+            document.querySelector('header .flex.items-center.gap-6').prepend(adminLink);
+        }
+
+        let isDashboardLoading = false;
+        const jobCache = {};
+
         async function fetchDashboardData() {
+            if (isDashboardLoading) return;
+            isDashboardLoading = true;
+
             try {
-                // Fetch applications for current user
-                // We need to fetch the job details as well. The current API might only return application schemas.
-                // For demo, we'll fetch apps then fetch job titles if needed, or assume the backend joins them.
                 const response = await fetch(`/api/applications/me?seeker_id=${user.id}`);
                 const applications = await response.json();
 
@@ -208,6 +220,8 @@
                         </td>
                     </tr>
                 `;
+            } finally {
+                isDashboardLoading = false;
             }
         }
 
@@ -228,13 +242,16 @@
             body.innerHTML = '';
 
             for (const app of apps) {
-                // Fetch Job Title (Assuming we don't have it in the app object yet)
-                let jobTitle = "ID: " + app.job_id;
-                try {
-                    const jobRes = await fetch(`/api/jobs/${app.job_id}`);
-                    const job = await jobRes.json();
-                    jobTitle = job.title;
-                } catch (e) { }
+                let jobTitle = jobCache[app.job_id] || "ID: " + app.job_id;
+
+                if (!jobCache[app.job_id]) {
+                    try {
+                        const jobRes = await fetch(`/api/jobs/${app.job_id}`);
+                        const job = await jobRes.json();
+                        jobTitle = job.title;
+                        jobCache[app.job_id] = job.title;
+                    } catch (e) { }
+                }
 
                 const date = new Date(app.created_at).toISOString().split('T')[0];
 
@@ -265,7 +282,13 @@
                             ${app.status}
                         </span>
                     </td>
-                    <td class="px-6 py-5 text-right">
+                    <td class="px-6 py-5 text-right flex items-center justify-end gap-3">
+                        ${app.resume_path ? `
+                            <a href="/${app.resume_path.replace(/\\/g, '/')}" target="_blank" 
+                               class="text-[10px] font-mono border border-black px-2 py-1 hover:bg-black hover:text-white uppercase font-bold transition-all">
+                               View_Resume
+                            </a>
+                        ` : ''}
                         ${buttonHtml}
                     </td>
                 `;

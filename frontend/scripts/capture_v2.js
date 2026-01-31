@@ -9,14 +9,18 @@ let mediaStream = null;
  * Start media capture (using MJPEG stream from backend)
  * @param {HTMLImageElement} imgElement - Image element to attach stream to
  */
-async function startMediaCapture(imgElement) {
+async function startMediaCapture(imgElement, candidateId = null) {
     try {
         console.log('Attaching to backend MJPEG stream...');
 
         // Point the image src to the MJPEG endpoint
         // Adding a timestamp to prevent caching
         if (imgElement) {
-            imgElement.src = `/video_feed?t=${Date.now()}`;
+            let url = `/video_feed?t=${Date.now()}`;
+            if (candidateId) {
+                url += `&candidate_id=${candidateId}`;
+            }
+            imgElement.src = url;
         }
 
         console.log('Media stream attached successfully');

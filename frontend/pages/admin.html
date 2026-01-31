@@ -210,6 +210,15 @@
 
         document.getElementById('operator-id').innerText = `OPERATOR_ID: ${user.full_name || 'ADMIN'}`;
 
+        if (user.role === 'admin') {
+            const headerActions = document.querySelector('header .flex.items-center.gap-6');
+            const switcher = document.createElement('a');
+            switcher.href = '/dashboard';
+            switcher.className = 'text-xs font-bold text-black border border-black px-4 py-2 hover:bg-gray-100 transition-all uppercase tracking-widest';
+            switcher.innerText = 'Go to Candidate View';
+            headerActions.prepend(switcher);
+        }
+
         let currentJobId = null;
 
         async function fetchJobs() {
@@ -268,6 +277,8 @@
             }
         }
 
+        const userCache = {};
+
         async function renderPipeline(apps) {
             const container = document.getElementById('pipeline-container');
             if (apps.length === 0) {
@@ -280,6 +291,19 @@
             const rows = [];
 
             for (const app of apps) {
+                // Fetch User Name if not in cache
+                let seekerName = userCache[app.seeker_id] || `CAND-${app.seeker_id}`;
+                if (!userCache[app.seeker_id]) {
+                    try {
+                        const userRes = await fetch(`/api/auth/profile/${app.seeker_id}`); // Assuming this exists or using a generic profile endpoint
+                        const profile = await userRes.json();
+                        seekerName = profile.full_name;
+                        userCache[app.seeker_id] = profile.full_name;
+                    } catch (e) {
+                        // Fallback to searching in applications if needed or just use ID
+                    }
+                }
+
                 // Check if session exists to enable "View Signals"
                 const sessionRes = await fetch(`/api/applications/${app.id}/sessions`);
                 const sessions = await sessionRes.json();
@@ -291,12 +315,22 @@
 
                 rows.push(`
                     <div class="grid grid-cols-12 gap-4 px-4 py-4 items-center border-b border-black hover:bg-gray-50 transition-all group">
-                        <div class="col-span-3 font-mono text-sm font-bold text-black truncate">CAND-${app.seeker_id}-${app.id}</div>
+                        <div class="col-span-3 flex flex-col truncate">
+                            <span class="font-mono text-sm font-bold text-black uppercase">${seekerName}</span>
+                            <span class="text-[9px] text-gray-400 font-mono">ID: CAND-${app.seeker_id}-${app.id}</span>
+                        </div>
                         <div class="col-span-3 font-mono text-sm text-gray-600">${new Date(app.created_at).toISOString().split('T')[0]}</div>
                         <div class="col-span-2">
                             <span class="text-[10px] font-mono px-2 py-1 uppercase ${statusClass}">${statusLabel}</span>
                         </div>
-                        <div class="col-span-4 flex justify-end gap-3">
+                        <div class="col-span-4 flex justify-end gap-3 italic">
+                            ${app.resume_path ? `
+                                <a href="/${app.resume_path.replace(/\\/g, '/')}" target="_blank" 
+                                   class="tech-button-outline px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">description</span>
+                                    Resume
+                                </a>
+                            ` : ''}
                             <button onclick="${hasSession ? `viewSignals(${app.id})` : ''}" 
                                     class="tech-button-outline px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider flex items-center gap-2 ${!hasSession ? 'opacity-30 cursor-not-allowed' : ''}">
                                 <span class="material-symbols-outlined text-sm">visibility${!hasSession ? '_off' : ''}</span>

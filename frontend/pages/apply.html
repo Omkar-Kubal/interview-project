@@ -123,19 +123,23 @@
             </div>
 
             <!-- File Upload Mock -->
-            <div
+            <div id="drop-zone"
                 class="border-2 border-dashed border-black bg-surface p-8 relative group hover:bg-gray-50 transition-colors cursor-pointer min-h-[160px] flex flex-col items-center justify-center">
+                <input type="file" id="resume-input" class="hidden" accept=".pdf" />
                 <div
                     class="absolute top-0 left-0 bg-black text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider border-b border-r border-black">
                     SOURCE: PDF_REQUIRED
                 </div>
                 <div class="flex flex-col items-center justify-center text-center gap-4">
-                    <div class="w-4 h-4 border-b-2 border-r-2 border-black rotate-45 transform -translate-y-1 mt-2">
+                    <div id="upload-icon"
+                        class="w-4 h-4 border-b-2 border-r-2 border-black rotate-45 transform -translate-y-1 mt-2">
                     </div>
                     <div class="flex flex-col gap-1">
-                        <span class="text-sm font-bold uppercase tracking-widest text-black">DRAG_PACKET_HERE</span>
-                        <span class="text-[10px] font-medium text-gray-500 uppercase tracking-wider">[ OR CLICK TO
-                            SELECT FILE ]</span>
+                        <span id="upload-text"
+                            class="text-sm font-bold uppercase tracking-widest text-black">DRAG_PACKET_HERE</span>
+                        <span id="upload-subtext"
+                            class="text-[10px] font-medium text-gray-500 uppercase tracking-wider">[ OR CLICK TO SELECT
+                            FILE ]</span>
                     </div>
                 </div>
             </div>
@@ -225,6 +229,42 @@
         const statusTag = document.getElementById('status-tag');
         const errorMsg = document.getElementById('error-msg');
 
+        const dropZone = document.getElementById('drop-zone');
+        const resumeInput = document.getElementById('resume-input');
+        const uploadText = document.getElementById('upload-text');
+        const uploadSubtext = document.getElementById('upload-subtext');
+
+        dropZone.addEventListener('click', () => resumeInput.click());
+
+        resumeInput.addEventListener('change', () => {
+            if (resumeInput.files.length > 0) {
+                uploadText.innerText = 'FILE_LOADED';
+                uploadSubtext.innerText = resumeInput.files[0].name.toUpperCase();
+                dropZone.classList.remove('border-dashed');
+                dropZone.classList.add('border-solid', 'bg-green-50');
+            }
+        });
+
+        // Simple drag & drop support
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('bg-gray-100');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('bg-gray-100');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('bg-gray-100');
+            if (e.dataTransfer.files.length > 0) {
+                resumeInput.files = e.dataTransfer.files;
+                const event = new Event('change');
+                resumeInput.dispatchEvent(event);
+            }
+        });
+
         summaryText.addEventListener('input', () => {
             if (summaryText.value.length > 0) {
                 statusTag.innerText = 'DATA_BUFFERED';
@@ -241,14 +281,16 @@
             errorMsg.classList.add('hidden');
 
             try {
+                const formData = new FormData();
+                formData.append('job_id', jobId);
+                formData.append('seeker_id', user.id);
+                if (resumeInput.files[0]) {
+                    formData.append('resume', resumeInput.files[0]);
+                }
+
                 const response = await fetch('/api/applications/apply', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        job_id: parseInt(jobId),
-                        seeker_id: user.id,
-                        resume_path: "mock/resume.pdf"
-                    })
+                    body: formData
                 });
 
                 const data = await response.json();

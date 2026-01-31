@@ -48,3 +48,5 @@ Thumbs.db
 
 # Project Specific
 */ui
+test_mediapipe_simple.py
+test_mediapipe.py

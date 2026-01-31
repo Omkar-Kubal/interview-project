@@ -6,3 +6,6 @@ scipy
 fastapi
 uvicorn[standard]
 python-multipart
+sqlmodel
+python-jose[cryptography]
+passlib[standard]
