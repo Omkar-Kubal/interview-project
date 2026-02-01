@@ -223,7 +223,9 @@
 
         async function fetchJobs() {
             try {
-                const response = await fetch(`/api/jobs/recruiter/${user.id}`);
+                const response = await fetch(`/api/jobs/recruiter/${user.id}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
                 const jobs = await response.json();
                 renderJobs(jobs);
             } catch (error) {
@@ -269,7 +271,9 @@
             container.innerHTML = '<div class="p-8 text-center font-mono text-xs text-gray-400 uppercase tracking-widest">QUERYING PIPELINE...</div>';
 
             try {
-                const response = await fetch(`/api/applications/job/${jobId}`);
+                const response = await fetch(`/api/applications/job/${jobId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
                 const apps = await response.json();
                 renderPipeline(apps);
             } catch (error) {
@@ -295,7 +299,9 @@
                 let seekerName = userCache[app.seeker_id] || `CAND-${app.seeker_id}`;
                 if (!userCache[app.seeker_id]) {
                     try {
-                        const userRes = await fetch(`/api/auth/profile/${app.seeker_id}`); // Assuming this exists or using a generic profile endpoint
+                        const userRes = await fetch(`/api/auth/profile/${app.seeker_id}`, {
+                            headers: { 'Authorization': `Bearer ${token}` }
+                        });
                         const profile = await userRes.json();
                         seekerName = profile.full_name;
                         userCache[app.seeker_id] = profile.full_name;
@@ -305,7 +311,9 @@
                 }
 
                 // Check if session exists to enable "View Signals"
-                const sessionRes = await fetch(`/api/applications/${app.id}/sessions`);
+                const sessionRes = await fetch(`/api/applications/${app.id}/sessions`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
                 const sessions = await sessionRes.json();
                 const hasSession = sessions.length > 0;
                 if (hasSession) signalCount++;
@@ -331,10 +339,15 @@
                                     Resume
                                 </a>
                             ` : ''}
+                            <button onclick="reviewAnswers(${app.id})" 
+                                    class="tech-button-outline px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">grading</span>
+                                Review
+                            </button>
                             <button onclick="${hasSession ? `viewSignals(${app.id})` : ''}" 
                                     class="tech-button-outline px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider flex items-center gap-2 ${!hasSession ? 'opacity-30 cursor-not-allowed' : ''}">
                                 <span class="material-symbols-outlined text-sm">visibility${!hasSession ? '_off' : ''}</span>
-                                View Signals
+                                Signals
                             </button>
                             ${app.status === 'Applied' ? `
                                 <button onclick="updateStatus(${app.id}, 'Interview Required')" 
@@ -356,7 +369,10 @@
             try {
                 await fetch(`/api/applications/${appId}/status`, {
                     method: 'PATCH',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
                     body: JSON.stringify({ status: status })
                 });
                 if (currentJobId) fetchPipeline(currentJobId);
@@ -367,6 +383,10 @@
 
         function viewSignals(appId) {
             window.location.href = `/replay?application_id=${appId}`;
+        }
+
+        function reviewAnswers(appId) {
+            window.location.href = `/review?application_id=${appId}`;
         }
 
         // Initial load

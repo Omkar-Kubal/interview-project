@@ -50,3 +50,15 @@ Thumbs.db
 */ui
 test_mediapipe_simple.py
 test_mediapipe.py
+
+# Backend Data Storage (user uploads, answer recordings)
+backend/storage/
+backend/uploads/
+backend/data/
+storage/
+uploads/
+data/interviews/
+
+# Temporary files
+*.webm
+*.mp4

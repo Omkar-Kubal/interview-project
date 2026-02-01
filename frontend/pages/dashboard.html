@@ -121,6 +121,11 @@
                 <div class="flex items-end justify-between mb-4 pb-2">
                     <h3 class="text-xl font-bold tracking-tight text-black uppercase border-b-2 border-black pr-8">
                         Application Activity</h3>
+                    <a href="/jobs"
+                        class="bg-black hover:bg-gray-800 text-white text-xs font-bold py-3 px-6 uppercase tracking-widest transition-all flex items-center gap-2 font-mono">
+                        <span class="material-symbols-outlined text-sm">work</span>
+                        Browse Jobs
+                    </a>
                 </div>
                 <div class="w-full overflow-x-auto border-t border-black">
                     <table class="w-full text-left border-collapse">
@@ -207,7 +212,11 @@
             isDashboardLoading = true;
 
             try {
-                const response = await fetch(`/api/applications/me?seeker_id=${user.id}`);
+                const response = await fetch(`/api/applications/me?seeker_id=${user.id}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
                 const applications = await response.json();
 
                 renderDashboard(applications);
@@ -246,7 +255,9 @@
 
                 if (!jobCache[app.job_id]) {
                     try {
-                        const jobRes = await fetch(`/api/jobs/${app.job_id}`);
+                        const jobRes = await fetch(`/api/jobs/${app.job_id}`, {
+                            headers: { 'Authorization': `Bearer ${token}` }
+                        });
                         const job = await jobRes.json();
                         jobTitle = job.title;
                         jobCache[app.job_id] = job.title;
@@ -260,9 +271,14 @@
                 if (app.status === 'Rejected') statusClass = "border-black text-black line-through italic";
 
                 const buttonHtml = app.status === 'Interview Required'
-                    ? `<button onclick="startInterview(${app.id})" class="bg-black hover:bg-gray-800 text-white text-xs font-bold py-2 px-6 uppercase tracking-widest transition-all flex items-center justify-center gap-2 ml-auto w-48 font-mono">
-                      <span class="material-symbols-outlined text-sm">play_arrow</span> START_AI_CAPTURE
-                      </button>`
+                    ? `<div class="flex gap-2 ml-auto">
+                        <button onclick="startQuestionnaire(${app.id})" class="bg-black hover:bg-gray-800 text-white text-[9px] font-bold py-2 px-4 uppercase tracking-widest transition-all flex items-center gap-1 font-mono">
+                          <span class="material-symbols-outlined text-sm">quiz</span> Questionnaire
+                        </button>
+                        <button onclick="startInterview(${app.id})" class="border border-black hover:bg-black hover:text-white text-black text-[9px] font-bold py-2 px-4 uppercase tracking-widest transition-all flex items-center gap-1 font-mono">
+                          <span class="material-symbols-outlined text-sm">videocam</span> Live Capture
+                        </button>
+                      </div>`
                     : `<span class="text-gray-400 text-[10px] font-mono uppercase tracking-widest">Locked: Pending_Review</span>`;
 
                 const row = document.createElement('tr');
@@ -294,6 +310,10 @@
                 `;
                 body.appendChild(row);
             }
+        }
+
+        function startQuestionnaire(appId) {
+            window.location.href = `/interview?application_id=${appId}`;
         }
 
         function startInterview(appId) {

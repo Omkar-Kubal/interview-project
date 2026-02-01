@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AI Interview - Questionnaire</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "science-bg": "#f4f4f5",
+                        "science-card": "#ffffff",
+                        "science-border": "#e4e4e7",
+                        "science-text": "#18181b",
+                        "science-muted": "#71717a",
+                        "science-accent": "#27272a"
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "mono": ["IBM Plex Mono", "monospace"]
+                    },
+                    borderRadius: { DEFAULT: "0px", none: "0px" }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        *,
+        *::before,
+        *::after {
+            border-radius: 0 !important;
+        }
+    </style>
+</head>
+
+<body class="relative flex min-h-screen w-full flex-col bg-science-bg text-science-text font-sans antialiased">
+
+    <!-- HEADER -->
+    <header class="flex items-center justify-between border-b border-science-border px-6 py-4 bg-white">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-science-accent text-[24px]">quiz</span>
+            <h2 class="text-science-text text-sm font-mono uppercase tracking-widest font-semibold">
+                Technical Assessment
+            </h2>
+        </div>
+        <div class="flex items-center gap-4">
+            <div id="progress-badge"
+                class="flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 text-xs font-mono text-blue-600">
+                <span class="material-symbols-outlined text-[14px]">assignment</span>
+                <span id="progress-text">Question 1 of 10</span>
+            </div>
+            <div id="timer-badge"
+                class="flex items-center gap-2 px-3 py-1 bg-gray-100 border border-gray-300 text-xs font-mono">
+                <span class="material-symbols-outlined text-[14px]">timer</span>
+                <span id="timer-text">02:00</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col p-6">
+        <div class="max-w-[900px] w-full mx-auto flex-1 flex flex-col">
+
+            <!-- Question Card -->
+            <div id="question-card" class="bg-white border border-science-border p-8 flex-1 flex flex-col">
+                <div class="flex items-center gap-3 mb-6">
+                    <span id="q-type-badge"
+                        class="px-3 py-1 bg-black text-white text-[10px] font-mono uppercase">MCQ</span>
+                    <span id="q-domain" class="text-xs font-mono text-science-muted uppercase">AI-ML</span>
+                </div>
+
+                <h3 id="q-text" class="text-xl font-medium text-science-text mb-8">
+                    Loading question...
+                </h3>
+
+                <!-- MCQ Options -->
+                <div id="mcq-container" class="flex flex-col gap-3 flex-1">
+                    <!-- Options will be injected here -->
+                </div>
+
+                <!-- Text Answer -->
+                <div id="text-container" class="hidden flex-1">
+                    <textarea id="text-answer" rows="6" placeholder="Type your answer here..."
+                        class="w-full border border-science-border p-4 font-mono text-sm focus:outline-none focus:border-black"></textarea>
+                </div>
+
+                <!-- Video/Audio Answer -->
+                <div id="media-container" class="hidden flex-1 flex flex-col items-center justify-center gap-4">
+                    <div id="media-preview"
+                        class="w-full max-w-md aspect-video bg-black flex items-center justify-center">
+                        <video id="media-video" class="w-full h-full object-cover hidden" autoplay muted></video>
+                        <div id="media-placeholder" class="text-white/50 text-sm font-mono">Click Record to Begin</div>
+                    </div>
+                    <div class="flex gap-4">
+                        <button id="btn-record" onclick="startRecording()"
+                            class="px-6 py-2 bg-red-500 text-white text-sm font-mono uppercase hover:bg-red-600">
+                            <span class="material-symbols-outlined text-sm align-middle mr-1">fiber_manual_record</span>
+                            Record
+                        </button>
+                        <button id="btn-stop-record" onclick="stopRecording()" disabled
+                            class="px-6 py-2 bg-gray-300 text-gray-500 text-sm font-mono uppercase cursor-not-allowed">
+                            <span class="material-symbols-outlined text-sm align-middle mr-1">stop</span>
+                            Stop
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between items-center mt-6 pt-6 border-t border-science-border">
+                <button id="btn-prev" onclick="prevQuestion()" disabled
+                    class="px-6 py-3 border border-black text-black text-sm font-mono uppercase hover:bg-black hover:text-white disabled:opacity-30 disabled:cursor-not-allowed">
+                    Previous
+                </button>
+                <button id="btn-next" onclick="nextQuestion()"
+                    class="px-6 py-3 bg-black text-white text-sm font-mono uppercase hover:bg-gray-800">
+                    Next
+                </button>
+                <button id="btn-submit" onclick="submitAll()"
+                    class="hidden px-6 py-3 bg-green-600 text-white text-sm font-mono uppercase hover:bg-green-700">
+                    Submit All
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // State
+        let questions = [];
+        let currentIndex = 0;
+        let answers = {}; // { questionId: answerValue }
+        let applicationId = null;
+        let mediaRecorder = null;
+        let recordedChunks = [];
+        let timerInterval = null;
+        let timeRemaining = 120;
+
+        // Init
+        async function init() {
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            const token = sessionStorage.getItem('token');
+            applicationId = new URLSearchParams(window.location.search).get('application_id');
+
+            if (!token || !user || !applicationId) {
+                alert('Missing authentication or application. Redirecting...');
+                window.location.href = '/dashboard';
+                return;
+            }
+
+            // Fetch job_id from application
+            const appRes = await fetch(`/api/applications/me?seeker_id=${user.id}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const apps = await appRes.json();
+            const app = apps.find(a => a.id == applicationId);
+
+            if (!app) {
+                alert('Application not found');
+                window.location.href = '/dashboard';
+                return;
+            }
+
+            // Fetch questions for job
+            const qRes = await fetch(`/api/questions/job/${app.job_id}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (!qRes.ok) {
+                alert('No questionnaire found for this job.');
+                window.location.href = '/dashboard';
+                return;
+            }
+
+            questions = await qRes.json();
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            if (questions.length === 0) return;
+
+            const q = questions[currentIndex];
+            document.getElementById('progress-text').innerText = `Question ${currentIndex + 1} of ${questions.length}`;
+            document.getElementById('q-type-badge').innerText = q.question_type.toUpperCase();
+            document.getElementById('q-domain').innerText = q.domain;
+            document.getElementById('q-text').innerText = q.question_text;
+
+            // Reset containers
+            document.getElementById('mcq-container').classList.add('hidden');
+            document.getElementById('text-container').classList.add('hidden');
+            document.getElementById('media-container').classList.add('hidden');
+
+            // Show appropriate input
+            if (q.question_type === 'mcq') {
+                renderMCQ(q);
+            } else if (q.question_type === 'text') {
+                document.getElementById('text-container').classList.remove('hidden');
+                document.getElementById('text-answer').value = answers[q.id] || '';
+            } else {
+                document.getElementById('media-container').classList.remove('hidden');
+                // Reset media UI state for this question
+                resetMediaUI(q);
+            }
+
+            // Timer
+            startTimer(q.time_limit_sec);
+
+            // Navigation
+            document.getElementById('btn-prev').disabled = currentIndex === 0;
+            document.getElementById('btn-next').classList.toggle('hidden', currentIndex === questions.length - 1);
+            document.getElementById('btn-submit').classList.toggle('hidden', currentIndex !== questions.length - 1);
+        }
+
+        function resetMediaUI(q) {
+            // Reset video element
+            const video = document.getElementById('media-video');
+            video.srcObject = null;
+            video.classList.add('hidden');
+
+            // Reset placeholder - check if already answered
+            const placeholder = document.getElementById('media-placeholder');
+            if (answers[q.id] === 'recorded') {
+                placeholder.innerText = '✓ Answer Recorded';
+            } else {
+                placeholder.innerText = 'Click Record to Begin';
+            }
+            placeholder.classList.remove('hidden');
+
+            // Reset record button
+            const btnRecord = document.getElementById('btn-record');
+            btnRecord.disabled = false;
+            btnRecord.classList.remove('opacity-50');
+
+            // Reset stop button
+            const btnStop = document.getElementById('btn-stop-record');
+            btnStop.disabled = true;
+            btnStop.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+            btnStop.classList.remove('bg-black', 'text-white');
+
+            // Stop any ongoing recording
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(t => t.stop());
+            }
+        }
+
+        function renderMCQ(q) {
+            const container = document.getElementById('mcq-container');
+            container.classList.remove('hidden');
+            container.innerHTML = '';
+
+            if (!q.options) return;
+
+            q.options.forEach((opt, idx) => {
+                const selected = answers[q.id] === idx;
+                const div = document.createElement('div');
+                div.className = `p-4 border cursor-pointer transition-all ${selected ? 'border-black bg-black text-white' : 'border-science-border hover:border-black'}`;
+                div.innerHTML = `<span class="font-mono mr-3">${String.fromCharCode(65 + idx)}.</span>${opt}`;
+                div.onclick = () => {
+                    answers[q.id] = idx;
+                    renderMCQ(q);
+                };
+                container.appendChild(div);
+            });
+        }
+
+        function startTimer(seconds) {
+            if (timerInterval) clearInterval(timerInterval);
+            timeRemaining = seconds;
+            updateTimerDisplay();
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    nextQuestion();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timeRemaining / 60);
+            const secs = timeRemaining % 60;
+            document.getElementById('timer-text').innerText =
+                `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function saveCurrentAnswer() {
+            const q = questions[currentIndex];
+            if (q.question_type === 'text') {
+                answers[q.id] = document.getElementById('text-answer').value;
+            }
+            // MCQ is saved on click, media is saved on stop
+        }
+
+        function nextQuestion() {
+            saveCurrentAnswer();
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            saveCurrentAnswer();
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderQuestion();
+            }
+        }
+
+        async function startRecording() {
+            try {
+                const q = questions[currentIndex];
+                const constraints = q.question_type === 'video'
+                    ? { video: true, audio: true }
+                    : { audio: true };
+
+                const stream = await navigator.mediaDevices.getUserMedia(constraints);
+
+                if (q.question_type === 'video') {
+                    const video = document.getElementById('media-video');
+                    video.srcObject = stream;
+                    video.classList.remove('hidden');
+                    document.getElementById('media-placeholder').classList.add('hidden');
+                }
+
+                recordedChunks = [];
+                mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder.ondataavailable = (e) => recordedChunks.push(e.data);
+                mediaRecorder.onstop = () => saveMediaAnswer();
+                mediaRecorder.start();
+
+                document.getElementById('btn-record').disabled = true;
+                document.getElementById('btn-record').classList.add('opacity-50');
+                document.getElementById('btn-stop-record').disabled = false;
+                document.getElementById('btn-stop-record').classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
+                document.getElementById('btn-stop-record').classList.add('bg-black', 'text-white');
+
+            } catch (err) {
+                alert('Could not access camera/microphone: ' + err.message);
+            }
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+                mediaRecorder.stream.getTracks().forEach(t => t.stop());
+            }
+        }
+
+        async function saveMediaAnswer() {
+            const q = questions[currentIndex];
+            const blob = new Blob(recordedChunks, { type: 'video/webm' });
+            const formData = new FormData();
+            formData.append('application_id', applicationId);
+            formData.append('question_id', q.id);
+            formData.append('media_file', blob, `answer_${q.id}.webm`);
+
+            const token = sessionStorage.getItem('token');
+            await fetch('/api/questions/answer/media', {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` },
+                body: formData
+            });
+
+            answers[q.id] = 'recorded';
+            document.getElementById('media-placeholder').innerText = '✓ Answer Recorded';
+            document.getElementById('media-placeholder').classList.remove('hidden');
+            document.getElementById('media-video').classList.add('hidden');
+        }
+
+        async function submitAll() {
+            saveCurrentAnswer();
+            const token = sessionStorage.getItem('token');
+
+            // Submit all text/MCQ answers
+            for (const q of questions) {
+                if (q.question_type === 'mcq' || q.question_type === 'text') {
+                    const val = answers[q.id];
+                    if (val !== undefined && val !== null && val !== '') {
+                        await fetch('/api/questions/answer/text', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: JSON.stringify({
+                                application_id: parseInt(applicationId),
+                                question_id: q.id,
+                                answer_text: String(val)
+                            })
+                        });
+                    }
+                }
+            }
+
+            alert('Assessment submitted successfully!');
+            window.location.href = '/dashboard';
+        }
+
+        // Start
+        init();
+    </script>
+</body>
+
+</html>

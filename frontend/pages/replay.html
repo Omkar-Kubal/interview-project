@@ -258,7 +258,9 @@
 
             try {
                 // 1. Get Session for application
-                const response = await fetch(`/api/applications/${appId}/sessions`);
+                const response = await fetch(`/api/applications/${appId}/sessions`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
                 const sessions = await response.json();
 
                 if (sessions.length === 0) {

@@ -214,7 +214,9 @@
         // Fetch Job Details
         async function fetchJob() {
             try {
-                const response = await fetch(`/api/jobs/${jobId}`);
+                const response = await fetch(`/api/jobs/${jobId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
                 if (!response.ok) throw new Error('Job not found');
                 const job = await response.json();
                 document.getElementById('job-title').innerText = job.title;
@@ -290,6 +292,9 @@
 
                 const response = await fetch('/api/applications/apply', {
                     method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
                     body: formData
                 });
 

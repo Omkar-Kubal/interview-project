@@ -10,9 +10,13 @@
  * @returns {Promise<Object>} Session start result
  */
 async function startSession(candidateId, applicationId = null) {
+    const token = sessionStorage.getItem('token');
     const response = await fetch('/api/session/start', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify({
             candidate_id: candidateId,
             application_id: applicationId
@@ -39,8 +43,10 @@ async function startSession(candidateId, applicationId = null) {
  * @returns {Promise<Object>} Session stop result
  */
 async function stopSession(candidateId) {
+    const token = sessionStorage.getItem('token');
     const response = await fetch(`/api/session/stop?candidate_id=${candidateId}`, {
-        method: 'POST'
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` }
     });
 
     if (!response.ok) {
@@ -62,7 +68,10 @@ async function stopSession(candidateId) {
  * @returns {Promise<Object>} Session summary data
  */
 async function getSessionSummary(candidateId) {
-    const response = await fetch(`/api/session/summary?candidate_id=${candidateId}`);
+    const token = sessionStorage.getItem('token');
+    const response = await fetch(`/api/session/summary?candidate_id=${candidateId}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
 
     if (!response.ok) {
         let errorMessage = 'Failed to get summary';
@@ -83,7 +92,11 @@ async function getSessionSummary(candidateId) {
  */
 async function sendHeartbeat(candidateId) {
     try {
-        await fetch(`/api/session/heartbeat?candidate_id=${candidateId}`, { method: 'POST' });
+        const token = sessionStorage.getItem('token');
+        await fetch(`/api/session/heartbeat?candidate_id=${candidateId}`, {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
     } catch (e) {
         console.error('Heartbeat failed', e);
     }
