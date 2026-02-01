@@ -1,9 +1,0 @@
-{
-  "session_id": "b03b405a-5968-4fc0-9f3c-7d99f0036244",
-  "candidate_id": "test1",
-  "session_start": "2026-01-29T11:57:14.137607",
-  "session_end": "2026-01-29T11:57:55.943957",
-  "fps_avg": 12.6,
-  "total_frames": 495,
-  "device": "local_laptop"
-}

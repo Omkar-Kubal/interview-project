@@ -15,7 +15,7 @@ from typing import Optional
 import asyncio
 import cv2
 
-from app.persistence.database import get_db
+from app.persistence.database import get_db, init_db
 from app.models.schemas import User, UserRole, Application
 from app.api.auth import get_current_user, get_admin_user, get_recruiter_user
 from app.api.session import (
@@ -26,7 +26,7 @@ from app.api.session import (
     StartResponse, 
     StopResponse
 )
-from app.api import auth, jobs, applications
+from app.api import auth, jobs, applications, questions
 
 
 # Create FastAPI app
@@ -50,13 +50,19 @@ frontend_path = Path(__file__).parent.parent.parent / "frontend"
 if frontend_path.exists():
     app.mount("/static", StaticFiles(directory=str(frontend_path)), name="static")
 
-# Mount data for media replay
-data_path = Path(__file__).parent.parent.parent / "backend" / "data"
+# Mount storage for candidate media/answers (videos, audio, JSON)
+storage_path = Path(__file__).parent.parent / "storage"
+if not storage_path.exists():
+    storage_path.mkdir(exist_ok=True)
+app.mount("/storage", StaticFiles(directory=str(storage_path)), name="storage")
+
+# Mount legacy data for interview replay (keeps compatibility)
+data_path = Path(__file__).parent.parent / "data"
 if data_path.exists():
     app.mount("/data", StaticFiles(directory=str(data_path)), name="data")
 
 # Mount uploads for resumes
-uploads_path = Path(__file__).parent.parent.parent / "backend" / "uploads"
+uploads_path = Path(__file__).parent.parent / "uploads"
 if not uploads_path.exists():
     uploads_path.mkdir(exist_ok=True)
 app.mount("/uploads", StaticFiles(directory=str(uploads_path)), name="uploads")
@@ -65,13 +71,7 @@ app.mount("/uploads", StaticFiles(directory=str(uploads_path)), name="uploads")
 app.include_router(auth.router)
 app.include_router(jobs.router)
 app.include_router(applications.router)
-
-@app.on_event("startup")
-def on_startup():
-    """Initialize database and common resources."""
-    init_db()
-    print("[SERVER] Database initialized.")
-
+app.include_router(questions.router)
 
 @app.get("/", response_class=HTMLResponse)
 async def root():
@@ -161,6 +161,24 @@ async def replay_page():
     if replay_path.exists():
         return FileResponse(str(replay_path))
     return HTMLResponse("<h1>Replay page not found</h1>")
+
+
+@app.get("/interview", response_class=HTMLResponse)
+async def interview_page():
+    """Serve interview questionnaire page."""
+    interview_path = frontend_path / "pages" / "interview.html"
+    if interview_path.exists():
+        return FileResponse(str(interview_path))
+    return HTMLResponse("<h1>Interview page not found</h1>")
+
+
+@app.get("/review", response_class=HTMLResponse)
+async def review_answers_page():
+    """Serve recruiter answer review page."""
+    review_path = frontend_path / "pages" / "review_answers.html"
+    if review_path.exists():
+        return FileResponse(str(review_path))
+    return HTMLResponse("<h1>Review page not found</h1>")
 
 
 @app.get("/summary", response_class=HTMLResponse)
@@ -278,6 +296,9 @@ async def session_cleanup_task():
 @app.on_event("startup")
 async def on_startup():
     """Startup tasks."""
+    # Initialize database
+    init_db()
+    print("[SERVER] Database initialized.")
     # Start the background cleanup task
     asyncio.create_task(session_cleanup_task())
     print("Background session cleanup task started (1 min timeout).")

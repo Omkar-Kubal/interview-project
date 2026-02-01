@@ -127,12 +127,38 @@ async def apply_to_job(
             shutil.copyfileobj(resume.file, buffer)
         resume_path = str(file_path)
     
-    # 5. Create application
+    # 5. Resume Screening (if resume provided)
+    initial_status = "Applied"
+    screening_result = None
+    
+    if resume_path:
+        try:
+            from app.utils.resume_parser import screen_resume
+            # Determine domain from job title
+            job_title_lower = job.title.lower()
+            if "ai" in job_title_lower or "ml" in job_title_lower or "machine" in job_title_lower or "data" in job_title_lower:
+                domain = "AI-ML"
+            elif "security" in job_title_lower or "cyber" in job_title_lower:
+                domain = "Cybersecurity"
+            else:
+                domain = "Fullstack"
+            
+            screening_result = screen_resume(resume_path, domain)
+            
+            if screening_result.get("eligible"):
+                initial_status = "Interview Required"
+            else:
+                initial_status = "Under Review"
+        except Exception as e:
+            print(f"Resume screening error: {e}")
+            initial_status = "Under Review"
+    
+    # 6. Create application
     application = Application(
         job_id=job_id,
         seeker_id=seeker_id,
         resume_path=resume_path,
-        status="Applied"
+        status=initial_status
     )
     db.add(application)
     db.commit()

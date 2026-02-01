@@ -9,3 +9,5 @@ python-multipart
 sqlmodel
 python-jose[cryptography]
 passlib[standard]
+pymupdf
+python-docx
