@@ -1,12 +1,17 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 from typing import List, Optional
+import time
 
 from app.persistence.database import get_db
 from app.models.schemas import Job, User, UserRole
 from app.api.auth import get_current_user, get_recruiter_user
 
 router = APIRouter(prefix="/api/jobs", tags=["jobs"])
+
+# Enhancement #5: Simple in-memory cache for job listings
+_jobs_cache = {"data": None, "timestamp": 0}
+CACHE_TTL_SECONDS = 60  # Cache for 60 seconds
 
 @router.post("/", response_model=Job)
 async def create_job(
@@ -17,6 +22,10 @@ async def create_job(
     """Create a new job posting. Only for recruiters/admins."""
     if current_user.role != UserRole.ADMIN:
         job_data.recruiter_id = current_user.id
+    
+    # Invalidate cache on new job creation
+    _jobs_cache["data"] = None
+    _jobs_cache["timestamp"] = 0
         
     db.add(job_data)
     db.commit()
@@ -25,9 +34,21 @@ async def create_job(
 
 @router.get("/", response_model=List[Job])
 async def list_jobs(db: Session = Depends(get_db)):
-    """List all active jobs."""
+    """List all active jobs with caching."""
+    global _jobs_cache
+    
+    # Check cache validity
+    if _jobs_cache["data"] is not None and (time.time() - _jobs_cache["timestamp"]) < CACHE_TTL_SECONDS:
+        return _jobs_cache["data"]
+    
+    # Fetch from database
     statement = select(Job).where(Job.is_active == True)
     results = db.exec(statement).all()
+    
+    # Update cache
+    _jobs_cache["data"] = list(results)
+    _jobs_cache["timestamp"] = time.time()
+    
     return results
 
 @router.get("/recruiter/{recruiter_id}", response_model=List[Job])

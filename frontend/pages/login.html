@@ -80,6 +80,7 @@
                                 class="material-symbols-outlined text-science-muted text-[18px]">alternate_email</span>
                         </div>
                     </div>
+                    <span id="email-error" class="text-red-500 text-[9px] font-mono hidden"></span>
                 </div>
 
                 <div class="flex flex-col space-y-2">
@@ -123,12 +124,28 @@
         const existingUser = JSON.parse(sessionStorage.getItem('user'));
         const existingToken = sessionStorage.getItem('token');
         if (existingToken && existingUser) {
-            window.location.href = existingUser.role === 'ADMIN' ? '/admin' : '/dashboard';
+            const role = existingUser.role.toLowerCase();
+            window.location.href = (role === 'admin' || role === 'recruiter') ? '/admin' : '/dashboard';
         }
 
         const loginForm = document.getElementById('login-form');
         const errorMsg = document.getElementById('error-msg');
         const btnLogin = document.getElementById('btn-login');
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('email-error');
+
+        // Enhancement #7: Inline email validation
+        emailInput.addEventListener('blur', () => {
+            const email = emailInput.value;
+            if (email && !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                emailError.textContent = '✗ Please enter a valid email address';
+                emailError.classList.remove('hidden');
+                emailInput.classList.add('border-red-500');
+            } else {
+                emailError.classList.add('hidden');
+                emailInput.classList.remove('border-red-500');
+            }
+        });
 
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -165,7 +182,8 @@
                 sessionStorage.setItem('user', JSON.stringify(data.user));
 
                 // Redirect based on role
-                window.location.href = data.user.role === 'ADMIN' ? '/admin' : '/dashboard';
+                const role = data.user.role.toLowerCase();
+                window.location.href = (role === 'admin' || role === 'recruiter') ? '/admin' : '/dashboard';
 
             } catch (error) {
                 console.error('Login error:', error);

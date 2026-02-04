@@ -108,6 +108,21 @@
                             <span class="material-symbols-outlined text-science-muted text-[18px]">password</span>
                         </div>
                     </div>
+                    <!-- Password Strength Indicator -->
+                    <div id="password-strength" class="hidden space-y-1 mt-1">
+                        <div class="flex gap-1">
+                            <div id="strength-bar-1" class="h-1 flex-1 bg-gray-200 transition-colors"></div>
+                            <div id="strength-bar-2" class="h-1 flex-1 bg-gray-200 transition-colors"></div>
+                            <div id="strength-bar-3" class="h-1 flex-1 bg-gray-200 transition-colors"></div>
+                            <div id="strength-bar-4" class="h-1 flex-1 bg-gray-200 transition-colors"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-1 text-[9px] font-mono">
+                            <span id="req-length" class="text-gray-400">✗ 8+ characters</span>
+                            <span id="req-upper" class="text-gray-400">✗ Uppercase</span>
+                            <span id="req-lower" class="text-gray-400">✗ Lowercase</span>
+                            <span id="req-digit" class="text-gray-400">✗ Number</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="flex flex-col space-y-2">
@@ -164,13 +179,46 @@
         const existingUser = JSON.parse(sessionStorage.getItem('user'));
         const existingToken = sessionStorage.getItem('token');
         if (existingToken && existingUser) {
-            window.location.href = existingUser.role === 'ADMIN' ? '/admin' : '/dashboard';
+            const role = existingUser.role.toLowerCase();
+            window.location.href = (role === 'admin' || role === 'recruiter') ? '/admin' : '/dashboard';
         }
 
         const registerForm = document.getElementById('register-form');
         const errorMsg = document.getElementById('error-msg');
         const successMsg = document.getElementById('success-msg');
         const btnRegister = document.getElementById('btn-register');
+        const passwordInput = document.getElementById('password');
+        const strengthContainer = document.getElementById('password-strength');
+
+        // Real-time password validation
+        passwordInput.addEventListener('input', () => {
+            const pwd = passwordInput.value;
+            strengthContainer.classList.remove('hidden');
+
+            const hasLength = pwd.length >= 8;
+            const hasUpper = /[A-Z]/.test(pwd);
+            const hasLower = /[a-z]/.test(pwd);
+            const hasDigit = /\d/.test(pwd);
+            const score = [hasLength, hasUpper, hasLower, hasDigit].filter(Boolean).length;
+
+            // Update requirement indicators
+            document.getElementById('req-length').innerHTML = hasLength ? '✓ 8+ characters' : '✗ 8+ characters';
+            document.getElementById('req-length').className = hasLength ? 'text-green-600' : 'text-gray-400';
+            document.getElementById('req-upper').innerHTML = hasUpper ? '✓ Uppercase' : '✗ Uppercase';
+            document.getElementById('req-upper').className = hasUpper ? 'text-green-600' : 'text-gray-400';
+            document.getElementById('req-lower').innerHTML = hasLower ? '✓ Lowercase' : '✗ Lowercase';
+            document.getElementById('req-lower').className = hasLower ? 'text-green-600' : 'text-gray-400';
+            document.getElementById('req-digit').innerHTML = hasDigit ? '✓ Number' : '✗ Number';
+            document.getElementById('req-digit').className = hasDigit ? 'text-green-600' : 'text-gray-400';
+
+            // Update strength bars
+            const bars = ['strength-bar-1', 'strength-bar-2', 'strength-bar-3', 'strength-bar-4'];
+            const colors = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-green-500'];
+            bars.forEach((bar, i) => {
+                const el = document.getElementById(bar);
+                el.className = 'h-1 flex-1 transition-colors ' + (i < score ? colors[Math.min(score - 1, 3)] : 'bg-gray-200');
+            });
+        });
 
         registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();

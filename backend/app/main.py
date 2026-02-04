@@ -6,11 +6,11 @@ import time
 from datetime import datetime
 import asyncio
 from pathlib import Path
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, Depends
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, Depends, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, HTMLResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, ValidationError
 from typing import Optional
 import asyncio
 import cv2
@@ -27,6 +27,13 @@ from app.api.session import (
     StopResponse
 )
 from app.api import auth, jobs, applications, questions
+from app.utils.logger import logger
+from app.utils.errors import (
+    AppException,
+    app_exception_handler,
+    validation_exception_handler,
+    generic_exception_handler
+)
 
 
 # Create FastAPI app
@@ -44,6 +51,36 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Register global exception handlers (Enhancement #9)
+app.add_exception_handler(AppException, app_exception_handler)
+app.add_exception_handler(ValidationError, validation_exception_handler)
+app.add_exception_handler(Exception, generic_exception_handler)
+
+# CSRF Protection Middleware (Enhancement #2)
+@app.middleware("http")
+async def csrf_protection(request: Request, call_next):
+    """Simple CSRF protection via custom header check for mutating requests."""
+    if request.method in ["POST", "PUT", "DELETE", "PATCH"]:
+        # Skip CSRF for API endpoints that use Bearer auth (they have their own protection)
+        auth_header = request.headers.get("authorization", "")
+        content_type = request.headers.get("content-type", "")
+        
+        # If it's an API call with JSON, require X-Requested-With header OR Authorization
+        if "application/json" in content_type and not auth_header:
+            x_requested = request.headers.get("x-requested-with", "")
+            if x_requested != "XMLHttpRequest":
+                from fastapi.responses import JSONResponse
+                logger.warning(f"CSRF check failed for {request.method} {request.url.path}")
+                return JSONResponse(
+                    status_code=403,
+                    content={"detail": "CSRF validation failed"}
+                )
+    
+    response = await call_next(request)
+    return response
+
+logger.info("FastAPI application initialized with CSRF protection")
 
 # Mount frontend static files - look for frontend in sibling directory
 frontend_path = Path(__file__).parent.parent.parent / "frontend"
@@ -179,15 +216,6 @@ async def review_answers_page():
     if review_path.exists():
         return FileResponse(str(review_path))
     return HTMLResponse("<h1>Review page not found</h1>")
-
-
-@app.get("/summary", response_class=HTMLResponse)
-async def summary_page():
-    """Serve session summary page."""
-    summary_path = frontend_path / "pages" / "summary.html"
-    if summary_path.exists():
-        return FileResponse(str(summary_path))
-    return HTMLResponse("<h1>Summary page not found</h1>")
 
 
 @app.post("/api/session/start", response_model=StartResponse)
