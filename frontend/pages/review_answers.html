@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>AI Interview - Review Candidate Answers</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "science-bg": "#f4f4f5",
+                        "science-card": "#ffffff",
+                        "science-border": "#e4e4e7",
+                        "science-text": "#18181b",
+                        "science-muted": "#71717a"
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"],
+                        "mono": ["IBM Plex Mono", "monospace"]
+                    },
+                    borderRadius: { DEFAULT: "0px", none: "0px" }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300;
+        }
+
+        *,
+        *::before,
+        *::after {
+            border-radius: 0 !important;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-science-bg text-science-text font-sans antialiased">
+
+    <!-- Header -->
+    <header class="flex items-center justify-between border-b border-science-border px-6 py-4 bg-white">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-[24px]">grading</span>
+            <h2 class="text-sm font-mono uppercase tracking-widest font-semibold">Candidate Answer Review</h2>
+        </div>
+        <div class="flex items-center gap-4">
+            <span id="app-badge" class="px-3 py-1 bg-black text-white text-xs font-mono">APP-?</span>
+            <button onclick="window.location.href='/admin'"
+                class="text-xs font-mono border border-black px-3 py-1 hover:bg-black hover:text-white uppercase">
+                Back to Console
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-[1000px] mx-auto p-6">
+
+        <!-- Candidate Info Card -->
+        <div id="candidate-card" class="bg-white border border-science-border p-6 mb-6">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h3 id="candidate-name" class="text-xl font-bold">Loading...</h3>
+                    <p id="job-title" class="text-sm text-science-muted font-mono mt-1">Job: --</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-xs text-science-muted uppercase mb-1">Overall Score</p>
+                    <p id="overall-score" class="text-4xl font-bold font-mono">--</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Answers List -->
+        <div id="answers-container" class="space-y-4">
+            <div class="text-center text-science-muted font-mono py-12">Loading answers...</div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex justify-between items-center mt-8 pt-6 border-t border-science-border">
+            <button onclick="passCandidate()"
+                class="px-6 py-3 bg-green-600 text-white text-sm font-mono uppercase hover:bg-green-700 flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm">check_circle</span> Pass to Next Stage
+            </button>
+            <button onclick="rejectCandidate()"
+                class="px-6 py-3 bg-red-600 text-white text-sm font-mono uppercase hover:bg-red-700 flex items-center gap-2">
+                <span class="material-symbols-outlined text-sm">cancel</span> Reject
+            </button>
+        </div>
+    </main>
+
+    <script>
+        let applicationId = null;
+        let answers = [];
+        let questions = {};
+        const token = sessionStorage.getItem('token');
+
+        async function init() {
+            applicationId = new URLSearchParams(window.location.search).get('application_id');
+
+            if (!token || !applicationId) {
+                alert('Missing authentication or application ID');
+                window.location.href = '/admin';
+                return;
+            }
+
+            document.getElementById('app-badge').innerText = `APP-${applicationId}`;
+
+            // Fetch answers
+            const res = await fetch(`/api/questions/answers/${applicationId}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (!res.ok) {
+                document.getElementById('answers-container').innerHTML =
+                    '<div class="text-red-500 font-mono text-center py-12">Failed to load answers</div>';
+                return;
+            }
+
+            answers = await res.json();
+
+            // Fetch all question details
+            for (const ans of answers) {
+                if (!questions[ans.question_id]) {
+                    try {
+                        // We need a get-single-question endpoint, or use domain fetch
+                        questions[ans.question_id] = { id: ans.question_id, question_text: `Question #${ans.question_id}` };
+                    } catch (e) { }
+                }
+            }
+
+            renderAnswers();
+            calculateOverallScore();
+        }
+
+        function renderAnswers() {
+            const container = document.getElementById('answers-container');
+
+            if (answers.length === 0) {
+                container.innerHTML = '<div class="text-science-muted font-mono text-center py-12">No answers submitted yet</div>';
+                return;
+            }
+
+            container.innerHTML = answers.map((ans, idx) => {
+                const q = questions[ans.question_id] || {};
+                const scoreClass = ans.score !== null ? (ans.score >= 50 ? 'text-green-600' : 'text-red-600') : 'text-gray-400';
+
+                let answerDisplay = '';
+                if (ans.answer_type === 'mcq') {
+                    answerDisplay = `<span class="font-mono text-black">Selected: Option ${parseInt(ans.answer_text) + 1}</span>`;
+                } else if (ans.answer_type === 'text') {
+                    answerDisplay = `<pre class="bg-gray-50 p-3 text-sm font-mono whitespace-pre-wrap border">${ans.answer_text || 'No answer'}</pre>`;
+                } else if (ans.answer_file_path) {
+                    const isVideo = ans.answer_type === 'video';
+                    answerDisplay = isVideo
+                        ? `<video controls class="w-full max-w-md border border-black"><source src="/${ans.answer_file_path.replace(/\\/g, '/')}" type="video/webm"></video>`
+                        : `<audio controls class="w-full"><source src="/${ans.answer_file_path.replace(/\\/g, '/')}" type="audio/webm"></audio>`;
+                }
+
+                return `
+                    <div class="bg-white border border-science-border p-5">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex items-center gap-3">
+                                <span class="w-8 h-8 bg-black text-white flex items-center justify-center font-mono text-sm">${idx + 1}</span>
+                                <span class="px-2 py-1 bg-gray-100 text-xs font-mono uppercase">${ans.answer_type}</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-science-muted">Score:</span>
+                                <span class="text-xl font-bold font-mono ${scoreClass}">${ans.score !== null ? ans.score : '--'}</span>
+                                ${ans.answer_type !== 'mcq' ? `
+                                    <input type="number" min="0" max="100" placeholder="0-100" 
+                                        class="w-20 border border-black px-2 py-1 text-sm font-mono"
+                                        onchange="updateScore(${ans.id}, this.value)">
+                                ` : ''}
+                            </div>
+                        </div>
+                        <p class="text-sm text-science-text mb-3">${q.question_text || 'Question text unavailable'}</p>
+                        <div class="mt-3">${answerDisplay}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function updateScore(answerId, score) {
+            const res = await fetch(`/api/questions/answers/${answerId}/score?score=${score}`, {
+                method: 'PATCH',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+
+            if (res.ok) {
+                const ans = answers.find(a => a.id === answerId);
+                if (ans) ans.score = parseFloat(score);
+                calculateOverallScore();
+            }
+        }
+
+        function calculateOverallScore() {
+            const scored = answers.filter(a => a.score !== null);
+            if (scored.length === 0) {
+                document.getElementById('overall-score').innerText = '--';
+                return;
+            }
+            const avg = scored.reduce((sum, a) => sum + a.score, 0) / scored.length;
+            document.getElementById('overall-score').innerText = Math.round(avg);
+        }
+
+        async function passCandidate() {
+            await fetch(`/api/applications/${applicationId}/status`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ status: 'Passed' })
+            });
+            alert('Candidate passed to next stage!');
+            window.location.href = '/admin';
+        }
+
+        async function rejectCandidate() {
+            await fetch(`/api/applications/${applicationId}/status`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ status: 'Rejected' })
+            });
+            alert('Candidate rejected.');
+            window.location.href = '/admin';
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

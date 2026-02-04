@@ -1,0 +1,57 @@
+1. Job Board Page (/jobs.html)
+Purpose: The public-facing "storefront" where candidates find roles to apply for.
+
+Header Section:
+Search bar for keywords (Job Title, Skills).
+Location filter (Remote, City, Country).
+Job List Grid/Column:
+Cards: Each card needs a Title, Company Name (seeded as "System Admin" for now), Salary Range, and a "Posted Date" label.
+Badges: Status tags like FULL TIME or URGENT.
+Interaction: Clicking a card should either expand it to show the full description or open a "Apply Now" modal.
+Auth State: If the user isn't logged in, the "Apply" button should redirect to /login.
+2. Candidate Dashboard (/dashboard.html)
+Purpose: The central hub for a seeker to manage their career progress.
+
+Stats Overview: Small widgets showing:
+Total Applications
+Pending Interviews
+Offers Received
+Application Activity Table:
+Columns: Job Title, Applied Date, Current Status (Applied, Interview Required, Rejected).
+Status Badges: Use color coding (Blue for Applied, Green for Interview Ready, Red for Rejected).
+The "Action" Button:
+Beside each application, a dynamic button.
+If status is Interview Required, the button says "START AI INTERVIEW" (Deep black/accent color).
+Clicking this navigates the user to the /capture page.
+3. Recruiter Dashboard (/admin.html)
+Purpose: The "Command Center" for the recruiter to manage jobs and candidates.
+
+Job Management Tab:
+A list of jobs created by the recruiter.
+Ability to toggle jobs ON/OFF (Active/Inactive).
+Count of applicants per job (e.g., "12 Applicants").
+Applicant Pipeline View:
+A detailed table showing candidates who applied to a specific job.
+Key Action: A button to "Approve for Interview" which updates the candidate's dashboard status.
+Results Link: If a candidate has finished their interview, show a "VIEW SIGNALS" button.
+4. AI Session Replay & Analytics Page (/replay.html)
+Purpose: Forensic review of the AI signals captured during the interview.
+
+Video Feed (Left/Center): A large custom video player showing the recorded video.mp4.
+Signal Timeline (Right):
+A scrolling log or graph of the Eye Tracking (Center, Left, Right).
+Head Movement trends.
+Voice Activity intervals (Silent vs Active).
+Integrity Dashboard (Bottom/Side):
+A checklist showing if the session passed automated checks:
+Face Continuous? (Yes/No)
+Multiple Faces? (Danger/Safe)
+Audio Interruptions? (Clean/Detected)
+Recruiter Notes: A text area to save final hiring decisions.
+5. Job Application Form (/apply.html)
+Purpose: High-speed submission form.
+
+Profile Auto-fill: Shows the user's name and email (from their account).
+Resume Upload: A drag-and-drop zone for PDF files.
+Cover Letter/Summary: A text area for the candidate to pitch themselves.
+Submit Button: Sends data to POST /api/applications/apply.

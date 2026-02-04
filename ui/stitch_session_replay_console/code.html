@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Session Replay Console - Final Refined</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "off-white": "#f2f2f2",
+                        "surface": "#ffffff",
+                        "border-dark": "#000000",
+                        "text-main": "#000000",
+                        "text-muted": "#666666",
+                    },
+                    fontFamily: {
+                        "mono": ["Space Grotesk", "monospace"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "sm": "0px",
+                        "md": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px" 
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", monospace;
+        }::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ffffff; 
+            border-left: 1px solid #e5e5e5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #000000; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #333333; 
+        }
+        .filled-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-off-white text-text-main h-screen flex flex-col overflow-hidden font-mono">
+<header class="flex-none flex items-center justify-between whitespace-nowrap border-b border-border-dark bg-surface px-6 py-3 h-14">
+<div class="flex items-center gap-4">
+<div class="size-6 text-black border border-black flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+</div>
+<h1 class="text-black text-sm font-bold tracking-widest uppercase">
+            SIGNAL CAPTURE CONSOLE <span class="text-text-muted mx-2">//</span> SESSION REPLAY
+        </h1>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center border border-black hover:bg-black hover:text-white p-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+</button>
+<button class="flex items-center justify-center border border-black hover:bg-black hover:text-white p-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex flex-col lg:flex-row min-h-0">
+<div class="flex-1 flex flex-col min-w-0 border-r border-border-dark bg-[#ebebeb]">
+<div class="flex-1 flex flex-col p-6 min-h-0 overflow-y-auto">
+<div class="flex justify-between items-end mb-2">
+<div class="inline-flex items-center gap-2 border border-black bg-white px-2 py-1">
+<span class="material-symbols-outlined text-black text-[14px] filled-icon">fiber_manual_record</span>
+<span class="text-black text-xs font-bold tracking-wider">VIDEO_SOURCE: SESSION_LOG_001.MP4</span>
+</div>
+<span class="text-xs text-black font-bold tracking-widest">VIDEO_INPUT: ACTIVE</span>
+</div>
+<div class="relative w-full bg-black border border-black flex-grow min-h-[300px] flex items-center justify-center group overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center opacity-50 grayscale" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSnaNRLqnsgNB9djpEKvrHA5g7QNwAXnSvywoE9D5xH4a4af4EgdmoHKg2Qlv3i3phXI-TG0vbCHGDvLv-oGUy9zMtRGxOAOncxvNY4pFmJqnCZKCg-KdEz4v0_0eughXx6gyz1NyLywlljAuuVmzvzv5K6jGAgbo_gD1D84JQn-HyrGm475DFtRTGgBoJJA4l-eM_j2_R-VkX52DWa_wIEfpEf161NEVBtathmFq-Alg_W5X72Lj6TcpVLU4OgYaZ-dVSlG2usI4');"></div>
+<div class="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,255,255,0.06),rgba(0,0,0,0.02))] z-10 bg-[length:100%_2px,3px_100%] pointer-events-none"></div>
+<button class="relative z-20 flex shrink-0 items-center justify-center size-20 bg-black border border-white text-white hover:bg-white hover:text-black transition-colors">
+<span class="material-symbols-outlined text-[40px] filled-icon">play_arrow</span>
+</button>
+<div class="absolute inset-x-0 bottom-0 bg-black/90 pt-10 pb-4 px-6 z-20 border-t border-white/20">
+<div class="relative w-full h-1 bg-gray-800 mb-4 cursor-pointer group/progress">
+<div class="absolute h-full w-[35%] bg-white"></div>
+<div class="absolute h-3 w-3 bg-white border border-black top-1/2 -translate-y-1/2 left-[35%] opacity-0 group-hover/progress:opacity-100 transition-opacity"></div>
+</div>
+<div class="flex items-center justify-between font-mono text-xs text-white">
+<div class="flex items-center gap-4">
+<span class="font-bold">00:04:12:09</span>
+<span class="text-gray-500">/</span>
+<span class="text-gray-500">00:15:00:00</span>
+</div>
+<div class="flex items-center gap-4 text-gray-300">
+<span class="cursor-pointer hover:text-white hover:underline">1.0x</span>
+<span class="cursor-pointer hover:text-white hover:underline">LOG</span>
+<span class="cursor-pointer hover:text-white material-symbols-outlined text-[18px]">volume_up</span>
+<span class="cursor-pointer hover:text-white material-symbols-outlined text-[18px]">fullscreen</span>
+</div>
+</div>
+</div>
+<div class="absolute top-4 right-4 z-20 flex flex-col items-end gap-1">
+<div class="text-[10px] bg-white text-black px-2 py-0.5 border border-black font-bold uppercase">SIGNAL STABLE</div>
+<div class="text-[10px] bg-black text-white px-2 py-0.5 border border-white/50 uppercase">BUFFER: 100%</div>
+</div>
+</div>
+</div>
+<div class="flex-none p-6 pt-0">
+<div class="border border-black bg-surface p-4">
+<h3 class="text-xs text-black font-bold mb-3 uppercase tracking-wider border-b border-black pb-2">Signal Integrity Checklist</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="flex items-center justify-between bg-white p-2 border border-black">
+<span class="text-xs text-text-muted font-bold">FACE CONTINUOUS</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[12px] filled-icon text-black">lens</span>
+<span class="text-xs font-bold text-black">YES</span>
+<span class="text-xs text-gray-400">/ NO</span>
+</div>
+</div>
+<div class="flex items-center justify-between bg-white p-2 border border-black">
+<span class="text-xs text-text-muted font-bold">MULTIPLE FACES</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[12px] filled-icon text-black">lens</span>
+<span class="text-xs font-bold text-black">SAFE</span>
+<span class="text-xs text-gray-400">/ DETECTED</span>
+</div>
+</div>
+<div class="flex items-center justify-between bg-white p-2 border border-black">
+<span class="text-xs text-text-muted font-bold">AUDIO INTERRUPTIONS</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[12px] filled-icon text-black">lens</span>
+<span class="text-xs font-bold text-black">CLEAN</span>
+<span class="text-xs text-gray-400">/ DETECTED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:w-[400px] flex-none flex flex-col bg-surface border-l border-border-dark min-h-0">
+<div class="flex-1 overflow-y-auto p-6 border-b border-border-dark">
+<div class="flex items-center justify-between mb-4 pb-2 border-b border-gray-200">
+<h3 class="text-sm font-bold text-black uppercase tracking-wider">Signal Telemetry Log</h3>
+<span class="text-[10px] text-black border border-black px-1.5 py-0.5 font-bold">LIVE FEED</span>
+</div>
+<div class="space-y-3">
+<div class="bg-off-white border border-black p-3 hover:bg-white transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs text-black font-bold">EYE TRACKING</span>
+<span class="material-symbols-outlined text-[16px] text-black">visibility</span>
+</div>
+<div class="font-mono text-xs flex justify-between items-center mt-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[10px] filled-icon">lens</span>
+<span class="font-bold text-black">CENTER</span>
+</div>
+<div class="flex items-center gap-1.5 text-gray-400">
+<span class="material-symbols-outlined text-[10px]">radio_button_unchecked</span>
+<span>LEFT</span>
+</div>
+<div class="flex items-center gap-1.5 text-gray-400">
+<span class="material-symbols-outlined text-[10px]">radio_button_unchecked</span>
+<span>RIGHT</span>
+</div>
+</div>
+</div>
+<div class="bg-off-white border border-black p-3 hover:bg-white transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs text-black font-bold">HEAD MOVEMENT</span>
+<span class="material-symbols-outlined text-[16px] text-black">face_retouching_natural</span>
+</div>
+<div class="font-mono text-xs flex justify-between items-center mt-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[10px] filled-icon">lens</span>
+<span class="font-bold text-black">LOW</span>
+</div>
+<div class="flex items-center gap-1.5 text-gray-400">
+<span class="material-symbols-outlined text-[10px]">radio_button_unchecked</span>
+<span>MED</span>
+</div>
+<div class="flex items-center gap-1.5 text-gray-400">
+<span class="material-symbols-outlined text-[10px]">radio_button_unchecked</span>
+<span>HIGH</span>
+</div>
+</div>
+</div>
+<div class="bg-off-white border border-black p-3 hover:bg-white transition-colors">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs text-black font-bold">VOICE ACTIVITY</span>
+<span class="material-symbols-outlined text-[16px] text-black">graphic_eq</span>
+</div>
+<div class="font-mono text-xs flex items-center gap-6 mt-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[10px] filled-icon">lens</span>
+<span class="font-bold text-black">ACTIVE</span>
+</div>
+<div class="flex items-center gap-1.5 text-gray-400">
+<span class="material-symbols-outlined text-[10px]">radio_button_unchecked</span>
+<span>SILENT</span>
+</div>
+</div>
+</div>
+<div class="bg-off-white border border-black p-3 opacity-60">
+<div class="flex justify-between items-start mb-1">
+<span class="text-xs text-gray-600 font-bold">GAZE VECTOR</span>
+</div>
+<div class="font-mono text-xs text-black">
+                           X: 12.4, Y: -4.1
+                    </div>
+</div>
+</div>
+</div>
+<div class="flex-none p-6 bg-[#f8f8f8]">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-sm font-bold text-black uppercase tracking-wider">Recruiter Observations</h3>
+<span class="material-symbols-outlined text-black text-[16px]">edit_note</span>
+</div>
+<div class="relative">
+<textarea class="w-full h-40 bg-white text-sm text-black p-3 border border-black focus:border-black focus:ring-1 focus:ring-black outline-none resize-none font-mono placeholder-gray-400" placeholder="Enter manual observations here. Timestamp will be auto-appended...">Subject maintains consistent eye contact. Voice modulation is within normal parameters. No significant stress markers observed during the technical questioning phase.</textarea>
+<div class="absolute bottom-2 right-2 text-[10px] bg-black text-white px-1">AUTO-SAVED</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="flex-none bg-white border-t border-black h-10 px-6 flex items-center justify-between text-[11px] font-mono tracking-widest text-black uppercase">
+<div class="flex gap-8">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">wifi_off</span>
+<span class="font-bold">OFFLINE MODE</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span class="font-bold">SYSTEM READY</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-gray-500">
+<span class="material-symbols-outlined text-[14px]">smart_toy</span>
+<span>NO AI SCORING APPLIED</span>
+</div>
+</footer>
+
+</body></html>

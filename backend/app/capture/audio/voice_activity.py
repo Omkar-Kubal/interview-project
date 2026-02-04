@@ -65,10 +65,10 @@ class VoiceActivityDetector:
                 avg_volume_db = -100.0
             
             return {
-                "voice_detected": speaking_duration > 0,
-                "total_speaking_time_sec": round(speaking_duration, 2),
-                "total_duration_sec": round(total_duration, 2),
-                "average_volume": round(avg_volume_db, 2)
+                "voice_detected": bool(speaking_duration > 0),
+                "total_speaking_time_sec": float(round(speaking_duration, 2)),
+                "total_duration_sec": float(round(total_duration, 2)),
+                "average_volume": float(round(avg_volume_db, 2))
             }
     
     def save_log(self) -> None:

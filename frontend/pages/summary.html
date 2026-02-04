@@ -1,163 +1,122 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>AI Interview - Session Summary</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <title>Session Summary | Signal Capture</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
-        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script>
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "science-bg": "#f4f4f5",
-                        "science-card": "#ffffff",
-                        "science-border": "#e4e4e7",
-                        "science-text": "#18181b",
-                        "science-muted": "#71717a",
-                        "science-accent": "#27272a"
+                        "primary": "#000000",
+                        "off-white": "#f2f2f2",
+                        "surface": "#ffffff",
+                        "border-dark": "#000000",
+                        "text-main": "#000000",
+                        "text-muted": "#666666",
                     },
                     fontFamily: {
-                        "sans": ["Inter", "sans-serif"],
-                        "mono": ["IBM Plex Mono", "monospace"]
+                        "mono": ["Space Grotesk", "monospace"],
                     },
-                    borderRadius: { DEFAULT: "0px", none: "0px" }
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "none": "0px"
+                    },
                 },
             },
         }
     </script>
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-
-        *,
-        *::before,
-        *::after {
-            border-radius: 0 !important;
+        body {
+            font-family: "Space Grotesk", monospace;
         }
     </style>
 </head>
 
-<body
-    class="relative flex h-screen w-full flex-col bg-science-bg text-science-text font-sans overflow-hidden antialiased">
-
-    <!-- HEADER -->
-    <header class="flex items-center justify-between border-b border-science-border px-6 py-4 bg-white">
-        <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-science-accent text-[24px]">science</span>
-            <h2 class="text-science-text text-sm font-mono uppercase tracking-widest font-semibold">AI Interview -
-                Signal Capture</h2>
-        </div>
+<body class="bg-off-white text-text-main h-screen flex flex-col overflow-hidden font-mono">
+    <header
+        class="flex-none flex items-center justify-between whitespace-nowrap border-b border-border-dark bg-surface px-6 py-3 h-14">
         <div class="flex items-center gap-4">
-            <div id="status-badge"
-                class="flex items-center gap-2 px-3 py-1 bg-green-50 border border-green-200 text-xs font-mono text-green-600">
-                <span class="material-symbols-outlined text-[14px]">check_circle</span>
-                <span id="status-text">COMPLETE</span>
+            <div class="size-6 text-white bg-black border border-black flex items-center justify-center select-none">
+                <span class="text-xs">OK</span>
             </div>
+            <h1 class="text-black text-sm font-bold tracking-widest uppercase">
+                SIGNAL CAPTURE CONSOLE <span class="text-text-muted mx-2">//</span> TRANSMISSION COMPLETE
+            </h1>
         </div>
     </header>
 
-    <!-- SUMMARY CONTENT -->
-    <main class="flex-1 flex flex-col items-center justify-center p-6">
-        <div class="w-full max-w-5xl">
-            <div class="bg-white border border-science-border shadow-sm overflow-hidden">
-                <div class="p-8 border-b border-science-border">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        <div class="flex flex-col gap-1">
-                            <span
-                                class="text-[10px] uppercase tracking-widest text-science-muted font-medium">Status</span>
-                            <span class="text-base text-science-text font-medium">Session completed</span>
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <span class="text-[10px] uppercase tracking-widest text-science-muted font-medium">Candidate
-                                ID</span>
-                            <span id="sum-candidate" class="text-base text-science-text font-mono">--</span>
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <span
-                                class="text-[10px] uppercase tracking-widest text-science-muted font-medium">Duration</span>
-                            <span id="sum-duration" class="text-base text-science-text font-mono">--</span>
-                        </div>
-                        <div class="flex flex-col gap-1">
-                            <span class="text-[10px] uppercase tracking-widest text-science-muted font-medium">Avg
-                                FPS</span>
-                            <span id="sum-fps" class="text-base text-science-text font-mono">--</span>
-                        </div>
-                    </div>
+    <main class="flex-1 overflow-y-auto bg-[#ebebeb] p-4 md:p-10 flex flex-col items-center justify-center">
+        <div
+            class="w-full max-w-xl flex flex-col gap-8 bg-white border border-black p-10 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+            <div class="flex flex-col items-center text-center gap-6">
+                <div class="size-20 bg-black text-white flex items-center justify-center">
+                    <span class="material-symbols-outlined text-5xl">task_alt</span>
                 </div>
-                <div class="p-8 bg-gray-50">
-                    <div class="flex justify-between items-end mb-6">
-                        <h3 class="text-sm font-medium text-science-text">Raw signal log preview</h3>
-                        <span class="text-[10px] text-science-muted font-mono">NO SCORING APPLIED</span>
-                    </div>
-                    <div class="relative w-full h-12 bg-gray-100 border border-science-border mb-4 overflow-hidden">
-                        <div class="absolute top-0 bottom-0 bg-green-100" style="left: 5%; width: 90%;"></div>
-                    </div>
-                    <div class="flex items-center gap-8 text-xs text-science-muted font-medium">
-                        <div class="flex items-center gap-2">
-                            <div class="w-3 h-3 bg-green-100 border border-green-200"></div>
-                            <span>Face detected</span>
-                        </div>
-                    </div>
+                <div>
+                    <h2 class="text-3xl font-black uppercase tracking-tighter">Capture_Finalized</h2>
+                    <p class="text-xs text-gray-500 uppercase tracking-widest mt-2">All multimodal signals have been
+                        buffered and stored in core infrastructure.</p>
                 </div>
-                <div class="px-8 py-6 border-t border-science-border flex justify-between items-center bg-white">
-                    <span class="text-xs text-science-muted font-mono">Files saved to data/ folder</span>
-                    <button id="btn-restart"
-                        class="bg-science-accent hover:bg-black text-white text-xs font-mono uppercase px-6 py-2.5 transition-colors">
-                        Start New Session
-                    </button>
+            </div>
+
+            <div class="border-t border-black pt-8 space-y-4">
+                <div class="flex justify-between items-center text-xs font-bold uppercase">
+                    <span class="text-gray-400">SESSION_STATUS</span>
+                    <span class="text-green-600">SUCCESSFUL_UPLINK</span>
                 </div>
+                <div class="flex justify-between items-center text-xs font-bold uppercase">
+                    <span class="text-gray-400">INTEGRITY_CHECK</span>
+                    <span class="text-black">VERIFIED</span>
+                </div>
+                <div id="summary-duration" class="flex justify-between items-center text-xs font-bold uppercase">
+                    <span class="text-gray-400">DURATION</span>
+                    <span class="text-black">--:--:--</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-3 mt-4">
+                <button onclick="window.location.href='/dashboard'"
+                    class="w-full bg-black text-white h-14 border border-black text-xs font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-all flex items-center justify-center">
+                    RETURN_TO_DASHBOARD
+                </button>
+                <div class="text-[10px] text-center text-gray-400 uppercase tracking-widest">You can now safely
+                    terminate this window.</div>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="w-full py-4 px-4 bg-white border-t border-science-border">
-        <div class="max-w-[960px] mx-auto text-center">
-            <p class="text-xs text-science-muted font-mono">
-                This demo captures raw visual and audio signals only. No AI analysis, scoring, or hiring decisions are
-                performed.
-            </p>
-        </div>
+    <footer
+        class="flex-none bg-white border-t border-black h-10 px-6 flex items-center justify-center text-[10px] font-mono tracking-widest text-black uppercase opacity-60">
+        AI INTERVIEW SYSTEM // MODULE_ID: SUMMARY_COMP_V1
     </footer>
 
-    <!-- Scripts -->
-    <script src="/static/scripts/ui.js"></script>
     <script>
-        // Summary page logic
-        function formatTime(seconds) {
-            const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
-            const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
-            const s = (seconds % 60).toString().padStart(2, '0');
-            return `${h}:${m}:${s}`;
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        const token = sessionStorage.getItem('token');
+
+        if (!token || !user || user.role !== 'seeker') {
+            window.location.href = '/login';
         }
 
-        // Load summary data
-        function loadSummary() {
-            const summary = getSessionData('summary');
-
-            if (summary) {
-                document.getElementById('sum-candidate').textContent = summary.candidate_id || '--';
-                document.getElementById('sum-duration').textContent = formatTime(summary.duration_sec || 0);
-                document.getElementById('sum-fps').textContent = (summary.fps_avg || 0).toFixed(1);
-            }
+        const summary = JSON.parse(sessionStorage.getItem('summary'));
+        if (summary && summary.duration_sec) {
+            const sec = parseInt(summary.duration_sec);
+            const hrs = Math.floor(sec / 3600);
+            const mins = Math.floor((sec % 3600) / 60);
+            const secs = sec % 60;
+            document.getElementById('summary-duration').querySelector('span:last-child').innerText =
+                `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
         }
-
-        loadSummary();
-
-        // Restart handler
-        document.getElementById('btn-restart').addEventListener('click', () => {
-            clearSessionData();
-            window.location.href = '/';
-        });
     </script>
 </body>
 

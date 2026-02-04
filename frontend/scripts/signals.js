@@ -10,9 +10,13 @@ let signalCallbacks = [];
  * Connect to live signal WebSocket
  * @param {Function} onSignal - Callback for signal updates
  */
-function connectSignals(onSignal) {
+function connectSignals(onSignal, candidateId = null) {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    ws = new WebSocket(`${protocol}//${window.location.host}/api/session/live`);
+    let url = `${protocol}//${window.location.host}/api/session/live`;
+    if (candidateId) {
+        url += `?candidate_id=${candidateId}`;
+    }
+    ws = new WebSocket(url);
 
     ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
