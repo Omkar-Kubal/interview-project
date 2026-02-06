@@ -13,9 +13,18 @@ const CONFIG = {
 
     // Pages
     PAGES: {
-        LANDING: '/pages/index.html',
+        LANDING: '/',
         CAPTURE: '/capture',
-        SUMMARY: '/summary'
+        SUMMARY: '/summary',
+        LOGIN: '/login',
+        REGISTER: '/register',
+        DASHBOARD: '/dashboard',
+        ADMIN: '/admin',
+        JOBS: '/jobs',
+        APPLY: '/apply',
+        INTERVIEW: '/interview',
+        REVIEW: '/review',
+        REPLAY: '/replay'
     }
 };
 

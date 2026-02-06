@@ -3,6 +3,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlmodel import Session, select
 from datetime import timedelta
 from typing import Optional
+import re
 
 from app.persistence.database import get_db
 from app.models.schemas import User, UserRole
@@ -10,10 +11,11 @@ from app.core.auth import (
     get_password_hash, 
     verify_password, 
     create_access_token,
+    create_refresh_token,
     decode_access_token,
     ACCESS_TOKEN_EXPIRE_MINUTES
 )
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 class TokenData(BaseModel):
     email: Optional[str] = None
@@ -24,6 +26,19 @@ class RegisterRequest(BaseModel):
     email: str
     password: str
     role: UserRole = UserRole.SEEKER
+    
+    @field_validator('password')
+    @classmethod
+    def validate_password(cls, v: str) -> str:
+        if len(v) < 8:
+            raise ValueError('Password must be at least 8 characters long')
+        if not re.search(r'[A-Z]', v):
+            raise ValueError('Password must contain at least one uppercase letter')
+        if not re.search(r'[a-z]', v):
+            raise ValueError('Password must contain at least one lowercase letter')
+        if not re.search(r'\d', v):
+            raise ValueError('Password must contain at least one digit')
+        return v
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
@@ -63,15 +78,19 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = 
             headers={"WWW-Authenticate": "Bearer"},
         )
     
-    # Create token
+    # Create tokens
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": user.email, "role": user.role},
         expires_delta=access_token_expires
     )
+    refresh_token = create_refresh_token(
+        data={"sub": user.email, "role": user.role}
+    )
     
     return {
         "access_token": access_token,
+        "refresh_token": refresh_token,
         "token_type": "bearer",
         "user": {
             "id": user.id,
@@ -93,6 +112,38 @@ async def get_user_profile(user_id: int, db: Session = Depends(get_db)):
         "full_name": user.full_name,
         "role": user.role
     }
+
+class RefreshRequest(BaseModel):
+    refresh_token: str
+
+@router.post("/refresh")
+async def refresh_token(request: RefreshRequest, db: Session = Depends(get_db)):
+    """Exchange refresh token for new access token."""
+    payload = decode_access_token(request.refresh_token)
+    
+    if payload is None or payload.get("type") != "refresh":
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired refresh token"
+        )
+    
+    email = payload.get("sub")
+    user = db.exec(select(User).where(User.email == email)).first()
+    
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Create new access token
+    access_token = create_access_token(
+        data={"sub": user.email, "role": user.role},
+        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    )
+    
+    return {
+        "access_token": access_token,
+        "token_type": "bearer"
+    }
+
 async def get_current_user(
     token: str = Depends(oauth2_scheme), 
     db: Session = Depends(get_db)
