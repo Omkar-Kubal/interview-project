@@ -39,7 +39,7 @@ from app.utils.errors import (
 
 # Create FastAPI app
 app = FastAPI(
-    title="AI Interview - Signal Capture API",
+    title="TalentWaveIT - Signal Capture API",
     description="Backend API for multimodal candidate signal capture",
     version="1.0.0"
 )
