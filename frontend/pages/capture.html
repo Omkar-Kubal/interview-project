@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>AI Interview - Live Signal Capture</title>
+    <title>Live Signal Capture - InterviewAI</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
         rel="stylesheet" />
     <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <script>
         tailwind.config = {
@@ -17,147 +18,211 @@
             theme: {
                 extend: {
                     colors: {
-                        "science-bg": "#f4f4f5",
-                        "science-card": "#ffffff",
-                        "science-border": "#e4e4e7",
-                        "science-text": "#18181b",
-                        "science-muted": "#71717a",
-                        "science-accent": "#27272a"
+                        primary: "#5925f4",
+                        "primary-dark": "#3c18a6",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                        "surface-dark": "#1e1a2e",
+                        "border-dark": "#2d2840",
+                        "text-light": "#e2e0e8",
+                        "text-dim": "#9c96b0",
+                        "success": "#10b981",
+                        "danger": "#ef4444",
+                        "warning": "#f59e0b",
                     },
                     fontFamily: {
-                        "sans": ["Inter", "sans-serif"],
-                        "mono": ["IBM Plex Mono", "monospace"]
+                        display: ["Inter", "sans-serif"]
                     },
-                    borderRadius: { DEFAULT: "0px", none: "0px" }
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
                 },
             },
         }
     </script>
-    <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-
-        *,
-        *::before,
-        *::after {
-            border-radius: 0 !important;
-        }
-    </style>
 </head>
 
-<body
-    class="relative flex min-h-screen w-full flex-col bg-science-bg text-science-text font-sans overflow-y-auto antialiased">
-
-    <!-- HEADER -->
-    <header class="flex items-center justify-between border-b border-science-border px-6 py-4 bg-white">
+<body class="bg-background-dark text-text-light font-display min-h-screen flex flex-col overflow-hidden">
+    <!-- Top Navigation -->
+    <header class="flex items-center justify-between border-b border-border-dark bg-surface-dark px-6 py-4 z-20">
         <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-science-accent text-[24px]">science</span>
-            <h2 class="text-science-text text-sm font-mono uppercase tracking-widest font-semibold">AI Interview -
-                Signal Capture V2</h2>
+            <div class="text-primary">
+                <span class="material-symbols-outlined text-3xl">emergency_recording</span>
+            </div>
+            <h2 class="text-white text-lg font-bold tracking-tight">InterviewAI <span
+                    class="text-text-dim font-normal text-sm ml-2">Live Monitor</span></h2>
         </div>
-        <div class="flex items-center gap-4">
-            <div id="status-badge"
-                class="flex items-center gap-2 px-3 py-1 bg-red-50 border border-red-200 text-xs font-mono text-red-600">
-                <span class="material-symbols-outlined text-[14px]">radio_button_checked</span>
-                <span id="status-text">RECORDING</span>
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-2 px-3 py-1.5 bg-background-dark rounded-full border border-border-dark">
+                <span class="relative flex h-3 w-3">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-danger opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-danger"></span>
+                </span>
+                <span id="status-text" class="text-xs font-semibold tracking-wide text-danger uppercase">Live Rec</span>
+            </div>
+            <div class="h-6 w-px bg-border-dark"></div>
+            <div class="flex items-center gap-4">
+                <div id="user-avatar"
+                    class="h-8 w-8 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-primary font-bold overflow-hidden">
+                    U
+                </div>
             </div>
         </div>
     </header>
-
-    <!-- LIVE CAPTURE CONTENT -->
-    <main class="flex-1 flex flex-col p-6">
-        <div class="max-w-[1200px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
-            <!-- Video Feed -->
-            <div class="lg:col-span-8 flex flex-col gap-2">
-                <div id="video-container"
-                    class="relative w-full aspect-video max-h-[70vh] bg-black border border-science-border">
-                    <img id="video-feed" class="w-full h-full object-contain" src="" alt="Video Feed" />
-                    <div class="absolute top-4 left-4 bg-white/90 px-2 py-0.5 border border-science-border">
-                        <span
-                            class="text-black text-[10px] font-bold font-mono uppercase tracking-widest">Recording</span>
-                    </div>
-                    <div class="absolute bottom-2 right-2">
-                        <span class="text-white/70 text-[10px] font-mono">CAM_SRC_01_RAW</span>
-                    </div>
-                </div>
-                <div class="flex justify-between items-center text-xs font-mono text-science-muted px-1">
-                    <span>VIDEO INPUT: ACTIVE</span>
-                    <span>AUDIO INPUT: ACTIVE</span>
-                </div>
-            </div>
-
-            <!-- Telemetry Panel -->
-            <div class="lg:col-span-4 flex flex-col gap-6">
-                <div class="border-b border-science-border pb-2">
-                    <h2 class="text-sm font-bold uppercase text-science-muted tracking-wider">Telemetry Stream</h2>
-                </div>
-                <div class="flex flex-col gap-0 font-mono text-sm">
-                    <div class="flex items-center justify-between py-3 border-b border-science-border border-dashed">
-                        <span class="text-science-muted">Face detected</span>
-                        <div class="flex items-center gap-3">
-                            <span id="sig-face-dot" class="w-2 h-2 rounded-full bg-gray-400"></span>
-                            <span id="sig-face" class="text-science-text font-medium">--</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between py-3 border-b border-science-border border-dashed">
-                        <span class="text-science-muted">Eye direction</span>
-                        <div class="flex items-center gap-3">
-                            <span class="w-2 h-2 rounded-full bg-gray-400"></span>
-                            <span id="sig-eye" class="text-science-text font-medium">--</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between py-3 border-b border-science-border border-dashed">
-                        <span class="text-science-muted">Head movement</span>
-                        <div class="flex items-center gap-3">
-                            <span class="w-2 h-2 rounded-full bg-gray-400"></span>
-                            <span id="sig-head" class="text-science-text font-medium">--</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between py-3 border-b border-science-border border-dashed">
-                        <span class="text-science-muted">Voice activity</span>
-                        <div class="flex items-center gap-3">
-                            <span id="sig-voice-dot"
-                                class="w-2 h-2 rounded-full border border-gray-400 bg-transparent"></span>
-                            <span id="sig-voice" class="text-science-text font-medium">--</span>
-                        </div>
+    <!-- Main Content Area -->
+    <main class="flex-1 flex overflow-hidden">
+        <!-- Center: Video & Stats -->
+        <section class="flex-1 flex flex-col relative p-6 gap-6 overflow-y-auto">
+            <!-- Top Bar: Timer & Candidate Info -->
+            <div class="flex justify-between items-end pb-2">
+                <div>
+                    <h1 class="text-2xl font-bold text-white mb-1"><span id="candidate-id">Candidate</span> <span
+                            id="candidate-role" class="text-base font-normal text-text-dim">- Assessment Session</span>
+                    </h1>
+                    <div class="flex gap-4 text-sm text-text-dim">
+                        <span class="flex items-center gap-1"><span
+                                class="material-symbols-outlined text-sm">location_on</span> Remote Session</span>
+                        <span class="flex items-center gap-1"><span
+                                class="material-symbols-outlined text-sm">wifi</span> Link Status: Stable</span>
                     </div>
                 </div>
-
-                <!-- Integrity Signals -->
-                <div class="mt-4 pt-4 border-t border-science-border">
-                    <h3 class="text-xs font-bold uppercase text-science-muted tracking-wider mb-3">Session Integrity
-                    </h3>
-                    <div class="space-y-2 text-xs font-mono">
-                        <div class="flex justify-between">
-                            <span class="text-science-muted">Face continuous</span>
-                            <span id="int-face" class="text-science-text">--</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-science-muted">Multiple faces</span>
-                            <span id="int-multi" class="text-science-text">--</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-science-muted">Audio interrupts</span>
-                            <span id="int-audio" class="text-science-text">--</span>
+                <div class="flex gap-4">
+                    <div
+                        class="flex flex-col items-center bg-surface-dark border border-border-dark px-4 py-2 rounded-xl min-w-[100px]">
+                        <span class="text-xs text-text-dim uppercase tracking-wider font-semibold">Duration</span>
+                        <span id="timer" class="text-xl font-mono font-bold text-white">00:00:00</span>
+                    </div>
+                    <div
+                        class="flex flex-col items-center bg-surface-dark border border-border-dark px-4 py-2 rounded-xl min-w-[100px]">
+                        <span class="text-xs text-text-dim uppercase tracking-wider font-semibold">Signal Pulse</span>
+                        <div class="flex items-center gap-1 text-danger">
+                            <span class="material-symbols-outlined text-sm animate-pulse">favorite</span>
+                            <span id="signal-pulse" class="text-xl font-mono font-bold text-white">--</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <!-- Video Feed Container -->
+            <div id="video-container"
+                class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-border-dark group">
+                <!-- Video Stream -->
+                <img id="video-feed" alt="Candidate video stream" class="w-full h-full object-contain" src="" />
 
-        <!-- Bottom Bar -->
-        <div
-            class="max-w-[1200px] w-full mx-auto mt-6 pt-6 border-t border-science-border flex flex-col md:flex-row items-center justify-center gap-8">
-            <div class="flex flex-col items-center">
-                <span class="text-[10px] uppercase tracking-widest text-science-muted mb-1">Session Duration</span>
-                <span id="timer" class="text-3xl font-mono font-medium text-science-text">00:00:00</span>
+                <!-- Overlay UI: Bounding Box (Mock tracking) -->
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div class="w-[30%] h-[50%] border-2 border-success/30 rounded-lg relative">
+                        <!-- Corner Markers -->
+                        <div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-success/50"></div>
+                        <div class="absolute -top-1 -right-1 w-4 h-4 border-t-2 border-r-2 border-success/50"></div>
+                        <div class="absolute -bottom-1 -left-1 w-4 h-4 border-b-2 border-l-2 border-success/50"></div>
+                        <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-success/50"></div>
+                    </div>
+                </div>
+                <!-- Live Stream Indicator Overlay -->
+                <div
+                    class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-danger animate-pulse"></div>
+                    <span class="text-xs font-medium tracking-wide">CAM_SRC_01_RAW</span>
+                </div>
             </div>
-            <button id="btn-stop"
-                class="px-8 py-3 bg-science-accent hover:bg-black text-white text-sm font-mono uppercase tracking-wider transition-colors">
-                End Session
-            </button>
-        </div>
+            <!-- Bottom Action Bar -->
+            <div class="mt-auto pt-4 border-t border-border-dark flex justify-between items-center">
+                <div class="text-sm text-text-dim max-w-lg">
+                    <span class="text-white font-medium">Session Integrity:</span> Monitoring active. AI is analyzing
+                    verbal and non-verbal signals.
+                </div>
+                <button id="btn-stop"
+                    class="bg-danger/10 hover:bg-danger/20 text-danger border border-danger/30 hover:border-danger/50 px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition-all">
+                    <span class="material-symbols-outlined">stop_circle</span>
+                    End Assessment Session
+                </button>
+            </div>
+        </section>
+        <!-- Right Panel: Signal Analysis -->
+        <aside class="w-96 bg-surface-dark border-l border-border-dark flex flex-col overflow-y-auto">
+            <div class="p-5 border-b border-border-dark">
+                <h3 class="text-white font-bold flex items-center gap-2 uppercase tracking-widest text-xs">
+                    <span class="material-symbols-outlined text-primary">graphic_eq</span>
+                    Live Telemetry
+                </h3>
+            </div>
+            <div class="p-5 flex flex-col gap-4">
+                <!-- Signal Card: Gaze -->
+                <div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="p-1.5 rounded bg-primary/20 text-primary">
+                                <span class="material-symbols-outlined text-lg">visibility</span>
+                            </span>
+                            <span class="text-xs font-bold text-white uppercase tracking-wide">Eye Direction</span>
+                        </div>
+                        <span id="sig-face-dot" class="w-2 h-2 rounded-full bg-gray-500"></span>
+                    </div>
+                    <div class="h-2 w-full bg-surface-dark rounded-full overflow-hidden mb-1">
+                        <div id="sig-eye-bar" class="h-full bg-success w-0 transition-all duration-300"></div>
+                    </div>
+                    <div class="flex justify-between text-xs font-mono">
+                        <span class="text-text-dim">Status:</span>
+                        <span id="sig-eye" class="text-white">--</span>
+                    </div>
+                </div>
+                <!-- Signal Card: Head Pose -->
+                <div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="p-1.5 rounded bg-primary/20 text-primary">
+                                <span class="material-symbols-outlined text-lg">face</span>
+                            </span>
+                            <span class="text-xs font-bold text-white uppercase tracking-wide">Head Movement</span>
+                        </div>
+                        <span class="text-[10px] font-mono text-text-dim uppercase">Pose Analyser</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="bg-surface-dark p-2 rounded text-center border border-border-dark/50">
+                            <span class="block text-text-dim text-[10px] uppercase font-bold mb-1">Dynamics</span>
+                            <span id="sig-head" class="font-mono text-white">--</span>
+                        </div>
+                        <div class="bg-surface-dark p-2 rounded text-center border border-border-dark/50">
+                            <span class="block text-text-dim text-[10px] uppercase font-bold mb-1">Stability</span>
+                            <span id="int-face" class="font-mono text-white">--</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Signal Card: Voice -->
+                <div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="p-1.5 rounded bg-primary/20 text-primary">
+                                <span class="material-symbols-outlined text-lg">mic</span>
+                            </span>
+                            <span class="text-xs font-bold text-white uppercase tracking-wide">Voice Activity</span>
+                        </div>
+                        <span id="sig-voice-dot" class="w-2 h-2 rounded-full border border-gray-400"></span>
+                    </div>
+                    <div class="flex items-center justify-between font-mono text-xs">
+                        <span class="text-text-dim">Level:</span>
+                        <span id="sig-voice" class="text-white uppercase">--</span>
+                    </div>
+                </div>
+
+                <!-- Integrity Alerts Section -->
+                <div class="mt-4 pt-4 border-t border-border-dark">
+                    <h4 class="text-[10px] font-black text-text-dim uppercase tracking-[0.2em] mb-4">Integrity Watchdog
+                    </h4>
+                    <div class="space-y-3">
+                        <div
+                            class="flex justify-between items-center p-3 bg-background-dark border border-border-dark rounded-xl">
+                            <span class="text-xs text-text-dim">Multi-face events</span>
+                            <span id="int-multi" class="text-xs font-mono text-white">--</span>
+                        </div>
+                        <div
+                            class="flex justify-between items-center p-3 bg-background-dark border border-border-dark rounded-xl">
+                            <span class="text-xs text-text-dim">Audio interrupts</span>
+                            <span id="int-audio" class="text-xs font-mono text-white">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
     </main>
 
     <!-- Scripts -->
@@ -167,107 +232,121 @@
     <script src="/static/scripts/ui.js"></script>
     <script src="/static/scripts/modal.js"></script>
     <script>
-        // Capture page logic
         const videoFeed = document.getElementById('video-feed');
         const videoContainer = document.getElementById('video-container');
         const btnStop = document.getElementById('btn-stop');
+        const timerDisplay = document.getElementById('timer');
 
-        // Start media capture ONLY when this page loads (after navigation)
         async function initCapture() {
-            console.log('Capture page loaded, connecting to telemetry...');
+            console.log('Initializing signal capture...');
 
             const user = JSON.parse(sessionStorage.getItem('user'));
             const token = sessionStorage.getItem('token');
             const appId = sessionStorage.getItem('active_application_id');
 
-            if (!token || !user || (user.role !== 'seeker' && user.role !== 'admin')) {
+            if (!token || !user) {
                 window.location.href = '/login';
                 return;
             }
 
             if (!appId) {
-                alert('No active application found. Redirecting to dashboard.');
                 window.location.href = '/dashboard';
                 return;
             }
 
-            try {
-                // Initialize the session on the backend
-                console.log(`Starting session for candidate ${user.id} and application ${appId}`);
-                await startSession(user.id.toString(), appId ? parseInt(appId) : null);
+            document.getElementById('candidate-id').innerText = `Candidate #${user.id.toString().slice(-4)}`;
+            document.getElementById('user-avatar').innerText = user.full_name[0];
 
-                // Attach to the backend MJPEG stream
+            try {
+                // Start backend session
+                await startSession(user.id.toString(), parseInt(appId));
+
+                // Start MJPEG stream
                 await startMediaCapture(videoFeed, user.id);
 
-                // Connect to live signal updates
-                connectSignals(updateSignalDisplay, user.id);
+                // Connect signals
+                connectSignals((signals) => {
+                    updateSignalDisplay(signals);
+                    // Custom UI updates for new cards
+                    if (signals.face_detected) {
+                        document.getElementById('sig-face-dot').className = 'w-2 h-2 rounded-full bg-success shadow-[0_0_8px_rgba(16,185,129,0.5)]';
+                        document.getElementById('sig-eye-bar').style.width = '85%';
+                    } else {
+                        document.getElementById('sig-face-dot').className = 'w-2 h-2 rounded-full bg-gray-500';
+                        document.getElementById('sig-eye-bar').style.width = '0%';
+                    }
+                }, user.id);
 
-                // Start heartbeat watchdog
                 startHeartbeat(user.id);
             } catch (error) {
-                console.error('Failed to start media:', error);
-                showMediaError(videoContainer);
+                console.error('Capture init failed:', error);
+                // Fallback UI for stream failure
+                videoContainer.innerHTML = `
+                <div class="absolute inset-0 flex flex-col items-center justify-center bg-slate-900 text-slate-400 p-8 text-center">
+                    <span class="material-symbols-outlined text-5xl mb-4 text-danger">videocam_off</span>
+                    <h3 class="text-xl font-bold text-white mb-2">Live Stream Error</h3>
+                    <p class="text-sm">Unable to connect to the signal processing engine. Please check your camera permissions and refresh.</p>
+                </div>
+            `;
             }
         }
 
-        // Initialize on page load
-        initCapture();
-
-        // Stop session handler
         btnStop.addEventListener('click', async () => {
-            // Enhancement #8: Confirmation dialog before ending session
             const confirmed = await showConfirmModal({
-                title: 'End Session',
-                message: 'Are you sure you want to end this capture session? All recorded data will be saved.',
+                title: 'Complete Session',
+                message: 'Are you sure you want to end the signal capture session? This will finalize your technical assessment.',
                 confirmText: 'End Session',
-                cancelText: 'Continue',
+                cancelText: 'Resume',
                 type: 'warning'
             });
 
             if (!confirmed) return;
 
-            btnStop.textContent = 'Stopping...';
+            btnStop.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Finalizing...';
             btnStop.disabled = true;
 
-            // Fetch user from sessionStorage (not available from outer scope)
             const user = JSON.parse(sessionStorage.getItem('user'));
 
             try {
-                // Stop UI updates and clear stream src
                 stopMediaCapture(videoFeed);
                 disconnectSignals();
-
-                // Stop session via API
-                const result = await stopSession(user.id.toString());
-                console.log('Session stopped:', result);
-
-                // Stop heartbeat
+                await stopSession(user.id.toString());
                 stopHeartbeat();
 
-                // Get summary for next page
                 const summary = await getSessionSummary(user.id.toString());
                 storeSessionData('summary', summary);
-
-                // Clear active application to prevent re-capture
                 sessionStorage.removeItem('active_application_id');
 
-                // Navigate to summary page
                 window.location.href = '/summary';
-
             } catch (error) {
                 console.error('Stop error:', error);
-                alert('Error stopping session: ' + error.message);
-                btnStop.textContent = 'End Session';
+                alert('Failed to finalize session properly.');
+                btnStop.innerHTML = '<span class="material-symbols-outlined">stop_circle</span> End Session';
                 btnStop.disabled = false;
             }
         });
 
-        // Cleanup on page unload
-        window.addEventListener('beforeunload', () => {
-            stopMediaCapture(videoFeed);
-            disconnectSignals();
-            stopHeartbeat();
-        });
+        // Handle generic signal updates from signals.js
+        function updateSignalDisplay(data) {
+            if (document.getElementById('sig-face')) document.getElementById('sig-face').innerText = data.face_detected ? 'DETECTED' : 'NONE';
+            if (document.getElementById('sig-eye')) document.getElementById('sig-eye').innerText = data.eye_direction || '--';
+            if (document.getElementById('sig-head')) document.getElementById('sig-head').innerText = data.head_movement || '--';
+            if (document.getElementById('sig-voice')) {
+                const voice = document.getElementById('sig-voice');
+                voice.innerText = data.voice_activity || 'SILENT';
+                document.getElementById('sig-voice-dot').className = `w-2 h-2 rounded-full ${data.voice_activity === 'SPEAKING' ? 'bg-success animate-pulse' : 'bg-gray-400'}`;
+            }
+
+            // Integrity signals
+            if (document.getElementById('int-face')) document.getElementById('int-face').innerText = data.face_continuous ? 'STABLE' : 'UNSTABLE';
+            if (document.getElementById('int-multi')) document.getElementById('int-multi').innerText = data.multiple_faces ? 'ALERT' : 'NONE';
+            if (document.getElementById('int-audio')) document.getElementById('int-audio').innerText = data.audio_interrupts ? 'DETECTED' : 'NONE';
+
+            // Timer update if signal contains it
+            if (data.session_time) timerDisplay.innerText = data.session_time;
+        }
+
+        initCapture();
     </script>
 </body>
 

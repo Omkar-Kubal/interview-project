@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InterviewAI Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5925f4",
+                        "primary-dark": "#4318c4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                        "neutral-surface": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for better look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 h-screen w-full overflow-hidden">
+<div class="flex w-full h-full">
+<!-- Left Panel: Dark Brand Area -->
+<div class="hidden lg:flex flex-col w-1/2 bg-slate-900 relative overflow-hidden justify-between p-12 text-white">
+<!-- Animated Gradient Background -->
+<div class="absolute inset-0 z-0 bg-gradient-to-br from-slate-900 via-[#2e1d68] to-primary opacity-90" data-alt="Abstract dark blue and purple gradient background"></div>
+<!-- Pattern Overlay -->
+<div class="absolute inset-0 z-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
+<div class="relative z-10 flex items-center gap-3">
+<div class="size-8 text-primary bg-white rounded-lg flex items-center justify-center">
+<svg class="w-5 h-5" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z" fill="currentColor" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-2xl font-bold tracking-tight">InterviewAI</h2>
+</div>
+<div class="relative z-10 max-w-lg mt-auto mb-20">
+<h1 class="text-5xl font-black leading-tight tracking-tight mb-6">
+                    Master your next interview.
+                </h1>
+<p class="text-lg text-slate-300 font-medium leading-relaxed">
+                    Join thousands of candidates using AI-powered insights to prepare smarter, speak confidently, and land their dream jobs.
+                </p>
+</div>
+<div class="relative z-10 text-sm text-slate-400">
+                © 2024 InterviewAI Inc. All rights reserved.
+            </div>
+</div>
+<!-- Right Panel: Login Form -->
+<div class="flex-1 flex flex-col justify-center items-center p-6 bg-background-light dark:bg-background-dark overflow-y-auto">
+<div class="w-full max-w-md space-y-8 bg-neutral-surface dark:bg-[#1e1a2e] p-8 md:p-10 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800">
+<!-- Mobile Logo (Visible only on small screens) -->
+<div class="lg:hidden flex justify-center mb-6">
+<div class="flex items-center gap-3 text-slate-900 dark:text-white">
+<div class="size-8 text-primary">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z" fill="currentColor" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold">InterviewAI</h2>
+</div>
+</div>
+<div class="text-center">
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Welcome back</h2>
+<p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Please enter your details to sign in.</p>
+</div>
+<div class="space-y-6">
+<!-- Social Login -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-2 px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-[#2a2636] hover:bg-slate-50 dark:hover:bg-[#342f42] transition-colors focus:ring-2 focus:ring-primary/20 focus:outline-none">
+<img alt="Google logo" class="w-5 h-5" data-alt="Google colorful G logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCripBrdw01pOdG_cF6NVwe4Wz-V2drNru0m3wsT3d2GPbReTrZ-9ucwG4gt3tJpb6KWEalEa96wXdzAuQyxxa990Zj4tuQWd3F1GYc6vU_7EWjdY47Kc4OviCfGKTMIw3U-4p5AkYhd6Vecx6t9on0wn9VY0rxCqueIwKen4sZQ8lC154w84hR1s4CLUd-hWbvp44WVAGoAGAA86tB26lMf9xjuMCDkyMb1RiE-2O08UWrpUWumVDyfkkSe5UrX4GIR8xDuJILYQo"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-[#2a2636] hover:bg-slate-50 dark:hover:bg-[#342f42] transition-colors focus:ring-2 focus:ring-primary/20 focus:outline-none">
+<img alt="LinkedIn logo" class="w-5 h-5" data-alt="LinkedIn blue logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4xNY6Q8cJ4ZxDV_gsusQi-3JglxhtYee-HarOHuLv-SNjPI4oV5mvDeT-tMvpmqHipt5WK176vleLYANlHMPvtKGxDigFY-mERHucqxiRlzYneUoeZZV46qP-1aDRyDRbfW45BzjZ23VYwggT5vp1lnffXr8mHGh_tR9ldvZ3yrEj-sc81OFcao5W6r-cCgdCE5Vhp7GohubPJYVltG7BVJI2MV4kZQTylnWCDoJDbrPuUHGUdGaG8EniuotwPpsnSajmyjPd8eM"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">LinkedIn</span>
+</button>
+</div>
+<div class="relative">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-slate-200 dark:border-slate-700"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-2 bg-neutral-surface dark:bg-[#1e1a2e] text-slate-500">Or continue with email</span>
+</div>
+</div>
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="text-sm font-medium leading-none text-slate-900 dark:text-slate-100" for="email">Email Address</label>
+<input class="flex h-12 w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-background-light dark:bg-[#141022] px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all text-slate-900 dark:text-white" id="email" placeholder="user@example.com" type="email"/>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="text-sm font-medium leading-none text-slate-900 dark:text-slate-100" for="password">Password</label>
+<a class="text-sm font-semibold text-primary hover:text-primary-dark hover:underline" href="#">Forgot Password?</a>
+</div>
+<div class="relative">
+<input class="flex h-12 w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-background-light dark:bg-[#141022] px-3 py-2 pr-10 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all text-slate-900 dark:text-white" id="password" placeholder="Enter your password" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300" type="button">
+<span class="material-symbols-outlined text-xl">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Checkbox -->
+<div class="flex items-center space-x-2">
+<input class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary bg-background-light dark:bg-[#141022] dark:border-slate-600" id="remember" type="checkbox"/>
+<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-700 dark:text-slate-300" for="remember">Keep me logged in</label>
+</div>
+<!-- Error Message -->
+<div class="flex items-center gap-2 p-3 text-sm text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-lg border border-red-100 dark:border-red-900/50">
+<span class="material-symbols-outlined text-lg">error</span>
+<p class="font-medium">Incorrect email or password</p>
+</div>
+<!-- Submit Button -->
+<button class="inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-white hover:bg-primary-dark h-12 w-full shadow-lg shadow-primary/25">
+                        Log In
+                    </button>
+<!-- Footer -->
+<div class="text-center text-sm text-slate-500 dark:text-slate-400">
+                        Don't have an account? 
+                        <a class="font-semibold text-primary hover:text-primary-dark hover:underline" href="#">Register now</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>

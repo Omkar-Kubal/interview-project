@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InterviewAI Job Application</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5925f4",
+                        "primary-hover": "#461bd1",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1a1628] px-10 py-3 shadow-sm">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-tight">InterviewAI</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-slate-900 dark:text-white hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Jobs</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Applications</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors" href="#">Profile</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-primary hover:bg-primary-hover text-white text-sm font-bold transition-colors">
+                    Sign Out
+                </button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-slate-100 dark:ring-slate-700" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAciBpQtL8W-O1IQ9VUbtU6A_dCiNOQlAiZQ0QERdDwGPwewJPEN5uVH9gt7Ow9aSwd-8h6LmHF-cuP1zIJqNDy_sl-NfyfMDcvoCSfkKjpnFw6AidYL8gKSB3llLzx5cfzE4OglIoHUPcovk64ab6vDyRj3NXB9JbBQDDtQeb8QtreBZ8C5gDg6dR9LzhaSiJVrgGUW6FiyG1O6EJHuEsV8K0whXbTvbH65Zv_RBwBI0OEqsFHuD7D3ljKWoTnLTmMUlohe2fMkI4");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Breadcrumbs / Steps -->
+<nav aria-label="Breadcrumb" class="flex mb-8">
+<ol class="inline-flex items-center space-x-1 md:space-x-3">
+<li class="inline-flex items-center">
+<a class="inline-flex items-center text-sm font-medium text-slate-500 hover:text-primary dark:text-slate-400" href="#">
+                        Jobs
+                    </a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-slate-400 text-lg">chevron_right</span>
+<a class="ml-1 text-sm font-medium text-primary hover:text-primary-hover md:ml-2 dark:text-primary" href="#">Apply</a>
+</div>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-slate-400 text-lg">chevron_right</span>
+<span class="ml-1 text-sm font-medium text-slate-400 md:ml-2">Interview</span>
+</div>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-slate-400 text-lg">chevron_right</span>
+<span class="ml-1 text-sm font-medium text-slate-400 md:ml-2">Review</span>
+</div>
+</li>
+</ol>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Panel: Job Details -->
+<div class="lg:col-span-5 space-y-6">
+<div class="bg-white dark:bg-[#1a1628] rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 sticky top-24">
+<div class="flex items-start justify-between mb-4">
+<div class="size-12 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">design_services</span>
+</div>
+<span class="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 dark:bg-green-900/30 dark:text-green-400">Active Hiring</span>
+</div>
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Senior Product Designer</h1>
+<div class="flex flex-wrap gap-y-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
+<div class="flex items-center mr-4">
+<span class="material-symbols-outlined text-lg mr-1">location_on</span>
+                            San Francisco, CA (Hybrid)
+                        </div>
+<div class="flex items-center mr-4">
+<span class="material-symbols-outlined text-lg mr-1">payments</span>
+                            $140k - $180k
+                        </div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-lg mr-1">schedule</span>
+                            Full-time
+                        </div>
+</div>
+<div class="h-px bg-slate-100 dark:bg-slate-700 my-6"></div>
+<div class="prose prose-sm prose-slate dark:prose-invert max-w-none">
+<h3 class="text-slate-900 dark:text-white font-semibold text-lg mb-2">About the Role</h3>
+<p class="text-slate-600 dark:text-slate-300 mb-4">
+                            We are looking for a Senior Product Designer to join our core team. You will be responsible for leading design projects across the entire product lifecycle and setting the standard for design excellence.
+                        </p>
+<h4 class="text-slate-900 dark:text-white font-semibold text-base mb-2">Requirements</h4>
+<ul class="list-disc pl-5 space-y-1 text-slate-600 dark:text-slate-300 mb-4">
+<li>5+ years of experience in product design</li>
+<li>Strong portfolio showcasing user-centric design</li>
+<li>Proficiency in Figma and prototyping tools</li>
+<li>Experience with design systems</li>
+</ul>
+<h4 class="text-slate-900 dark:text-white font-semibold text-base mb-2">Benefits</h4>
+<ul class="list-disc pl-5 space-y-1 text-slate-600 dark:text-slate-300">
+<li>Competitive salary and equity</li>
+<li>Health, dental, and vision insurance</li>
+<li>Unlimited PTO</li>
+<li>Latest hardware of your choice</li>
+</ul>
+</div>
+<!-- AI Insight Card (Simulated Outcome Preview) -->
+<div class="mt-8 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border border-indigo-100 dark:border-indigo-800/30">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">auto_awesome</span>
+<div>
+<h4 class="text-sm font-semibold text-primary mb-1">AI Screening Preview</h4>
+<p class="text-xs text-slate-600 dark:text-slate-300">
+                                    Your profile has a <span class="font-bold text-green-600 dark:text-green-400">High Match</span> probability based on initial data. Upload your resume to verify.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Panel: Application Form -->
+<div class="lg:col-span-7">
+<div class="bg-white dark:bg-[#1a1628] rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 p-8">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Submit Application</h2>
+<form action="#" class="space-y-6">
+<!-- Personal Info -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="firstName">First Name</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-lg">person</span>
+</div>
+<input class="pl-10 block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5" id="firstName" name="firstName" required="" type="text" value="Alex"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="lastName">Last Name</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-lg">person</span>
+</div>
+<input class="pl-10 block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5" id="lastName" name="lastName" required="" type="text" value="Morgan"/>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-lg">mail</span>
+</div>
+<input class="pl-10 block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5" id="email" name="email" required="" type="email" value="alex.morgan@example.com"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="portfolio">Portfolio URL</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-lg">link</span>
+</div>
+<input class="pl-10 block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm py-2.5" id="portfolio" name="portfolio" placeholder="https://dribbble.com/alexmorgan" type="url"/>
+</div>
+</div>
+<!-- Resume Upload -->
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Resume/CV</label>
+<div class="flex justify-center rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-600 px-6 py-10 hover:border-primary dark:hover:border-primary hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer group">
+<div class="text-center">
+<div class="mx-auto h-12 w-12 text-slate-300 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-5xl">cloud_upload</span>
+</div>
+<div class="mt-4 flex text-sm leading-6 text-slate-600 dark:text-slate-400 justify-center">
+<label class="relative cursor-pointer rounded-md bg-transparent font-semibold text-primary focus-within:outline-none hover:text-primary-hover" for="file-upload">
+<span>Upload a file</span>
+<input class="sr-only" id="file-upload" name="file-upload" type="file"/>
+</label>
+<p class="pl-1">or drag and drop</p>
+</div>
+<p class="text-xs leading-5 text-slate-500 dark:text-slate-500">PDF, DOCX up to 10MB</p>
+</div>
+</div>
+</div>
+<!-- Experience Summary (AI Helper) -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="about">Why are you a good fit?</label>
+<button class="text-xs text-primary flex items-center gap-1 font-medium hover:underline" type="button">
+<span class="material-symbols-outlined text-sm">auto_fix_high</span> AI Assist
+                                </button>
+</div>
+<textarea class="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-3" id="about" name="about" placeholder="Tell us about your relevant experience..." rows="4"></textarea>
+</div>
+<!-- Submission Actions -->
+<div class="pt-4 border-t border-slate-200 dark:border-slate-700">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center">
+<input class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary dark:border-slate-600 dark:bg-slate-700" id="terms" name="terms" type="checkbox"/>
+<label class="ml-2 block text-sm text-slate-600 dark:text-slate-400" for="terms">
+                                        I agree to the <a class="text-primary hover:underline" href="#">Terms</a> and <a class="text-primary hover:underline" href="#">Privacy Policy</a>.
+                                    </label>
+</div>
+</div>
+<button class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all transform active:scale-[0.99]" type="button">
+                                Submit Application
+                            </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<!-- Bottom Info Section (Trust/Status) -->
+<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex items-center p-4 bg-white dark:bg-[#1a1628] rounded-lg border border-slate-200 dark:border-slate-800">
+<div class="flex-shrink-0 bg-blue-50 dark:bg-blue-900/20 p-2 rounded-lg text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<div class="ml-4">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white">Fast Response</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Average review time: 2 days</p>
+</div>
+</div>
+<div class="flex items-center p-4 bg-white dark:bg-[#1a1628] rounded-lg border border-slate-200 dark:border-slate-800">
+<div class="flex-shrink-0 bg-purple-50 dark:bg-purple-900/20 p-2 rounded-lg text-purple-600 dark:text-purple-400">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div class="ml-4">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white">AI Screening</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Unbiased skill matching</p>
+</div>
+</div>
+<div class="flex items-center p-4 bg-white dark:bg-[#1a1628] rounded-lg border border-slate-200 dark:border-slate-800">
+<div class="flex-shrink-0 bg-amber-50 dark:bg-amber-900/20 p-2 rounded-lg text-amber-600 dark:text-amber-400">
+<span class="material-symbols-outlined">lock</span>
+</div>
+<div class="ml-4">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white">Data Privacy</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Encrypted application data</p>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1a1628] py-8">
+<div class="max-w-[1280px] mx-auto px-4 text-center">
+<p class="text-sm text-slate-500 dark:text-slate-400">© 2023 InterviewAI Inc. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

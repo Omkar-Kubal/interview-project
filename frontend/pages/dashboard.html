@@ -1,330 +1,393 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>SIGNAL CAPTURE CONSOLE - DASHBOARD</title>
+    <title>Candidate Dashboard - InterviewAI</title>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
         rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
+    <script>
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#000000",
-                        "background-light": "#ffffff",
-                        "background-dark": "#ffffff",
-                        "border-console": "#000000",
+                        primary: "#5925f4",
+                        "primary-dark": "#4318c4",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a1628",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#110d1c",
+                        "accent-blue": "#00d4ff",
                     },
                     fontFamily: {
-                        "display": ["Space Grotesk", "sans-serif"],
-                        "mono": ["monospace"],
+                        sans: ["Inter", "sans-serif"],
                     },
-                    borderRadius: { "DEFAULT": "0", "lg": "0", "xl": "0", "full": "0" },
+                    borderRadius: {
+                        "lg": "0.5rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                    },
                 },
             },
-        }
+        };
     </script>
     <style>
+        .sidebar-link-active {
+            background-color: rgba(89, 37, 244, 0.1);
+            color: #5925f4;
+            border-right: 4px solid #5925f4;
+        }
+
+        /* Standardize scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 6px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #ffffff;
-            border-left: 1px solid #000000;
+            background: transparent;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #000000;
-            border: 1px solid #000000;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #333333;
-        }
-
-        .console-border {
-            border: 1px solid black;
+            background: #cbd5e1;
+            border-radius: 10px;
         }
     </style>
 </head>
 
 <body
-    class="bg-white min-h-screen flex flex-col font-display antialiased text-black overflow-x-hidden selection:bg-black selection:text-white">
-    <header
-        class="w-full border-b-2 border-black bg-white px-6 py-5 flex items-center justify-between sticky top-0 z-50">
-        <div class="flex items-center gap-4 cursor-pointer" onclick="window.location.href='/'">
-            <div class="text-black material-symbols-outlined text-4xl">terminal</div>
-            <div>
-                <h1 class="text-xs uppercase tracking-[0.2em] text-black font-bold mb-1">SIGNAL CAPTURE CONSOLE -
-                    DASHBOARD</h1>
-                <h2 id="candidate-display-id"
-                    class="text-sm font-bold leading-none tracking-widest font-mono text-black border border-black px-2 py-0.5 inline-block uppercase">
-                    CANDIDATE_ID: ID_PENDING</h2>
+    class="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-slate-100 min-h-screen flex">
+    <!-- Mobile Menu Trigger -->
+    <button class="lg:hidden fixed bottom-6 right-6 z-50 bg-primary text-white p-4 rounded-full shadow-2xl">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+    <!-- Sidebar Navigation -->
+    <aside
+        class="hidden lg:flex flex-col w-64 bg-white dark:bg-surface-dark border-r border-slate-200 dark:border-slate-800 shrink-0 h-screen sticky top-0">
+        <div class="p-6 flex items-center gap-3">
+            <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                <span class="material-symbols-outlined">smart_toy</span>
             </div>
+            <h1 class="text-xl font-bold tracking-tight">InterviewAI</h1>
         </div>
-        <div class="flex items-center gap-6">
-            <div class="hidden md:flex flex-col items-end">
-                <span id="user-fullname" class="text-[10px] text-black uppercase tracking-widest font-bold">System
-                    User</span>
-                <span id="current-date" class="text-xs font-mono text-black">2026-01-29 14:02:59 UTC</span>
-            </div>
-            <button onclick="sessionStorage.clear(); window.location.href='/login';"
-                class="text-[10px] font-mono border border-black px-3 py-1 hover:bg-black hover:text-white uppercase font-bold transition-all">
-                LOGOUT
+        <nav class="flex-1 px-4 space-y-1 mt-4">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-primary bg-primary/5 font-semibold transition-all"
+                href="/dashboard">
+                <span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
+                href="/jobs">
+                <span class="material-symbols-outlined">work</span>
+                Browse Jobs
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
+                href="/profile">
+                <span class="material-symbols-outlined">description</span>
+                My Profile
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
+                href="/settings">
+                <span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+        </nav>
+        <div class="p-6 border-t border-slate-200 dark:border-slate-800">
+            <button onclick="logout()"
+                class="flex items-center gap-3 px-4 py-2 w-full text-slate-500 hover:text-red-500 transition-colors font-medium">
+                <span class="material-symbols-outlined">logout</span>
+                Logout
             </button>
         </div>
-    </header>
-    <main class="flex-1 flex flex-col items-center w-full px-4 sm:px-8 py-8 md:py-12">
-        <div class="w-full max-w-[1200px] flex flex-col gap-10">
-            <section aria-label="Stats Overview" class="w-full">
-                <div class="flex items-center gap-2 mb-4 border-b border-black pb-1">
-                    <span class="w-2 h-2 bg-black"></span>
-                    <h3 class="text-sm font-bold tracking-[0.2em] text-black uppercase">Stats Overview</h3>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div
-                        class="bg-white border border-black p-6 flex flex-col justify-between h-32 hover:bg-black hover:text-white transition-colors group">
-                        <p class="text-xs font-bold tracking-widest uppercase group-hover:text-white transition-colors">
-                            Total Applications</p>
-                        <p id="stat-total" class="text-5xl font-bold font-mono mt-auto">0</p>
+    </aside>
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto">
+        <!-- Top Navbar -->
+        <header
+            class="h-16 flex-none bg-white dark:bg-surface-dark border-b border-slate-200 dark:border-slate-800 px-6 sm:px-10 flex items-center justify-between sticky top-0 z-40 backdrop-blur-md bg-opacity-80">
+            <div class="flex items-center gap-4">
+                <h2 class="text-slate-500 dark:text-slate-400 font-medium">Home / <span
+                        class="text-slate-900 dark:text-white font-bold">Dashboard</span></h2>
+            </div>
+            <div class="flex items-center gap-6">
+                <button class="relative text-slate-500 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span
+                        class="absolute -top-1 -right-1 size-2 bg-red-500 rounded-full border-2 border-white dark:border-surface-dark"></span>
+                </button>
+                <div class="flex items-center gap-3 pl-6 border-l border-slate-200 dark:border-slate-800">
+                    <div class="text-right hidden sm:block">
+                        <p id="nav-user-name" class="text-sm font-bold truncate max-w-[120px]">Candidate</p>
+                        <p class="text-[10px] text-slate-500 uppercase font-black">Free Plan</p>
                     </div>
-                    <div
-                        class="bg-white border border-black p-6 flex flex-col justify-between h-32 hover:bg-black hover:text-white transition-colors group relative">
-                        <p class="text-xs font-bold tracking-widest uppercase group-hover:text-white transition-colors">
-                            Interview Required</p>
-                        <div class="flex items-baseline justify-between mt-auto">
-                            <p id="stat-pending" class="text-5xl font-bold font-mono">0</p>
-                            <span
-                                class="text-[10px] border border-black px-1 py-0.5 font-mono uppercase group-hover:border-white group-hover:text-white">Action
-                                Req</span>
+                    <div class="size-10 rounded-xl bg-gradient-to-br from-primary to-accent-blue flex items-center justify-center text-white font-black shadow-lg"
+                        id="nav-avatar">
+                        C
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Dashboard Content -->
+        <div class="p-6 sm:p-10 max-w-7xl w-full mx-auto space-y-10">
+            <!-- Welcome Banner -->
+            <div class="relative overflow-hidden bg-primary p-8 sm:p-12 rounded-3xl shadow-2xl shadow-primary/20">
+                <div class="relative z-10 max-w-lg">
+                    <h1 class="text-3xl sm:text-4xl font-black text-white mb-4">Welcome back, <span
+                            id="user-name">Candidate</span>!</h1>
+                    <p class="text-white/80 text-lg leading-relaxed">
+                        You have <span class="text-white font-bold" id="banner-pending-count">...</span> pending
+                        applications. Ready to start your next AI interview session?
+                    </p>
+                    <div class="mt-8">
+                        <a href="/jobs"
+                            class="inline-flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-xl font-bold shadow-xl hover:scale-105 transition-transform">
+                            <span class="material-symbols-outlined text-[20px]">search</span>
+                            Browse New Jobs
+                        </a>
+                    </div>
+                </div>
+                <!-- Abstract decorative shapes -->
+                <div class="absolute -right-20 -top-20 size-80 bg-white/10 rounded-full blur-3xl"></div>
+                <div class="absolute right-20 -bottom-20 size-60 bg-accent-blue/20 rounded-full blur-3xl"></div>
+            </div>
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div
+                    class="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm group hover:border-primary transition-colors">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined">assignment</span>
                         </div>
+                        <span class="text-green-500 text-xs font-bold">+12%</span>
                     </div>
-                    <div
-                        class="bg-white border border-black p-6 flex flex-col justify-between h-32 hover:bg-black hover:text-white transition-colors group">
-                        <p class="text-xs font-bold tracking-widest uppercase group-hover:text-white transition-colors">
-                            Offers Pending</p>
-                        <p id="stat-offers" class="text-5xl font-bold font-mono mt-auto">0</p>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-widest">Total
+                        Applications</p>
+                    <h3 id="stat-total" class="text-3xl font-black mt-1">...</h3>
+                </div>
+                <div
+                    class="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm group hover:border-primary transition-colors">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="size-12 rounded-xl bg-orange-100 dark:bg-orange-900/20 flex items-center justify-center text-orange-600 dark:text-orange-400">
+                            <span class="material-symbols-outlined">videocam</span>
+                        </div>
+                        <span class="text-orange-500 text-xs font-bold font-mono">Active</span>
                     </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-widest">Interviews
+                    </p>
+                    <h3 id="stat-in-progress" class="text-3xl font-black mt-1">...</h3>
                 </div>
-            </section>
-            <section aria-label="Application Activity" class="w-full flex-1">
-                <div class="flex items-end justify-between mb-4 pb-2">
-                    <h3 class="text-xl font-bold tracking-tight text-black uppercase border-b-2 border-black pr-8">
-                        Application Activity</h3>
-                    <a href="/jobs"
-                        class="bg-black hover:bg-gray-800 text-white text-xs font-bold py-3 px-6 uppercase tracking-widest transition-all flex items-center gap-2 font-mono">
-                        <span class="material-symbols-outlined text-sm">work</span>
-                        Browse Jobs
-                    </a>
+                <div
+                    class="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm group hover:border-primary transition-colors">
+                    <div class="flex justify-between items-start mb-4">
+                        <div
+                            class="size-12 rounded-xl bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                            <span class="material-symbols-outlined">verified</span>
+                        </div>
+                        <span class="text-blue-500 text-xs font-bold font-mono">Success</span>
+                    </div>
+                    <p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-widest">Offers
+                        Received</p>
+                    <h3 id="stat-offers" class="text-3xl font-black mt-1">...</h3>
                 </div>
-                <div class="w-full overflow-x-auto border-t border-black">
-                    <table class="w-full text-left border-collapse">
+            </div>
+            <!-- Application History -->
+            <div
+                class="bg-white dark:bg-surface-dark rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold">Application History</h3>
+                        <p class="text-slate-500 text-sm">Track your recent job applications and interview status</p>
+                    </div>
+                    <button class="text-primary font-bold text-sm hover:underline">View All</button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
                         <thead>
-                            <tr class="border-b-2 border-black bg-white">
-                                <th
-                                    class="px-6 py-4 text-xs font-bold text-black uppercase tracking-widest w-[30%] border-r border-black font-mono">
-                                    Job_Title</th>
-                                <th
-                                    class="px-6 py-4 text-xs font-bold text-black uppercase tracking-widest w-[20%] border-r border-black font-mono">
-                                    Applied_Date</th>
-                                <th
-                                    class="px-6 py-4 text-xs font-bold text-black uppercase tracking-widest w-[20%] border-r border-black font-mono">
-                                    Current_Status</th>
-                                <th
-                                    class="px-6 py-4 text-xs font-bold text-black uppercase tracking-widest w-[30%] text-right font-mono">
-                                    Link_Action</th>
+                            <tr
+                                class="bg-slate-50 dark:bg-slate-900/50 text-[10px] font-black uppercase tracking-widest text-slate-500 border-b border-slate-200 dark:border-slate-800">
+                                <th class="px-6 py-4">Job Title</th>
+                                <th class="px-6 py-4">Company / Category</th>
+                                <th class="px-6 py-4">Applied Date</th>
+                                <th class="px-6 py-4">Status</th>
+                                <th class="px-6 py-4">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="applications-body" class="divide-y divide-black border-b border-black">
-                            <!-- Populated dynamically -->
-                            <tr>
-                                <td colspan="4"
-                                    class="px-6 py-12 text-center font-mono text-gray-400 uppercase tracking-widest">
-                                    QUERYING DATABASE...
+                        <tbody id="applications-list" class="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
+                            <!-- Skeleton Loader -->
+                            <tr class="application-skeleton">
+                                <td class="px-6 py-6" colspan="5">
+                                    <div class="flex items-center gap-4 animate-pulse">
+                                        <div class="size-10 bg-slate-200 dark:bg-slate-700 rounded-lg"></div>
+                                        <div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-48"></div>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            </section>
+                <!-- Empty State -->
+                <div id="no-applications"
+                    class="hidden py-20 flex flex-col items-center justify-center text-center px-10">
+                    <div
+                        class="size-20 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-400 mb-6">
+                        <span class="material-symbols-outlined text-4xl">inbox</span>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">No applications yet</h4>
+                    <p class="text-slate-500 max-w-xs mb-8">Start applying to jobs to track your progress here.</p>
+                    <a href="/jobs"
+                        class="bg-primary text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-primary/20">Find
+                        Job Openings</a>
+                </div>
+            </div>
         </div>
     </main>
-    <footer class="w-full bg-white border-t-2 border-black py-4 px-6 mt-auto">
-        <div
-            class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-mono tracking-wider font-bold uppercase">
-            <div class="flex items-center gap-6 text-black w-full md:w-auto justify-center md:justify-start">
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm" data-icon="lock">lock</span>
-                    <span>ENCRYPTED ACCESS</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm" data-icon="dns">dns</span>
-                    <span>NODE: LOCALHOST</span>
-                </div>
-            </div>
-            <div class="flex items-center gap-3">
-                <div class="px-4 py-1.5 bg-black text-white font-bold uppercase flex items-center gap-2">
-                    <span class="material-symbols-outlined text-sm">check_circle</span>
-                    SYSTEM READY
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        // Auth State
-        const user = JSON.parse(sessionStorage.getItem('user'));
+        // Auth & Role Check
         const token = sessionStorage.getItem('token');
+        const user = JSON.parse(sessionStorage.getItem('user'));
 
-        if (!token || !user || (user.role !== 'seeker' && user.role !== 'admin')) {
+        if (!token || !user) {
+            window.location.href = '/login';
+        } else if (user.role === 'recruiter' || user.role === 'admin') {
+            window.location.href = '/recruiter';
+        }
+
+
+        // Initialize UI
+        document.getElementById('user-name').innerText = user.full_name;
+        document.getElementById('nav-user-name').innerText = user.full_name;
+        document.getElementById('nav-avatar').innerText = user.full_name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+        function logout() {
+            sessionStorage.clear();
             window.location.href = '/login';
         }
 
-        // UI Initial Setup
-        document.getElementById('candidate-display-id').innerText = `CANDIDATE_ID: ${user.id}-${user.email.split('@')[0].slice(0, 3).toUpperCase()}`;
-        document.getElementById('user-fullname').innerText = user.full_name;
-        document.getElementById('current-date').innerText = new Date().toISOString().replace('T', ' ').split('.')[0] + ' UTC';
-
-        if (user.role === 'admin') {
-            const nav = document.querySelector('header nav');
-            const adminLink = document.createElement('a');
-            adminLink.href = '/admin';
-            adminLink.className = 'text-xs font-bold text-white bg-black px-4 py-2 hover:bg-gray-800 transition-all uppercase tracking-widest';
-            adminLink.innerText = 'Go to Recruiter Console';
-            document.querySelector('header .flex.items-center.gap-6').prepend(adminLink);
-        }
-
-        let isDashboardLoading = false;
-        const jobCache = {};
-
-        async function fetchDashboardData() {
-            if (isDashboardLoading) return;
-            isDashboardLoading = true;
-
+        async function fetchApplications() {
             try {
-                const response = await fetch(`/api/applications/me?seeker_id=${user.id}`, {
+                const response = await fetch('/api/applications/me', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-                const applications = await response.json();
 
-                renderDashboard(applications);
+                if (!response.ok) throw new Error('Failed to fetch applications');
+
+                const apps = await response.json();
+                renderApplications(apps);
+                updateStats(apps);
+
             } catch (error) {
-                console.error('Dashboard Load Error:', error);
-                document.getElementById('applications-body').innerHTML = `
-                    <tr>
-                        <td colspan="4" class="px-6 py-12 text-center font-mono text-red-500 uppercase">
-                            EXECUTION_ERROR: ${error.message}
-                        </td>
-                    </tr>
-                `;
-            } finally {
-                isDashboardLoading = false;
+                console.error('Error:', error);
+                if (error.message.includes('401') || error.message.includes('Unauthorized')) {
+                    logout();
+                }
             }
         }
 
-        async function renderDashboard(apps) {
-            const body = document.getElementById('applications-body');
+        function updateStats(apps) {
+            document.getElementById('stat-total').innerText = apps.length;
+
+            const inProgress = apps.filter(a => ['interview required', 'interviewing', 'under review', 'applied'].includes(a.status.toLowerCase())).length;
+            document.getElementById('stat-in-progress').innerText = inProgress;
+            document.getElementById('banner-pending-count').innerText = inProgress;
+
+            const offers = apps.filter(a => ['offered', 'accepted', 'passed'].includes(a.status.toLowerCase())).length;
+            document.getElementById('stat-offers').innerText = offers;
+        }
+
+        function getStatusStyle(status) {
+            status = status.toLowerCase();
+            switch (status) {
+                case 'applied':
+                case 'under review':
+                    return 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400';
+                case 'interview required':
+                case 'interviewing':
+                case 'interviewed':
+                    return 'bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400';
+                case 'rejected':
+                case 'failed':
+                    return 'bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-400';
+                case 'offered':
+                case 'accepted':
+                case 'passed':
+                    return 'bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400';
+                default:
+                    return 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400';
+            }
+        }
+
+        function renderApplications(apps) {
+            const list = document.getElementById('applications-list');
+            const emptyState = document.getElementById('no-applications');
+
+            list.innerHTML = '';
 
             if (apps.length === 0) {
-                body.innerHTML = '<tr><td colspan="4" class="px-6 py-12 text-center font-mono text-gray-400 uppercase tracking-widest">NO_RECORDS_FOUND</td></tr>';
+                emptyState.classList.remove('hidden');
                 return;
             }
 
-            // Update Stats
-            document.getElementById('stat-total').innerText = apps.length.toString().padStart(2, '0');
-            const interviewReady = apps.filter(a => a.status === 'Interview Required').length;
-            document.getElementById('stat-pending').innerText = interviewReady.toString().padStart(2, '0');
+            emptyState.classList.add('hidden');
 
-            // Render Rows
-            body.innerHTML = '';
-
-            for (const app of apps) {
-                let jobTitle = jobCache[app.job_id] || "ID: " + app.job_id;
-
-                if (!jobCache[app.job_id]) {
-                    try {
-                        const jobRes = await fetch(`/api/jobs/${app.job_id}`, {
-                            headers: { 'Authorization': `Bearer ${token}` }
-                        });
-                        const job = await jobRes.json();
-                        jobTitle = job.title;
-                        jobCache[app.job_id] = job.title;
-                    } catch (e) { }
-                }
-
-                const date = new Date(app.created_at).toISOString().split('T')[0];
-
-                let statusClass = "border-gray-400 text-gray-600 bg-transparent";
-                if (app.status === 'Interview Required') statusClass = "bg-black text-white border-black";
-                if (app.status === 'Rejected') statusClass = "border-black text-black line-through italic";
-
-                const buttonHtml = app.status === 'Interview Required'
-                    ? `<div class="flex gap-2 ml-auto">
-                        <button onclick="startQuestionnaire(${app.id})" class="bg-black hover:bg-gray-800 text-white text-[9px] font-bold py-2 px-4 uppercase tracking-widest transition-all flex items-center gap-1 font-mono">
-                          <span class="material-symbols-outlined text-sm">quiz</span> Questionnaire
-                        </button>
-                        <button onclick="startInterview(${app.id})" class="border border-black hover:bg-black hover:text-white text-black text-[9px] font-bold py-2 px-4 uppercase tracking-widest transition-all flex items-center gap-1 font-mono">
-                          <span class="material-symbols-outlined text-sm">videocam</span> Live Capture
-                        </button>
-                      </div>`
-                    : `<span class="text-gray-400 text-[10px] font-mono uppercase tracking-widest">Locked: Pending_Review</span>`;
-
+            apps.forEach(app => {
                 const row = document.createElement('tr');
-                row.className = "group hover:bg-gray-50 transition-colors";
+                row.className = 'hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors';
+
+                const date = new Date(app.created_at || Date.now()).toLocaleDateString('en-US', {
+                    month: 'short', day: 'numeric', year: 'numeric'
+                });
+
                 row.innerHTML = `
-                    <td class="px-6 py-5 border-r border-black">
-                        <div class="flex flex-col">
-                            <span class="text-black font-bold text-sm uppercase tracking-wide">${jobTitle}</span>
-                            <span class="text-xs text-gray-500 font-mono mt-1">APP_UID: APP-${app.id}</span>
+                <td class="px-6 py-5">
+                    <div class="flex items-center gap-3">
+                        <div class="size-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
+                            <span class="material-symbols-outlined text-[20px]">description</span>
                         </div>
-                    </td>
-                    <td class="px-6 py-5 border-r border-black">
-                        <span class="text-black font-mono text-sm">${date}</span>
-                    </td>
-                    <td class="px-6 py-5 border-r border-black">
-                        <span class="inline-flex items-center px-3 py-1 border text-[10px] font-bold uppercase tracking-widest ${statusClass}">
-                            ${app.status}
-                        </span>
-                    </td>
-                    <td class="px-6 py-5 text-right flex items-center justify-end gap-3">
-                        ${app.resume_path ? `
-                            <a href="/${app.resume_path.replace(/\\/g, '/')}" target="_blank" 
-                               class="text-[10px] font-mono border border-black px-2 py-1 hover:bg-black hover:text-white uppercase font-bold transition-all">
-                               View_Resume
-                            </a>
+                        <span class="font-bold">${app.job_title || 'Untitled Role'}</span>
+                    </div>
+                </td>
+                <td class="px-6 py-5">
+                    <span class="text-slate-500 font-medium">${app.category || 'Technology'}</span>
+                </td>
+                <td class="px-6 py-5 text-slate-500 font-mono text-xs">
+                    ${date}
+                </td>
+                <td class="px-6 py-5">
+                    <span class="px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider ${getStatusStyle(app.status)}">
+                        ${app.status}
+                    </span>
+                </td>
+                <td class="px-6 py-5">
+                    <div class="flex items-center gap-3">
+                        <button onclick="window.location.href='/summary?application_id=${app.id}'" class="text-slate-500 hover:text-primary font-bold text-xs hover:underline flex items-center gap-1">
+                            View Details
+                        </button>
+                        ${app.status.toLowerCase() === 'interview required' ? `
+                            <button onclick="window.location.href='/interview?application_id=${app.id}'" 
+                                class="bg-primary text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all animate-pulse">
+                                Start Interview
+                            </button>
                         ` : ''}
-                        ${buttonHtml}
-                    </td>
-                `;
-                body.appendChild(row);
-            }
+                    </div>
+                </td>
+            `;
+                list.appendChild(row);
+            });
         }
 
-        function startQuestionnaire(appId) {
-            window.location.href = `/interview?application_id=${appId}`;
-        }
-
-        function startInterview(appId) {
-            // Store target application ID in session for capture page to link
-            sessionStorage.setItem('active_application_id', appId);
-            // Redirect to capture page
-            window.location.href = '/capture';
-        }
-
-        // Initial fetch
-        fetchDashboardData();
+        // Call on load
+        fetchApplications();
     </script>
 </body>
 

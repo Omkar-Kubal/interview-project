@@ -1,6 +1,7 @@
 """
 FastAPI Server - Main entry point for Signal Capture API.
-"""
+""" # Triggering reload after DB reset
+
 import os
 import time
 from datetime import datetime
@@ -62,11 +63,15 @@ app.add_exception_handler(Exception, generic_exception_handler)
 async def csrf_protection(request: Request, call_next):
     """Simple CSRF protection via custom header check for mutating requests."""
     if request.method in ["POST", "PUT", "DELETE", "PATCH"]:
-        # Skip CSRF for API endpoints that use Bearer auth (they have their own protection)
+        # Skip CSRF for auth routes (register/login) — these are public by definition
+        # and cannot carry a Bearer token or X-Requested-With header
+        if request.url.path.startswith("/api/auth/"):
+            return await call_next(request)
+
         auth_header = request.headers.get("authorization", "")
         content_type = request.headers.get("content-type", "")
-        
-        # If it's an API call with JSON, require X-Requested-With header OR Authorization
+
+        # If it's a JSON API call with no Bearer token, require X-Requested-With header
         if "application/json" in content_type and not auth_header:
             x_requested = request.headers.get("x-requested-with", "")
             if x_requested != "XMLHttpRequest":
@@ -182,13 +187,13 @@ async def dashboard_page():
     return HTMLResponse("<h1>Dashboard page not found</h1>")
 
 
-@app.get("/admin", response_class=HTMLResponse)
+@app.get("/recruiter", response_class=HTMLResponse)
 async def admin_page():
-    """Serve recruiter admin page."""
+    """Serve recruiter console page."""
     admin_path = frontend_path / "pages" / "admin.html"
     if admin_path.exists():
         return FileResponse(str(admin_path))
-    return HTMLResponse("<h1>Admin page not found</h1>")
+    return HTMLResponse("<h1>Recruiter console not found</h1>")
 
 
 @app.get("/replay", response_class=HTMLResponse)
@@ -216,6 +221,26 @@ async def review_answers_page():
     if review_path.exists():
         return FileResponse(str(review_path))
     return HTMLResponse("<h1>Review page not found</h1>")
+
+
+@app.get("/profile", response_class=HTMLResponse)
+async def profile_page():
+    """Serve candidate profile page."""
+    profile_path = frontend_path / "pages" / "profile.html"
+    if profile_path.exists():
+        return FileResponse(str(profile_path))
+    return HTMLResponse("<h1>Profile page not found</h1>")
+
+
+@app.get("/settings", response_class=HTMLResponse)
+async def settings_page():
+    """Serve candidate settings page."""
+    settings_path = frontend_path / "pages" / "settings.html"
+    if settings_path.exists():
+        return FileResponse(str(settings_path))
+    return HTMLResponse("<h1>Settings page not found</h1>")
+
+
 
 
 @app.post("/api/session/start", response_model=StartResponse)

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Settings - InterviewAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#5925f4",
+                        "primary-dark": "#4318c4",
+                        "surface-dark": "#1a1628",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#110d1c",
+                        "accent-blue": "#00d4ff",
+                    },
+                    fontFamily: { sans: ["Inter", "sans-serif"] },
+                    borderRadius: { "lg": "0.5rem", "xl": "1rem", "2xl": "1.5rem" },
+                },
+            },
+        };
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #5925f4;
+        }
+
+        .toggle-checkbox:checked+.toggle-label {
+            background-color: #5925f4;
+        }
+
+        .toggle-checkbox {
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-slate-100 min-h-screen flex">
+
+    <!-- Sidebar -->
+    <aside
+        class="hidden lg:flex flex-col w-64 bg-white dark:bg-surface-dark border-r border-slate-200 dark:border-slate-800 shrink-0 h-screen sticky top-0">
+        <div class="p-6 flex items-center gap-3">
+            <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                <span class="material-symbols-outlined">smart_toy</span>
+            </div>
+            <h1 class="text-xl font-bold tracking-tight">InterviewAI</h1>
+        </div>
+        <nav id="sidebar-nav" class="flex-1 px-4 space-y-1 mt-4">
+            <!-- Dynamic Nav -->
+        </nav>
+        <div class="p-6 border-t border-slate-200 dark:border-slate-800">
+            <button onclick="logout()"
+                class="flex items-center gap-3 px-4 py-2 w-full text-slate-500 hover:text-red-500 transition-colors font-medium">
+                <span class="material-symbols-outlined">logout</span> Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto">
+        <!-- Header -->
+        <header
+            class="h-16 flex-none bg-white dark:bg-surface-dark border-b border-slate-200 dark:border-slate-800 px-6 sm:px-10 flex items-center justify-between sticky top-0 z-40">
+            <h2 class="text-slate-500 font-medium whitespace-nowrap overflow-hidden text-ellipsis">
+                <a id="home-breadcrumb" href="/dashboard" class="hover:text-primary transition-colors">Home</a> /
+                <span class="text-slate-900 dark:text-white font-bold">Settings</span>
+            </h2>
+            <div class="flex items-center gap-3 pl-6 border-l border-slate-200 dark:border-slate-800">
+                <div class="text-right hidden sm:block">
+                    <p id="nav-user-name" class="text-sm font-bold">Candidate</p>
+                    <p class="text-[10px] text-slate-500 uppercase font-black">Free Plan</p>
+                </div>
+                <div id="nav-avatar"
+                    class="size-10 rounded-xl bg-gradient-to-br from-primary to-accent-blue flex items-center justify-center text-white font-black shadow-lg">
+                    OK</div>
+            </div>
+        </header>
+
+        <!-- Settings Content -->
+        <div class="p-6 sm:p-10 max-w-3xl w-full mx-auto space-y-8">
+
+            <!-- Account Settings -->
+            <div
+                class="bg-white dark:bg-surface-dark rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-slate-100 dark:border-slate-800">
+                    <h3 class="text-lg font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">manage_accounts</span>
+                        Account
+                    </h3>
+                    <p class="text-sm text-slate-500 mt-1">Manage your name and email address.</p>
+                </div>
+                <div class="p-6 space-y-5">
+                    <div>
+                        <label class="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Full
+                            Name</label>
+                        <input id="setting-name" type="text" placeholder="Your full name"
+                            class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary transition-all" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Email
+                            Address</label>
+                        <input id="setting-email" type="email" placeholder="you@example.com"
+                            class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary transition-all" />
+                        <p class="text-xs text-slate-400 mt-1">Email changes require re-authentication.</p>
+                    </div>
+                    <div id="account-save-msg" class="hidden text-sm font-bold text-green-600 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">check_circle</span> Changes saved to your
+                        session.
+                    </div>
+                    <button onclick="saveAccountSettings()"
+                        class="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/20">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div
+                class="bg-white dark:bg-surface-dark rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-slate-100 dark:border-slate-800">
+                    <h3 class="text-lg font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">lock</span>
+                        Security
+                    </h3>
+                    <p class="text-sm text-slate-500 mt-1">Update your password. You will be logged out after changing
+                        it.</p>
+                </div>
+                <div class="p-6 space-y-5">
+                    <div>
+                        <label class="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Current
+                            Password</label>
+                        <input id="current-password" type="password" placeholder="••••••••"
+                            class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary transition-all" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">New
+                            Password</label>
+                        <input id="new-password" type="password" placeholder="••••••••"
+                            class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary transition-all" />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Confirm
+                            New Password</label>
+                        <input id="confirm-password" type="password" placeholder="••••••••"
+                            class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary transition-all" />
+                    </div>
+                    <div id="password-msg" class="hidden text-sm font-bold flex items-center gap-2"></div>
+                    <button onclick="changePassword()"
+                        class="bg-slate-900 dark:bg-white dark:text-slate-900 text-white px-6 py-3 rounded-xl text-sm font-bold transition-all hover:opacity-90">
+                        Update Password
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notifications -->
+            <div
+                class="bg-white dark:bg-surface-dark rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-slate-100 dark:border-slate-800">
+                    <h3 class="text-lg font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">notifications</span>
+                        Notifications
+                    </h3>
+                    <p class="text-sm text-slate-500 mt-1">Control which alerts are shown in this session.</p>
+                </div>
+                <div class="p-6 divide-y divide-slate-100 dark:divide-slate-800">
+                    <div class="flex items-center justify-between py-4">
+                        <div>
+                            <p class="text-sm font-bold">Application Status Updates</p>
+                            <p class="text-xs text-slate-400">Get notified when your application status changes.</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="notif-status" class="sr-only peer" checked>
+                            <div
+                                class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                            </div>
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-between py-4">
+                        <div>
+                            <p class="text-sm font-bold">Interview Reminders</p>
+                            <p class="text-xs text-slate-400">Reminders before scheduled interview sessions.</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="notif-interview" class="sr-only peer" checked>
+                            <div
+                                class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                            </div>
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-between py-4">
+                        <div>
+                            <p class="text-sm font-bold">New Job Matches</p>
+                            <p class="text-xs text-slate-400">When new roles matching your profile are posted.</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="notif-jobs" class="sr-only peer">
+                            <div
+                                class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danger Zone -->
+            <div
+                class="bg-white dark:bg-surface-dark rounded-3xl border border-red-200 dark:border-red-900/40 shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-red-100 dark:border-red-900/40">
+                    <h3 class="text-lg font-bold text-red-600 flex items-center gap-2">
+                        <span class="material-symbols-outlined">warning</span>
+                        Danger Zone
+                    </h3>
+                </div>
+                <div class="p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                        <p class="text-sm font-bold">Log out of all sessions</p>
+                        <p class="text-xs text-slate-400">This will clear your local session immediately.</p>
+                    </div>
+                    <button onclick="logout()"
+                        class="bg-red-50 dark:bg-red-900/20 text-red-600 border border-red-200 dark:border-red-800 px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-red-100 transition-all shrink-0">
+                        Logout Now
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        const token = sessionStorage.getItem('token');
+
+        if (!token || !user) { window.location.href = '/login'; }
+
+        const isRecruiter = user.role === 'recruiter' || user.role === 'admin';
+        const initials = user.full_name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+        // Render Sidebar
+        const sidebarNav = document.getElementById('sidebar-nav');
+        if (isRecruiter) {
+            sidebarNav.innerHTML = `
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="/recruiter">
+                    <span class="material-symbols-outlined">dashboard</span> Dashboard
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="/profile">
+                    <span class="material-symbols-outlined">person</span> My Profile
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-primary bg-primary/5 font-semibold transition-all" href="/settings">
+                    <span class="material-symbols-outlined">settings</span> Settings
+                </a>
+            `;
+            document.getElementById('home-breadcrumb').href = '/recruiter';
+        } else {
+            sidebarNav.innerHTML = `
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="/dashboard">
+                    <span class="material-symbols-outlined">dashboard</span> Dashboard
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="/jobs">
+                    <span class="material-symbols-outlined">work</span> Browse Jobs
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="/profile">
+                    <span class="material-symbols-outlined">person</span> My Profile
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-primary bg-primary/5 font-semibold transition-all" href="/settings">
+                    <span class="material-symbols-outlined">settings</span> Settings
+                </a>
+            `;
+        }
+
+        document.getElementById('nav-user-name').innerText = user.full_name;
+        document.getElementById('nav-avatar').innerText = initials;
+        document.getElementById('setting-name').value = user.full_name;
+        document.getElementById('setting-email').value = user.email;
+
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = '/login';
+        }
+
+        function saveAccountSettings() {
+            const newName = document.getElementById('setting-name').value.trim();
+            const newEmail = document.getElementById('setting-email').value.trim();
+            if (!newName || !newEmail) return;
+
+            // Update session storage to reflect change immediately in this session
+            const updatedUser = { ...user, full_name: newName, email: newEmail };
+            sessionStorage.setItem('user', JSON.stringify(updatedUser));
+
+            const msg = document.getElementById('account-save-msg');
+            msg.classList.remove('hidden');
+            setTimeout(() => msg.classList.add('hidden'), 3000);
+
+            // Update header
+            document.getElementById('nav-user-name').innerText = newName;
+            document.getElementById('nav-avatar').innerText = newName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+        }
+
+        async function changePassword() {
+            const current = document.getElementById('current-password').value;
+            const newPwd = document.getElementById('new-password').value;
+            const confirm = document.getElementById('confirm-password').value;
+            const msgEl = document.getElementById('password-msg');
+
+            msgEl.className = 'text-sm font-bold flex items-center gap-2';
+
+            if (!current || !newPwd || !confirm) {
+                msgEl.classList.remove('hidden');
+                msgEl.innerHTML = '<span class="material-symbols-outlined text-sm text-red-500">error</span><span class="text-red-500">Please fill in all password fields.</span>';
+                return;
+            }
+            if (newPwd !== confirm) {
+                msgEl.classList.remove('hidden');
+                msgEl.innerHTML = '<span class="material-symbols-outlined text-sm text-red-500">error</span><span class="text-red-500">New passwords do not match.</span>';
+                return;
+            }
+            if (newPwd.length < 8) {
+                msgEl.classList.remove('hidden');
+                msgEl.innerHTML = '<span class="material-symbols-outlined text-sm text-red-500">error</span><span class="text-red-500">Password must be at least 8 characters.</span>';
+                return;
+            }
+
+            // Re-login to verify current password, then show success (backend doesn't have a change-password endpoint yet)
+            try {
+                const formData = new URLSearchParams();
+                formData.append('username', user.email);
+                formData.append('password', current);
+                const res = await fetch('/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: formData });
+
+                if (!res.ok) {
+                    msgEl.classList.remove('hidden');
+                    msgEl.innerHTML = '<span class="material-symbols-outlined text-sm text-red-500">error</span><span class="text-red-500">Current password is incorrect.</span>';
+                    return;
+                }
+
+                msgEl.classList.remove('hidden');
+                msgEl.innerHTML = '<span class="material-symbols-outlined text-sm text-amber-500">info</span><span class="text-amber-600">Password change requires a backend update endpoint (not yet implemented). Current password verified ✓</span>';
+            } catch (e) {
+                msgEl.classList.remove('hidden');
+                msgEl.innerHTML = '<span class="material-symbols-outlined text-sm text-red-500">error</span><span class="text-red-500">Request failed. Please try again.</span>';
+            }
+        }
+    </script>
+</body>
+
+</html>

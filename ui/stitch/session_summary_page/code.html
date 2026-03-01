@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Session Summary - InterviewAI</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5925f4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-x-hidden text-slate-900 dark:text-slate-100">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">InterviewAI</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Interviews</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Candidates</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+<span class="truncate">Logout</span>
+</button>
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="User profile picture of a man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAVNxn3tLW-pQ6onKbF7Nedg-xJLhdnmbmGeFQXj4pSEt6W4johHJlBD_tztbUFteKwuBPdpmuewsc44L35f1gH5IC013QP04Dl2oGh1YZa1r9jMLb_Eqqu0uJFvPk5HjFq-0-Z_rud_mNgrEGpOwVTiyRMkKlMVfpS-zw6it0__QH37aPOzarlenPDF6u8fLy-w-M0HkZHpB_yEwCYweYc5GSYubJrwQxwm4mWKa55Rest2FSa-O7I6XnERqbFCoxH3KNPzRsXGQ0");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex justify-center py-8 px-4 md:px-8">
+<div class="max-w-[1024px] w-full flex flex-col gap-8">
+<!-- Hero Section: Success State -->
+<div class="flex flex-col items-center gap-6 py-8">
+<div class="size-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-5xl text-green-600 dark:text-green-400">check_circle</span>
+</div>
+<div class="flex flex-col items-center gap-2 text-center">
+<h1 class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight">Interview Complete!</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base max-w-md">Session #INT-8392 with candidate Alex Morgan has been successfully processed. The integrity report and artifacts are ready for review.</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 h-10 px-6 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+                            View Full Replay
+                        </button>
+<button class="flex items-center gap-2 h-10 px-6 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg text-sm font-bold transition-colors">
+                            Back to Dashboard
+                        </button>
+</div>
+</div>
+<!-- Metrics Grid -->
+<section>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Duration -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-1">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
+<span class="material-symbols-outlined text-xl">timer</span>
+<span class="text-sm font-medium uppercase tracking-wider">Duration</span>
+</div>
+<p class="text-3xl font-bold text-slate-900 dark:text-white">45m 12s</p>
+<span class="text-xs text-green-600 dark:text-green-400 font-medium">+2m vs average</span>
+</div>
+<!-- FPS -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-1">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
+<span class="material-symbols-outlined text-xl">videocam</span>
+<span class="text-sm font-medium uppercase tracking-wider">FPS Avg</span>
+</div>
+<p class="text-3xl font-bold text-slate-900 dark:text-white">29.5</p>
+<span class="text-xs text-slate-400">Stable connection</span>
+</div>
+<!-- Questions -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-1">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
+<span class="material-symbols-outlined text-xl">quiz</span>
+<span class="text-sm font-medium uppercase tracking-wider">Questions</span>
+</div>
+<p class="text-3xl font-bold text-slate-900 dark:text-white">12</p>
+<span class="text-xs text-primary font-medium">100% Answered</span>
+</div>
+<!-- Integrity Score -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-1 relative overflow-hidden">
+<div class="absolute right-0 top-0 p-6 opacity-10">
+<span class="material-symbols-outlined text-6xl text-green-500">verified_user</span>
+</div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
+<span class="material-symbols-outlined text-xl">security</span>
+<span class="text-sm font-medium uppercase tracking-wider">Integrity</span>
+</div>
+<p class="text-3xl font-bold text-green-600 dark:text-green-400">98%</p>
+<span class="text-xs text-green-600 dark:text-green-400 font-medium">High Confidence</span>
+</div>
+</div>
+</section>
+<!-- Two Column Layout: Integrity & Artifacts -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Integrity Report -->
+<div class="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">fact_check</span>
+                                Integrity Report
+                            </h3>
+<button class="text-primary text-sm font-medium hover:underline">View Detailed Logs</button>
+</div>
+<div class="divide-y divide-slate-100 dark:divide-slate-700">
+<!-- Item 1 -->
+<div class="p-4 flex items-start gap-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+<div class="mt-1 size-8 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-lg">face</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-semibold text-slate-900 dark:text-white text-sm">Face Detection</p>
+<span class="inline-flex items-center rounded-full bg-green-50 dark:bg-green-900/20 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400 ring-1 ring-inset ring-green-600/20">Clean</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Single face detected consistently throughout the session.</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-4 flex items-start gap-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+<div class="mt-1 size-8 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-lg">mic</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-semibold text-slate-900 dark:text-white text-sm">Voice Activity</p>
+<span class="inline-flex items-center rounded-full bg-green-50 dark:bg-green-900/20 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400 ring-1 ring-inset ring-green-600/20">Clean</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Audio levels consistent. No unauthorized speakers detected.</p>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-4 flex items-start gap-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+<div class="mt-1 size-8 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-semibold text-slate-900 dark:text-white text-sm">Gaze Tracking</p>
+<span class="inline-flex items-center rounded-full bg-green-50 dark:bg-green-900/20 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400 ring-1 ring-inset ring-green-600/20">Clean</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">User attention remained focused on the screen area.</p>
+</div>
+</div>
+<!-- Item 4 (Warning) -->
+<div class="p-4 flex items-start gap-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors bg-amber-50/50 dark:bg-amber-900/10">
+<div class="mt-1 size-8 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-lg">tab_unselected</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-semibold text-slate-900 dark:text-white text-sm">Tab Focus</p>
+<span class="inline-flex items-center rounded-full bg-amber-50 dark:bg-amber-900/20 px-2 py-1 text-xs font-medium text-amber-700 dark:text-amber-400 ring-1 ring-inset ring-amber-600/20">2 Focus Loss Events</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Candidate switched tabs at 12:04 and 24:15. Duration &lt; 3s.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Session Artifacts -->
+<div class="lg:col-span-1 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col">
+<div class="p-6 border-b border-slate-200 dark:border-slate-700">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">folder_open</span>
+                                Session Artifacts
+                            </h3>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<!-- Video -->
+<div class="flex items-center justify-between p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all group cursor-pointer bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">movie</span>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-slate-900 dark:text-white">Session Recording</span>
+<span class="text-xs text-slate-500">MP4 • 450 MB</span>
+</div>
+</div>
+<button class="text-primary hover:text-primary/80">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<!-- Audio -->
+<div class="flex items-center justify-between p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all group cursor-pointer bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">graphic_eq</span>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-slate-900 dark:text-white">Audio Transcript</span>
+<span class="text-xs text-slate-500">JSON • 12 KB</span>
+</div>
+</div>
+<button class="text-primary hover:text-primary/80">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<!-- Face Log -->
+<div class="flex items-center justify-between p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all group cursor-pointer bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">face_retouching_natural</span>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-slate-900 dark:text-white">Biometric Log</span>
+<span class="text-xs text-slate-500">CSV • 2.4 MB</span>
+</div>
+</div>
+<button class="text-primary hover:text-primary/80">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<!-- Network Log -->
+<div class="flex items-center justify-between p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all group cursor-pointer bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">router</span>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-slate-900 dark:text-white">Network Telemetry</span>
+<span class="text-xs text-slate-500">LOG • 45 KB</span>
+</div>
+</div>
+<button class="text-primary hover:text-primary/80">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<div class="p-4 mt-auto border-t border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/30 rounded-b-xl">
+<button class="w-full py-2 text-sm text-slate-600 dark:text-slate-300 hover:text-primary font-medium flex justify-center items-center gap-1 transition-colors">
+                                Download All Artifacts (ZIP)
+                            </button>
+</div>
+</div>
+</div>
+<!-- Signal Analysis Chart -->
+<section class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm p-6 mb-8">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">monitoring</span>
+                            Signal Analysis
+                        </h3>
+<div class="flex items-center gap-2">
+<span class="size-3 rounded-full bg-primary"></span>
+<span class="text-xs text-slate-500 font-medium mr-3">Focus Score</span>
+<span class="size-3 rounded-full bg-red-400"></span>
+<span class="text-xs text-slate-500 font-medium">Stress Indicator</span>
+</div>
+</div>
+<!-- Faux Chart Implementation using CSS gradients/bars -->
+<div class="relative h-48 w-full border-b border-l border-slate-200 dark:border-slate-700 mt-4">
+<!-- Horizontal Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="w-full h-px bg-slate-100 dark:bg-slate-700/50"></div>
+<div class="w-full h-px bg-slate-100 dark:bg-slate-700/50"></div>
+<div class="w-full h-px bg-slate-100 dark:bg-slate-700/50"></div>
+<div class="w-full h-px bg-slate-100 dark:bg-slate-700/50"></div>
+</div>
+<!-- Data Visual 1 (Primary - Focus) -->
+<div class="absolute bottom-0 left-0 right-0 h-full flex items-end justify-between px-2 gap-1">
+<div class="w-[4%] h-[60%] bg-primary/20 rounded-t-sm"></div>
+<div class="w-[4%] h-[65%] bg-primary/30 rounded-t-sm"></div>
+<div class="w-[4%] h-[70%] bg-primary/40 rounded-t-sm"></div>
+<div class="w-[4%] h-[75%] bg-primary/50 rounded-t-sm"></div>
+<div class="w-[4%] h-[80%] bg-primary/60 rounded-t-sm"></div>
+<div class="w-[4%] h-[78%] bg-primary/60 rounded-t-sm"></div>
+<div class="w-[4%] h-[82%] bg-primary/70 rounded-t-sm"></div>
+<div class="w-[4%] h-[85%] bg-primary/80 rounded-t-sm"></div>
+<div class="w-[4%] h-[40%] bg-amber-200 rounded-t-sm relative group"> <!-- Tab switch dip -->
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">Focus Loss</div>
+</div>
+<div class="w-[4%] h-[75%] bg-primary/60 rounded-t-sm"></div>
+<div class="w-[4%] h-[80%] bg-primary/60 rounded-t-sm"></div>
+<div class="w-[4%] h-[82%] bg-primary/70 rounded-t-sm"></div>
+<div class="w-[4%] h-[85%] bg-primary/80 rounded-t-sm"></div>
+<div class="w-[4%] h-[88%] bg-primary/90 rounded-t-sm"></div>
+<div class="w-[4%] h-[85%] bg-primary/80 rounded-t-sm"></div>
+<div class="w-[4%] h-[82%] bg-primary/70 rounded-t-sm"></div>
+<div class="w-[4%] h-[35%] bg-amber-200 rounded-t-sm relative group"> <!-- Tab switch dip -->
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity">Focus Loss</div>
+</div>
+<div class="w-[4%] h-[85%] bg-primary/80 rounded-t-sm"></div>
+<div class="w-[4%] h-[88%] bg-primary/90 rounded-t-sm"></div>
+<div class="w-[4%] h-[90%] bg-primary rounded-t-sm"></div>
+</div>
+<!-- Data Visual 2 (Secondary - Stress - Overlay Line) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none">
+<path d="M0 150 C 50 140, 100 145, 150 130 C 200 115, 250 160, 300 155 C 350 150, 400 140, 450 135 C 500 130, 550 100, 600 110 C 650 120, 700 130, 750 125 C 800 120, 850 115, 900 120 C 950 125, 1000 130, 1024 135" fill="none" stroke="#ef4444" stroke-opacity="0.5" stroke-width="2"></path>
+</svg>
+</div>
+<!-- X Axis Labels -->
+<div class="flex justify-between mt-2 text-xs text-slate-400 font-mono">
+<span>00:00</span>
+<span>10:00</span>
+<span>20:00</span>
+<span>30:00</span>
+<span>40:00</span>
+<span>45:12</span>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

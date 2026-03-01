@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InterviewAI - Questionnaire</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#5925f4",
+                "background-light": "#f6f5f8",
+                "background-dark": "#141022",
+                "surface-light": "#ffffff",
+                "surface-dark": "#1e1a2e",
+              },
+              fontFamily: {
+                "display": ["Inter", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="w-full bg-surface-light dark:bg-surface-dark border-b border-slate-200 dark:border-slate-800 px-6 py-4 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3 text-slate-900 dark:text-slate-100">
+<div class="size-8 text-primary">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">InterviewAI</h2>
+</div>
+<!-- Context Info (Job & Timer) -->
+<div class="flex items-center gap-8 hidden md:flex">
+<div class="text-center">
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Role</p>
+<p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Senior Product Designer</p>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700"></div>
+<div class="text-center">
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Time Remaining</p>
+<p class="text-sm font-bold text-slate-800 dark:text-slate-200 font-mono">42:15</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">Help Center</button>
+<div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 bg-center bg-cover border-2 border-slate-100 dark:border-slate-800 shadow-sm" data-alt="User profile photo of a smiling man" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDOF3odpRy6mlHJevpMHOQp9t2DP88cpkY9oRlWIy2QpKMkG3_I28j4kwi3IRN_J1-XzwvdFTyZ6Sdsiw1Ykdy4ziHsuzVoXj0oTfwS_7aDCzFoKiEpInisW-ZjVebdmegN1n3rr4rLBesw5WUDoX5FFc18oMo8FBekCTfe9muO8k_rA7Ow6dLgSS9QKVJQkoPbSX9FDby0Kb9Llmi633QAieMpXquIdF6gEuc5kpIn2F8hC0DKVemrZWYoYvy4T_EOsvYbY3i595g");'></div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 max-w-7xl mx-auto w-full p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Question & Answer Area (Spans 8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Progress Header -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex justify-between items-end mb-3">
+<div>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-2">
+<span class="material-symbols-outlined text-[16px]">design_services</span>
+                            Design Systems
+                        </span>
+<h1 class="text-lg font-semibold text-slate-800 dark:text-slate-100">Question 4 of 12</h1>
+</div>
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">35% Completed</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 35%"></div>
+</div>
+</div>
+<!-- Active Question Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-8 shadow-sm border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+<!-- Circular Timer Absolute Position -->
+<div class="absolute top-6 right-6 flex items-center justify-center size-16 rounded-full border-4 border-slate-100 dark:border-slate-700 bg-surface-light dark:bg-surface-dark z-10 group">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36">
+<!-- Background Circle -->
+<path class="text-slate-100 dark:text-slate-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<!-- Progress Circle (Red for urgency example) -->
+<path class="text-red-500" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="25, 100" stroke-width="3"></path>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="text-sm font-bold text-red-500">0:08</span>
+</div>
+</div>
+<div class="pr-20">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4 leading-tight">
+                        Describe a time you had to handle a conflict within your design team regarding a specific component implementation.
+                    </h3>
+<p class="text-slate-500 dark:text-slate-400 mb-8 max-w-2xl">
+                        Please focus on your communication strategy and how you reached a resolution that aligned with the design system goals.
+                    </p>
+</div>
+<!-- Answer Interface: Text Variant (Active) -->
+<div class="space-y-3">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Your Answer</label>
+<div class="relative">
+<textarea class="w-full min-h-[200px] p-4 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-primary focus:border-transparent resize-y font-display" placeholder="Type your response here..."></textarea>
+<div class="absolute bottom-3 right-3 text-xs text-slate-400">0 / 500 words</div>
+</div>
+</div>
+</div>
+<!-- Examples of Other Answer Types (Hidden or minimized in real app, shown here for design reqs) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 opacity-60 hover:opacity-100 transition-opacity">
+<!-- MCQ Variant Card -->
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-400 uppercase">Previous: Q3 (MCQ)</span>
+<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-2 p-2 rounded border border-primary bg-primary/5">
+<div class="size-4 rounded-full border-[5px] border-primary bg-white"></div>
+<span class="text-xs font-medium text-slate-700 dark:text-slate-300">Figma</span>
+</div>
+<div class="flex items-center gap-2 p-2 rounded border border-slate-200 dark:border-slate-700">
+<div class="size-4 rounded-full border border-slate-300"></div>
+<span class="text-xs text-slate-500">Sketch</span>
+</div>
+</div>
+</div>
+<!-- Audio Variant Card -->
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-400 uppercase">Next: Q5 (Audio)</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">mic</span>
+</div>
+<div class="flex items-center justify-center h-20 bg-slate-50 dark:bg-slate-800 rounded border border-dashed border-slate-300 dark:border-slate-600">
+<div class="flex gap-1 items-center h-8">
+<div class="w-1 h-3 bg-primary rounded-full animate-pulse"></div>
+<div class="w-1 h-6 bg-primary rounded-full animate-pulse" style="animation-delay: 75ms"></div>
+<div class="w-1 h-4 bg-primary rounded-full animate-pulse" style="animation-delay: 150ms"></div>
+<div class="w-1 h-8 bg-primary rounded-full animate-pulse" style="animation-delay: 50ms"></div>
+<div class="w-1 h-5 bg-primary rounded-full animate-pulse" style="animation-delay: 200ms"></div>
+</div>
+</div>
+</div>
+<!-- Video Variant Card -->
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-lg border border-slate-200 dark:border-slate-800">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-slate-400 uppercase">Next: Q6 (Video)</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">videocam</span>
+</div>
+<div class="relative h-20 bg-slate-800 rounded overflow-hidden flex items-center justify-center group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center opacity-50" data-alt="Blurred webcam preview of a person" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBM-HV1KZoNfRJJu50dtUAIMA7D74HmmIU8Ni5iYF5V1QMeRWgmNneBEb2GyNWXzqi2X-OascNE4MjjeSQbazzmJHXkdrS35kc5WZcDW3MW1bpKCD187HCOJt8eFctIY7WRYcYC9NdCrgqH2SZ-_1xFK2kq6ymfkRHWyqv3FkoSBD1TJrF6I9EshhDzM5Hni7AzVi2M4dxnaUuNSXsmijLpwoBOchMUM-AauByjwaC1Yc26rg8me9tNly9FVDcpIWcMZ_FVGsITYEQ')"></div>
+<div class="size-8 rounded-full bg-red-500 text-white flex items-center justify-center shadow-lg z-10">
+<span class="material-symbols-outlined text-sm">fiber_manual_record</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation -->
+<div class="flex items-center justify-between mt-4">
+<button class="flex items-center gap-2 px-6 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-medium">
+<span class="material-symbols-outlined">arrow_back</span>
+                    Previous
+                </button>
+<div class="flex gap-4">
+<button class="px-6 py-3 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors font-medium">
+                        Skip for now
+                    </button>
+<button class="flex items-center gap-2 px-8 py-3 rounded-lg bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/30 transition-all font-medium">
+                        Next Question
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column: Question Navigator (Spans 4 cols) -->
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-800 sticky top-24">
+<h3 class="text-base font-semibold text-slate-900 dark:text-slate-100 mb-4">Question Navigator</h3>
+<div class="grid grid-cols-4 gap-3 mb-6">
+<!-- Completed Questions -->
+<button class="aspect-square rounded-lg flex items-center justify-center text-sm font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 ring-1 ring-green-200 dark:ring-green-800/50 hover:ring-2 hover:ring-green-500 transition-all">
+                        1
+                    </button>
+<button class="aspect-square rounded-lg flex items-center justify-center text-sm font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 ring-1 ring-green-200 dark:ring-green-800/50 hover:ring-2 hover:ring-green-500 transition-all">
+                        2
+                    </button>
+<button class="aspect-square rounded-lg flex items-center justify-center text-sm font-medium bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 ring-1 ring-green-200 dark:ring-green-800/50 hover:ring-2 hover:ring-green-500 transition-all">
+                        3
+                    </button>
+<!-- Current Question -->
+<button class="aspect-square rounded-lg flex items-center justify-center text-sm font-bold bg-primary text-white ring-2 ring-primary ring-offset-2 dark:ring-offset-background-dark shadow-md shadow-primary/20">
+                        4
+                    </button>
+<!-- Pending Questions -->
+<button class="aspect-square rounded-lg flex items-center justify-center text-sm font-medium bg-slate-50 text-slate-500 dark:bg-slate-800 dark:text-slate-400 ring-1 ring-slate-200 dark:ring-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">
+                        5
+                    </button>
+<button class="aspect-square rounded-lg flex items-center justify-center text-sm font-medium bg-slate-50 text-slate-500 dark:bg-slate-800 dark:text-slate-400 ring-1 ring-slate-200 dark:ring-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">
+                        6
+                    </button>
+<button class="aspect-square rounded-lg flex items-center justify-center text-sm font-medium bg-slate-50 text-slate-500 dark:bg-slate-800 dark:text-slate-400 ring-1 ring-slate-200 dark:ring-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">
+                        7
+                    </button>
+<button class="aspect-square rounded-lg flex items-center justify-center text-sm font-medium bg-slate-50 text-slate-500 dark:bg-slate-800 dark:text-slate-400 ring-1 ring-slate-200 dark:ring-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">
+                        8
+                    </button>
+<button class="aspect-square rounded-lg flex items-center justify-center text-sm font-medium bg-slate-50 text-slate-500 dark:bg-slate-800 dark:text-slate-400 ring-1 ring-slate-200 dark:ring-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">
+                        9
+                    </button>
+<button class="aspect-square rounded-lg flex items-center justify-center text-sm font-medium bg-slate-50 text-slate-500 dark:bg-slate-800 dark:text-slate-400 ring-1 ring-slate-200 dark:ring-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">
+                        10
+                    </button>
+<button class="aspect-square rounded-lg flex items-center justify-center text-sm font-medium bg-slate-50 text-slate-500 dark:bg-slate-800 dark:text-slate-400 ring-1 ring-slate-200 dark:ring-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">
+                        11
+                    </button>
+<button class="aspect-square rounded-lg flex items-center justify-center text-sm font-medium bg-slate-50 text-slate-500 dark:bg-slate-800 dark:text-slate-400 ring-1 ring-slate-200 dark:ring-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all">
+                        12
+                    </button>
+</div>
+<div class="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-green-500"></div>
+<span class="text-sm text-slate-600 dark:text-slate-400">Completed</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-primary ring-2 ring-primary ring-offset-2 dark:ring-offset-surface-dark"></div>
+<span class="text-sm text-slate-600 dark:text-slate-400">Current</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-3 rounded-full bg-slate-300 dark:bg-slate-600"></div>
+<span class="text-sm text-slate-600 dark:text-slate-400">Pending</span>
+</div>
+</div>
+<div class="mt-8 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-800">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">lightbulb</span>
+<div>
+<h4 class="text-sm font-semibold text-slate-900 dark:text-slate-200">Pro Tip</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
+                                Use the <span class="font-bold">STAR</span> method (Situation, Task, Action, Result) to structure your behavioral answers effectively.
+                            </p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 rounded-lg bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-medium hover:bg-slate-800 dark:hover:bg-slate-200 transition-colors">
+                    Submit Interview
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer for context -->
+<footer class="mt-auto py-6 text-center text-xs text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-800 bg-surface-light dark:bg-surface-dark">
+<p>© 2023 InterviewAI. All progress saved automatically.</p>
+</footer>
+</body></html>

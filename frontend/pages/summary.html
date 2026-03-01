@@ -1,122 +1,244 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Session Summary | Signal Capture</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    <title>Session Summary - InterviewAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
         rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
+    <script id="tailwind-config">
         tailwind.config = {
+            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#000000",
-                        "off-white": "#f2f2f2",
-                        "surface": "#ffffff",
-                        "border-dark": "#000000",
-                        "text-main": "#000000",
-                        "text-muted": "#666666",
+                        "primary": "#5925f4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
                     },
                     fontFamily: {
-                        "mono": ["Space Grotesk", "monospace"],
+                        "display": ["Inter", "sans-serif"]
                     },
-                    borderRadius: {
-                        "DEFAULT": "0px",
-                        "none": "0px"
-                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
                 },
             },
         }
     </script>
-    <style>
-        body {
-            font-family: "Space Grotesk", monospace;
-        }
-    </style>
 </head>
 
-<body class="bg-off-white text-text-main h-screen flex flex-col overflow-hidden font-mono">
-    <header
-        class="flex-none flex items-center justify-between whitespace-nowrap border-b border-border-dark bg-surface px-6 py-3 h-14">
-        <div class="flex items-center gap-4">
-            <div class="size-6 text-white bg-black border border-black flex items-center justify-center select-none">
-                <span class="text-xs">OK</span>
+<body
+    class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-x-hidden text-slate-900 dark:text-slate-100">
+    <div class="layout-container flex h-full grow flex-col">
+        <!-- Navigation -->
+        <header
+            class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-3 sticky top-0 z-50">
+            <div class="flex items-center gap-4 text-slate-900 dark:text-white">
+                <div class="size-8 text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-3xl">psychology</span>
+                </div>
+                <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">
+                    InterviewAI</h2>
             </div>
-            <h1 class="text-black text-sm font-bold tracking-widest uppercase">
-                SIGNAL CAPTURE CONSOLE <span class="text-text-muted mx-2">//</span> TRANSMISSION COMPLETE
-            </h1>
-        </div>
-    </header>
-
-    <main class="flex-1 overflow-y-auto bg-[#ebebeb] p-4 md:p-10 flex flex-col items-center justify-center">
-        <div
-            class="w-full max-w-xl flex flex-col gap-8 bg-white border border-black p-10 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-            <div class="flex flex-col items-center text-center gap-6">
-                <div class="size-20 bg-black text-white flex items-center justify-center">
-                    <span class="material-symbols-outlined text-5xl">task_alt</span>
-                </div>
-                <div>
-                    <h2 class="text-3xl font-black uppercase tracking-tighter">Capture_Finalized</h2>
-                    <p class="text-xs text-gray-500 uppercase tracking-widest mt-2">All multimodal signals have been
-                        buffered and stored in core infrastructure.</p>
-                </div>
-            </div>
-
-            <div class="border-t border-black pt-8 space-y-4">
-                <div class="flex justify-between items-center text-xs font-bold uppercase">
-                    <span class="text-gray-400">SESSION_STATUS</span>
-                    <span class="text-green-600">SUCCESSFUL_UPLINK</span>
-                </div>
-                <div class="flex justify-between items-center text-xs font-bold uppercase">
-                    <span class="text-gray-400">INTEGRITY_CHECK</span>
-                    <span class="text-black">VERIFIED</span>
-                </div>
-                <div id="summary-duration" class="flex justify-between items-center text-xs font-bold uppercase">
-                    <span class="text-gray-400">DURATION</span>
-                    <span class="text-black">--:--:--</span>
+            <div class="flex flex-1 justify-end gap-8">
+                <nav class="flex items-center gap-8 mr-4">
+                    <a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-bold leading-normal transition-colors"
+                        href="/dashboard">Dashboard</a>
+                    <a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+                        href="/profile">Profile</a>
+                    <a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+                        href="/settings">Settings</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <button onclick="sessionStorage.clear(); window.location.href='/login';"
+                        class="hidden md:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+                        <span class="truncate">Logout</span>
+                    </button>
+                    <div id="user-avatar"
+                        class="size-10 rounded-full bg-primary flex items-center justify-center text-white font-bold ring-2 ring-primary/20 uppercase">
+                        UN
+                    </div>
                 </div>
             </div>
+        </header>
+        <!-- Main Content -->
+        <main class="flex-1 flex justify-center py-8 px-4 md:px-8">
+            <div class="max-w-[1024px] w-full flex flex-col gap-8">
+                <!-- Hero Section: Success State -->
+                <div class="flex flex-col items-center gap-6 py-8">
+                    <div
+                        class="size-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+                        <span
+                            class="material-symbols-outlined text-5xl text-green-600 dark:text-green-400">check_circle</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 text-center">
+                        <h1 class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight">Interview Complete!
+                        </h1>
+                        <p id="summary-hero-text" class="text-slate-500 dark:text-slate-400 text-base max-w-md">Your
+                            session has been successfully processed and all signals have been securely buffered.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <button onclick="window.location.href='/dashboard'"
+                            class="flex items-center gap-2 h-12 px-8 bg-primary hover:bg-primary/90 text-white rounded-xl text-sm font-bold transition-all shadow-xl shadow-primary/20 hover:shadow-primary/40">
+                            <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                            Go to Dashboard
+                        </button>
+                    </div>
+                </div>
+                <!-- Metrics Grid -->
+                <section>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- Duration -->
+                        <div
+                            class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-1">
+                            <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
+                                <span class="material-symbols-outlined text-xl">timer</span>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest leading-none">Duration</span>
+                            </div>
+                            <p id="summary-duration" class="text-3xl font-black text-slate-900 dark:text-white">--:--:--
+                            </p>
+                            <span
+                                class="text-[10px] font-bold text-green-600 dark:text-green-400 uppercase tracking-widest mt-2">Active
+                                Session Time</span>
+                        </div>
+                        <!-- Integrity -->
+                        <div
+                            class="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col gap-1">
+                            <div class="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-2">
+                                <span class="material-symbols-outlined text-xl">security</span>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest leading-none">Integrity</span>
+                            </div>
+                            <p class="text-3xl font-black text-green-600 dark:text-green-400">VERIFIED</p>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2">Check
+                                Successful</span>
+                        </div>
+                    </div>
+                </section>
+                <!-- Status Feed -->
+                <section
+                    class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+                        <h3
+                            class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">analytics</span>
+                            Processing Pipeline
+                        </h3>
+                    </div>
+                    <div class="p-8 space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="size-8 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-sm">done</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-900 dark:text-white">Signal Capture Finalized</p>
+                                <p class="text-xs text-slate-500">Multimodal stream successfully closed and buffered.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="size-8 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-sm">done</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-900 dark:text-white">Integrity Check Complete</p>
+                                <p class="text-xs text-slate-500">Session metrics matched baseline parameters.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined text-sm animate-spin">sync</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold text-slate-900 dark:text-white">AI Analysis in Progress</p>
+                                <p class="text-xs text-slate-500">Recruiter will review your submission shortly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-            <div class="flex flex-col gap-3 mt-4">
-                <button onclick="window.location.href='/dashboard'"
-                    class="w-full bg-black text-white h-14 border border-black text-xs font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-all flex items-center justify-center">
-                    RETURN_TO_DASHBOARD
-                </button>
-                <div class="text-[10px] text-center text-gray-400 uppercase tracking-widest">You can now safely
-                    terminate this window.</div>
             </div>
-        </div>
-    </main>
-
-    <footer
-        class="flex-none bg-white border-t border-black h-10 px-6 flex items-center justify-center text-[10px] font-mono tracking-widest text-black uppercase opacity-60">
-        AI INTERVIEW SYSTEM // MODULE_ID: SUMMARY_COMP_V1
-    </footer>
-
+        </main>
+    </div>
     <script>
         const user = JSON.parse(sessionStorage.getItem('user'));
         const token = sessionStorage.getItem('token');
 
-        if (!token || !user || user.role !== 'seeker') {
+        if (!token || !user) {
             window.location.href = '/login';
         }
 
-        const summary = JSON.parse(sessionStorage.getItem('summary'));
-        if (summary && summary.duration_sec) {
-            const sec = parseInt(summary.duration_sec);
-            const hrs = Math.floor(sec / 3600);
-            const mins = Math.floor((sec % 3600) / 60);
-            const secs = sec % 60;
-            document.getElementById('summary-duration').querySelector('span:last-child').innerText =
-                `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        document.getElementById('user-avatar').innerText = user.full_name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+
+        const params = new URLSearchParams(window.location.search);
+        const applicationId = params.get('application_id');
+
+        async function loadApplicationSummary() {
+            if (!applicationId) {
+                // Fallback: post-session flow from capture.html, read from sessionStorage
+                document.getElementById('summary-hero-text').innerText =
+                    `Congratulations ${user.full_name}, your assessment session has been successfully processed. The recruitment team will review your session artifacts shortly.`;
+
+                const summary = JSON.parse(sessionStorage.getItem('summary'));
+                if (summary && summary.duration_sec) {
+                    const sec = parseInt(summary.duration_sec);
+                    const hrs = Math.floor(sec / 3600);
+                    const mins = Math.floor((sec % 3600) / 60);
+                    const secs = sec % 60;
+                    document.getElementById('summary-duration').innerText =
+                        `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                }
+                return;
+            }
+
+            try {
+                // Fetch application sessions for duration/integrity data
+                const sessRes = await fetch(`/api/applications/${applicationId}/sessions`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const sessions = sessRes.ok ? await sessRes.json() : [];
+                const session = sessions[0];
+
+                if (session) {
+                    // Calculate duration
+                    if (session.started_at && session.ended_at) {
+                        const start = new Date(session.started_at);
+                        const end = new Date(session.ended_at);
+                        const sec = Math.round((end - start) / 1000);
+                        const hrs = Math.floor(sec / 3600);
+                        const mins = Math.floor((sec % 3600) / 60);
+                        const secs = sec % 60;
+                        document.getElementById('summary-duration').innerText =
+                            `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+                    }
+
+                    // Integrity status
+                    const integrityEl = document.querySelector('#stat-integrity');
+                    if (integrityEl) {
+                        const failed = session.multiple_faces_detected || session.audio_interruptions_detected;
+                        integrityEl.innerText = failed ? 'FLAGGED' : 'VERIFIED';
+                        integrityEl.className = failed ? 'text-3xl font-black text-red-500' : 'text-3xl font-black text-green-600 dark:text-green-400';
+                    }
+                }
+
+                document.getElementById('summary-hero-text').innerText =
+                    `Your application (ID: ${applicationId}) has been submitted and is under review. The recruitment team will be in touch regarding next steps.`;
+
+            } catch (err) {
+                console.error('Error loading application summary:', err);
+            }
         }
+
+        loadApplicationSummary();
     </script>
 </body>
 

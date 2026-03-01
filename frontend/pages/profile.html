@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>My Profile - InterviewAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#5925f4",
+                        "primary-dark": "#4318c4",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a1628",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#110d1c",
+                        "accent-blue": "#00d4ff",
+                    },
+                    fontFamily: { sans: ["Inter", "sans-serif"] },
+                    borderRadius: { "lg": "0.5rem", "xl": "1rem", "2xl": "1.5rem" },
+                },
+            },
+        };
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-slate-100 min-h-screen flex">
+    <!-- Sidebar -->
+    <aside
+        class="hidden lg:flex flex-col w-64 bg-white dark:bg-surface-dark border-r border-slate-200 dark:border-slate-800 shrink-0 h-screen sticky top-0">
+        <div class="p-6 flex items-center gap-3">
+            <div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+                <span class="material-symbols-outlined">smart_toy</span>
+            </div>
+            <h1 class="text-xl font-bold tracking-tight">InterviewAI</h1>
+        </div>
+        <nav id="sidebar-nav" class="flex-1 px-4 space-y-1 mt-4">
+            <!-- Dynamic Nav -->
+        </nav>
+        <div class="p-6 border-t border-slate-200 dark:border-slate-800">
+            <button onclick="logout()"
+                class="flex items-center gap-3 px-4 py-2 w-full text-slate-500 hover:text-red-500 transition-colors font-medium">
+                <span class="material-symbols-outlined">logout</span> Logout
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto">
+        <!-- Top Navbar -->
+        <header
+            class="h-16 flex-none bg-white dark:bg-surface-dark border-b border-slate-200 dark:border-slate-800 px-6 sm:px-10 flex items-center justify-between sticky top-0 z-40">
+            <h2 class="text-slate-500 font-medium whitespace-nowrap overflow-hidden text-ellipsis">
+                <a id="home-breadcrumb" href="/dashboard" class="hover:text-primary transition-colors">Home</a> /
+                <span class="text-slate-900 dark:text-white font-bold">My Profile</span>
+            </h2>
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-3 pl-6 border-l border-slate-200 dark:border-slate-800">
+                    <div class="text-right hidden sm:block">
+                        <p id="nav-user-name" class="text-sm font-bold truncate max-w-[120px]">Candidate</p>
+                        <p class="text-[10px] text-slate-500 uppercase font-black">Free Plan</p>
+                    </div>
+                    <div id="nav-avatar"
+                        class="size-10 rounded-xl bg-gradient-to-br from-primary to-accent-blue flex items-center justify-center text-white font-black shadow-lg">
+                        OK</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Profile Content -->
+        <div class="p-6 sm:p-10 max-w-4xl w-full mx-auto space-y-8">
+
+            <!-- Profile Hero Card -->
+            <div
+                class="bg-white dark:bg-surface-dark rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                <!-- Cover Banner -->
+                <div class="h-32 bg-gradient-to-r from-primary to-accent-blue relative">
+                    <div
+                        class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNCI+PHBhdGggZD0iTTM2IDM0di00aC0ydjRoLTR2Mmg0djRoMnYtNGg0di0yaC00em0wLTMwVjBoLTJ2NGgtNHYyaDR2NGgyVjZoNFY0aC00ek02IDM0di00SDR2NGgwdjJoNHY0aDJ2LTRoNHYtMkg2ek02IDR2LTRINAE0djRIMHYyaDR2NGgyVjZoNFY0SDZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30">
+                    </div>
+                </div>
+                <!-- Avatar + Name -->
+                <div class="px-8 pb-8 relative">
+                    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 -mt-10 mb-6">
+                        <div id="profile-avatar-hero"
+                            class="size-24 rounded-2xl bg-gradient-to-br from-primary to-accent-blue border-4 border-white dark:border-surface-dark flex items-center justify-center text-white font-black text-3xl shadow-xl">
+                            OK
+                        </div>
+                        <div class="flex gap-3">
+                            <span id="profile-role-badge"
+                                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold">
+                                <span class="material-symbols-outlined text-sm">verified_user</span>
+                                Candidate
+                            </span>
+                        </div>
+                    </div>
+                    <h2 id="profile-name" class="text-2xl font-black text-slate-900 dark:text-white mb-1">Loading...
+                    </h2>
+                    <p id="profile-email" class="text-slate-500 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">mail</span>
+                        loading@email.com
+                    </p>
+                </div>
+            </div>
+
+            <!-- Stats Row -->
+            <div id="stats-container" class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <!-- Seeker Stats (Default) -->
+                <div
+                    class="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm text-center">
+                    <div
+                        class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mx-auto mb-3">
+                        <span class="material-symbols-outlined">assignment</span>
+                    </div>
+                    <p id="stat-label-1" class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">
+                        Applications</p>
+                    <h3 id="stat-val-1" class="text-3xl font-black">0</h3>
+                </div>
+                <div
+                    class="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm text-center">
+                    <div
+                        class="size-12 rounded-xl bg-orange-100 flex items-center justify-center text-orange-500 mx-auto mb-3">
+                        <span class="material-symbols-outlined">videocam</span>
+                    </div>
+                    <p id="stat-label-2" class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">
+                        Interviews</p>
+                    <h3 id="stat-val-2" class="text-3xl font-black">0</h3>
+                </div>
+                <div
+                    class="bg-white dark:bg-surface-dark p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm text-center">
+                    <div
+                        class="size-12 rounded-xl bg-green-100 flex items-center justify-center text-green-600 mx-auto mb-3">
+                        <span class="material-symbols-outlined">verified</span>
+                    </div>
+                    <p id="stat-label-3" class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">
+                        Offers</p>
+                    <h3 id="stat-val-3" class="text-3xl font-black">0</h3>
+                </div>
+            </div>
+
+            <!-- Account Info -->
+            <div
+                class="bg-white dark:bg-surface-dark rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                <div class="p-6 border-b border-slate-100 dark:border-slate-800">
+                    <h3 class="text-lg font-bold flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">manage_accounts</span>
+                        Account Information
+                    </h3>
+                </div>
+                <div class="p-6 space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400">Full
+                                Name</label>
+                            <p id="info-name" class="text-base font-bold text-slate-900 dark:text-white">—</p>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400">Email
+                                Address</label>
+                            <p id="info-email" class="text-base font-bold text-slate-900 dark:text-white">—</p>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400">Role</label>
+                            <p id="info-role" class="text-base font-bold text-slate-900 dark:text-white capitalize">—
+                            </p>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-slate-400">Account
+                                ID</label>
+                            <p id="info-id" class="text-base font-bold text-slate-900 dark:text-white font-mono">—</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        const token = sessionStorage.getItem('token');
+
+        if (!token || !user) {
+            window.location.href = '/login';
+        }
+
+        function logout() {
+            sessionStorage.clear();
+            window.location.href = '/login';
+        }
+
+        function setInitials(name) {
+            return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+        }
+
+        const isRecruiter = user.role === 'recruiter' || user.role === 'admin';
+        const initials = setInitials(user.full_name);
+
+        // Render Sidebar
+        const sidebarNav = document.getElementById('sidebar-nav');
+        if (isRecruiter) {
+            sidebarNav.innerHTML = `
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="/recruiter">
+                    <span class="material-symbols-outlined">dashboard</span> Dashboard
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-primary bg-primary/5 font-semibold transition-all" href="/profile">
+                    <span class="material-symbols-outlined">person</span> My Profile
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="/settings">
+                    <span class="material-symbols-outlined">settings</span> Settings
+                </a>
+            `;
+            document.getElementById('home-breadcrumb').href = '/recruiter';
+        } else {
+            sidebarNav.innerHTML = `
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="/dashboard">
+                    <span class="material-symbols-outlined">dashboard</span> Dashboard
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="/jobs">
+                    <span class="material-symbols-outlined">work</span> Browse Jobs
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-primary bg-primary/5 font-semibold transition-all" href="/profile">
+                    <span class="material-symbols-outlined">person</span> My Profile
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="/settings">
+                    <span class="material-symbols-outlined">settings</span> Settings
+                </a>
+            `;
+        }
+
+        document.getElementById('nav-user-name').innerText = user.full_name;
+        document.getElementById('nav-avatar').innerText = initials;
+        document.getElementById('profile-avatar-hero').innerText = initials;
+        document.getElementById('profile-name').innerText = user.full_name;
+        document.getElementById('profile-email').innerHTML = `<span class="material-symbols-outlined text-sm">mail</span> ${user.email}`;
+        document.getElementById('profile-role-badge').innerHTML = `<span class="material-symbols-outlined text-sm">verified_user</span> ${user.role.charAt(0).toUpperCase() + user.role.slice(1)}`;
+
+        document.getElementById('info-name').innerText = user.full_name;
+        document.getElementById('info-email').innerText = user.email;
+        document.getElementById('info-role').innerText = user.role;
+        document.getElementById('info-id').innerText = `#${user.id}`;
+
+        // Load stats
+        async function loadStats() {
+            try {
+                if (isRecruiter) {
+                    // Load Recruiter Stats
+                    const res = await fetch(`/api/jobs/recruiter/${user.id}`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (!res.ok) return;
+                    const jobs = await res.json();
+
+                    document.getElementById('stat-label-1').innerText = 'Job Postings';
+                    document.getElementById('stat-val-1').innerText = jobs.length;
+
+                    document.getElementById('stat-label-2').innerText = 'Active Jobs';
+                    document.getElementById('stat-val-2').innerText = jobs.filter(j => j.is_active).length;
+
+                    document.getElementById('stat-label-3').innerText = 'Total Applications';
+                    const appRes = await fetch('/api/applications/recruiter/all', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (appRes.ok) {
+                        const apps = await appRes.json();
+                        document.getElementById('stat-val-3').innerText = apps.length;
+                    }
+
+                } else {
+                    // Load Seeker Stats
+                    const res = await fetch('/api/applications/me', {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (!res.ok) return;
+                    const apps = await res.json();
+                    document.getElementById('stat-val-1').innerText = apps.length;
+                    document.getElementById('stat-val-2').innerText =
+                        apps.filter(a => ['interview required', 'interviewing'].includes(a.status.toLowerCase())).length;
+                    document.getElementById('stat-val-3').innerText =
+                        apps.filter(a => ['passed', 'offered'].includes(a.status.toLowerCase())).length;
+                }
+            } catch (e) {
+                console.error('Failed to load stats:', e);
+            }
+        }
+        loadStats();
+    </script>
+</body>
+
+</html>

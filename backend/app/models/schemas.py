@@ -2,6 +2,7 @@ from typing import Optional, List
 from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship
 from enum import Enum
+from pydantic import BaseModel
 
 class UserRole(str, Enum):
     RECRUITER = "recruiter"
@@ -26,6 +27,7 @@ class JobBase(SQLModel):
     title: str
     description: str
     location: str
+    category: Optional[str] = "General"
     salary_range: Optional[str] = None
     is_active: bool = True
 
@@ -37,6 +39,22 @@ class Job(JobBase, table=True):
     # Relationships
     recruiter: User = Relationship(back_populates="jobs")
     applications: List["Application"] = Relationship(back_populates="job")
+
+class QuestionCreate(BaseModel):
+    domain: str
+    question_text: str
+    question_type: str
+    options: Optional[List[str]] = None
+    correct_option: Optional[int] = None
+    time_limit_sec: int = 120
+
+class JobCreate(BaseModel):
+    title: str
+    description: str
+    location: str
+    category: Optional[str] = None
+    salary_range: Optional[str] = None
+    questions: Optional[List[QuestionCreate]] = None
 
 class Application(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live AI Signal Capture - InterviewAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#5925f4",
+                        "primary-dark": "#3c18a6",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                        "surface-dark": "#1e1a2e",
+                        "border-dark": "#2d2840",
+                        "text-light": "#e2e0e8",
+                        "text-dim": "#9c96b0",
+                        "success": "#10b981",
+                        "danger": "#ef4444",
+                        "warning": "#f59e0b",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-dark text-text-light font-display min-h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between border-b border-border-dark bg-surface-dark px-6 py-4 z-20">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">emergency_recording</span>
+</div>
+<h2 class="text-white text-lg font-bold tracking-tight">InterviewAI <span class="text-text-dim font-normal text-sm ml-2">Live Monitor</span></h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-background-dark rounded-full border border-border-dark">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-danger opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-danger"></span>
+</span>
+<span class="text-xs font-semibold tracking-wide text-danger uppercase">Live Rec</span>
+</div>
+<div class="h-6 w-px bg-border-dark"></div>
+<div class="flex items-center gap-4">
+<button class="text-text-dim hover:text-white transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="text-text-dim hover:text-white transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center overflow-hidden">
+<img alt="Recruiter Profile" class="h-full w-full object-cover" data-alt="Recruiter profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWVNrgOZYe0AqbJYwkPb20MuglPNLHy40fGa_x-6UCWABg-u7EFBGGwWmXB0MtYFF8fosINl2swjQD6CiBJQMRKv6dUc6rlK1NJm5zl471TIFi-LGR32UEukL0I1fBPo39RNpuYg8_boGEASNjpaIBgax94apD6evohRSH4XIMMBIkRTBr_WWdD9bk9VVXJOgTjYBXDPtDVTa7JZN6RwIApSU3rKBc2eblSRlXKtaWkUR1G0Y6M5TSWSTBrx9Tv1FnFegWU0dfOgo"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Center: Video & Stats -->
+<section class="flex-1 flex flex-col relative p-6 gap-6 overflow-y-auto">
+<!-- Top Bar: Timer & Candidate Info -->
+<div class="flex justify-between items-end pb-2">
+<div>
+<h1 class="text-2xl font-bold text-white mb-1">Candidate #8492 <span class="text-base font-normal text-text-dim">- Senior Backend Engineer</span></h1>
+<div class="flex gap-4 text-sm text-text-dim">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">location_on</span> San Francisco, CA</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">wifi</span> Network: Stable (45ms)</span>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex flex-col items-center bg-surface-dark border border-border-dark px-4 py-2 rounded-xl min-w-[100px]">
+<span class="text-xs text-text-dim uppercase tracking-wider font-semibold">Session</span>
+<span class="text-xl font-mono font-bold text-white">00:14:32</span>
+</div>
+<div class="flex flex-col items-center bg-surface-dark border border-border-dark px-4 py-2 rounded-xl min-w-[100px]">
+<span class="text-xs text-text-dim uppercase tracking-wider font-semibold">Heartbeat</span>
+<div class="flex items-center gap-1 text-danger">
+<span class="material-symbols-outlined text-sm animate-pulse">favorite</span>
+<span class="text-xl font-mono font-bold text-white">82 <span class="text-xs text-text-dim font-normal">BPM</span></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Video Feed Container -->
+<div class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-border-dark group">
+<!-- Placeholder for Video Stream -->
+<img alt="Candidate video stream" class="w-full h-full object-cover opacity-80" data-alt="Candidate facing camera in office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeyvVfFa_BgSP4WWoy8czGmI6X0a22nO8ay2nJMAw__AnyTYhX2AHSlvv9yHJCseWWpjgsAviDyINFSBjEnCv_X9mRzem3T2C0ey6xEEIDFuZQE_GjSrZt7ta18PBmNtI0LGO0lJ_iLAXD5CHnUGrSYiSYGzI5OURIH3QGiUetNpnS4Du6TS30xKAKNw4ghqxMdFbgO-Lxk4CVrXYwwj0C2y3M62cJ9lPCKqXgo6uutE0wawaYzsPk6re6M64q7JTHTZreg-h0F58"/>
+<!-- Overlay UI: Bounding Box -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="w-[30%] h-[50%] border-2 border-success/70 rounded-lg relative shadow-[0_0_30px_rgba(16,185,129,0.2)]">
+<!-- Corner Markers -->
+<div class="absolute -top-1 -left-1 w-4 h-4 border-t-4 border-l-4 border-success"></div>
+<div class="absolute -top-1 -right-1 w-4 h-4 border-t-4 border-r-4 border-success"></div>
+<div class="absolute -bottom-1 -left-1 w-4 h-4 border-b-4 border-l-4 border-success"></div>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-4 border-r-4 border-success"></div>
+<!-- Tracking Label -->
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-success/20 backdrop-blur-sm px-2 py-0.5 rounded text-xs font-mono text-success border border-success/30 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-success"></span> FACE DETECTED (98%)
+                        </div>
+</div>
+</div>
+<!-- Live Stream Indicator Overlay -->
+<div class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-danger animate-pulse"></div>
+<span class="text-xs font-medium tracking-wide">LIVE FEED • 1080p</span>
+</div>
+</div>
+<!-- Bottom Action Bar -->
+<div class="mt-auto pt-4 border-t border-border-dark flex justify-between items-center">
+<div class="text-sm text-text-dim max-w-lg">
+<span class="text-white font-medium">Session Status:</span> Monitoring active. All signals are within normal baseline ranges.
+                </div>
+<button class="bg-danger/10 hover:bg-danger/20 text-danger border border-danger/30 hover:border-danger/50 px-6 py-2.5 rounded-lg font-semibold flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined">stop_circle</span>
+                    End Session
+                </button>
+</div>
+</section>
+<!-- Right Panel: Signal Analysis -->
+<aside class="w-96 bg-surface-dark border-l border-border-dark flex flex-col overflow-y-auto">
+<div class="p-5 border-b border-border-dark">
+<h3 class="text-white font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">graphic_eq</span>
+                    Real-time Signals
+                </h3>
+</div>
+<div class="p-5 flex flex-col gap-4">
+<!-- Signal Card: Attention -->
+<div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="p-1.5 rounded bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</span>
+<span class="text-sm font-medium text-white">Gaze Tracking</span>
+</div>
+<span class="text-xs font-mono text-success bg-success/10 px-1.5 py-0.5 rounded">FOCUSED</span>
+</div>
+<div class="h-2 w-full bg-surface-dark rounded-full overflow-hidden mb-1">
+<div class="h-full bg-success w-[85%] rounded-full"></div>
+</div>
+<div class="flex justify-between text-xs text-text-dim">
+<span>Screen Center</span>
+<span>85% Focus</span>
+</div>
+</div>
+<!-- Signal Card: Head Pose -->
+<div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="p-1.5 rounded bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-lg">face</span>
+</span>
+<span class="text-sm font-medium text-white">Head Pose</span>
+</div>
+<span class="text-xs font-mono text-text-dim">Yaw: -2°</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-xs">
+<div class="bg-surface-dark p-2 rounded text-center border border-border-dark/50">
+<span class="block text-text-dim text-[10px] uppercase">Pitch</span>
+<span class="font-mono text-white">4.1°</span>
+</div>
+<div class="bg-surface-dark p-2 rounded text-center border border-border-dark/50">
+<span class="block text-text-dim text-[10px] uppercase">Roll</span>
+<span class="font-mono text-white">0.5°</span>
+</div>
+</div>
+</div>
+<!-- Signal Card: Blink Rate -->
+<div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="p-1.5 rounded bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-lg">remove_red_eye</span>
+</span>
+<span class="text-sm font-medium text-white">Blink Rate</span>
+</div>
+<span class="text-xs font-mono text-white">12/min</span>
+</div>
+<!-- Fake Graph -->
+<div class="h-10 flex items-end justify-between gap-1">
+<div class="w-1 bg-surface-dark h-[30%] rounded-t"></div>
+<div class="w-1 bg-surface-dark h-[50%] rounded-t"></div>
+<div class="w-1 bg-primary h-[80%] rounded-t"></div>
+<div class="w-1 bg-surface-dark h-[40%] rounded-t"></div>
+<div class="w-1 bg-surface-dark h-[20%] rounded-t"></div>
+<div class="w-1 bg-surface-dark h-[60%] rounded-t"></div>
+<div class="w-1 bg-primary h-[90%] rounded-t"></div>
+<div class="w-1 bg-surface-dark h-[40%] rounded-t"></div>
+<div class="w-1 bg-surface-dark h-[30%] rounded-t"></div>
+<div class="w-1 bg-surface-dark h-[50%] rounded-t"></div>
+<div class="w-1 bg-primary h-[70%] rounded-t"></div>
+<div class="w-1 bg-surface-dark h-[40%] rounded-t"></div>
+</div>
+<div class="mt-2 text-xs text-text-dim text-right">Last 60s</div>
+</div>
+<!-- Signal Card: Audio Waveform -->
+<div class="bg-background-dark rounded-xl p-4 border border-border-dark">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<span class="p-1.5 rounded bg-primary/20 text-primary">
+<span class="material-symbols-outlined text-lg">mic</span>
+</span>
+<span class="text-sm font-medium text-white">Voice Activity</span>
+</div>
+<span class="text-xs font-mono text-success animate-pulse">SPEAKING</span>
+</div>
+<div class="flex items-center justify-center gap-[2px] h-8">
+<div class="w-1 bg-primary rounded-full h-3 animate-[pulse_0.5s_ease-in-out_infinite]"></div>
+<div class="w-1 bg-primary rounded-full h-5 animate-[pulse_0.6s_ease-in-out_infinite]"></div>
+<div class="w-1 bg-primary rounded-full h-8 animate-[pulse_0.4s_ease-in-out_infinite]"></div>
+<div class="w-1 bg-primary rounded-full h-6 animate-[pulse_0.7s_ease-in-out_infinite]"></div>
+<div class="w-1 bg-primary rounded-full h-4 animate-[pulse_0.5s_ease-in-out_infinite]"></div>
+<div class="w-1 bg-primary rounded-full h-2 animate-[pulse_0.3s_ease-in-out_infinite]"></div>
+<div class="w-1 bg-primary rounded-full h-5 animate-[pulse_0.6s_ease-in-out_infinite]"></div>
+<div class="w-1 bg-primary rounded-full h-7 animate-[pulse_0.4s_ease-in-out_infinite]"></div>
+<div class="w-1 bg-primary rounded-full h-3 animate-[pulse_0.5s_ease-in-out_infinite]"></div>
+<div class="w-1 bg-primary rounded-full h-5 animate-[pulse_0.6s_ease-in-out_infinite]"></div>
+<div class="w-1 bg-primary rounded-full h-2 animate-[pulse_0.4s_ease-in-out_infinite]"></div>
+</div>
+</div>
+<!-- Integrity Alerts Section -->
+<div class="mt-4 pt-4 border-t border-border-dark">
+<h4 class="text-xs font-semibold text-text-dim uppercase tracking-wider mb-3">Integrity Events</h4>
+<div class="space-y-3">
+<div class="flex gap-3 p-3 bg-warning/5 border border-warning/20 rounded-lg">
+<div class="text-warning mt-0.5">
+<span class="material-symbols-outlined text-sm">warning</span>
+</div>
+<div>
+<p class="text-xs font-medium text-warning">Multiple Faces Detected</p>
+<p class="text-[10px] text-text-dim mt-0.5">00:04:12 - Second person entered frame briefly.</p>
+</div>
+</div>
+<div class="flex gap-3 p-3 bg-surface-dark border border-border-dark rounded-lg opacity-60">
+<div class="text-text-dim mt-0.5">
+<span class="material-symbols-outlined text-sm">info</span>
+</div>
+<div>
+<p class="text-xs font-medium text-text-light">Tab Switch Detected</p>
+<p class="text-[10px] text-text-dim mt-0.5">00:02:45 - User focus lost for 3s.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

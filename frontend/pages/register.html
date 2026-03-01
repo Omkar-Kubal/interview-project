@@ -1,186 +1,249 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>AI Interview - Register</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    <title>InterviewAI - Create Your Account</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
         rel="stylesheet" />
     <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "science-bg": "#f4f4f5",
-                        "science-card": "#ffffff",
-                        "science-border": "#e4e4e7",
-                        "science-text": "#18181b",
-                        "science-muted": "#71717a",
-                        "science-accent": "#27272a"
+                        "primary": "#5925f4",
+                        "primary-dark": "#4318c4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                        "neutral-surface": "#ffffff",
                     },
                     fontFamily: {
-                        "sans": ["Inter", "sans-serif"],
-                        "mono": ["IBM Plex Mono", "monospace"]
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
                     },
-                    borderRadius: { DEFAULT: "0px", none: "0px" }
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
                 },
             },
         }
     </script>
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        *,
-        *::before,
-        *::after {
-            border-radius: 0 !important;
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
         }
     </style>
 </head>
 
 <body
-    class="relative flex min-h-screen w-full flex-col bg-science-bg text-science-text font-sans antialiased items-center justify-center p-6">
-
-    <div
-        class="w-full max-w-[480px] bg-science-card border border-science-border shadow-sm flex flex-col relative z-10">
-        <div class="bg-gray-50 border-b border-science-border px-6 py-3 flex justify-between items-center">
-            <span class="text-xs font-mono text-science-muted uppercase tracking-wider">Registration: USER_NEW</span>
-            <span class="material-symbols-outlined text-science-muted text-[18px]">person_add</span>
-        </div>
-        <div class="p-10 flex flex-col">
-            <div class="mb-8 self-center border border-science-border p-4 bg-white text-science-accent inline-flex">
-                <span class="material-symbols-outlined text-[32px]">group</span>
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen w-full overflow-x-hidden">
+    <div class="flex flex-col lg:flex-row min-h-screen">
+        <!-- Left Panel: Brand & Info -->
+        <div
+            class="hidden lg:flex flex-col w-[40%] bg-slate-900 relative overflow-hidden justify-between p-12 text-white">
+            <div class="absolute inset-0 z-0 bg-gradient-to-br from-slate-900 via-[#2e1d68] to-primary opacity-90">
             </div>
-            <h1 class="text-science-text font-mono text-2xl font-bold leading-tight mb-2 tracking-tight text-center">
-                CREATE ACCOUNT
-            </h1>
-            <p class="text-science-muted text-xs text-center uppercase tracking-widest mb-8">
-                Join the Multidmodal Network
-            </p>
-
-            <form id="register-form" class="space-y-5">
-                <div class="flex flex-col space-y-2">
-                    <label class="text-science-text font-mono text-[10px] uppercase tracking-widest font-bold">
-                        Full Name
-                    </label>
-                    <div class="relative">
-                        <input id="full_name" required
-                            class="form-input flex w-full min-w-0 resize-none text-science-text focus:outline-0 focus:ring-0 focus:border-science-accent border border-science-border bg-gray-50 h-11 placeholder:text-gray-300 px-4 pl-10 text-sm font-mono"
-                            placeholder="John Doe" type="text" />
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span class="material-symbols-outlined text-science-muted text-[18px]">person</span>
+            <div
+                class="absolute inset-0 z-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay">
+            </div>
+            <a href="/" class="relative z-10 flex items-center gap-3">
+                <div class="size-8 text-primary bg-white rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-2xl">smart_toy</span>
+                </div>
+                <h2 class="text-2xl font-bold tracking-tight">InterviewAI</h2>
+            </a>
+            <div class="relative z-10 mt-auto mb-20 max-w-sm">
+                <div class="space-y-8">
+                    <div class="flex items-start gap-4">
+                        <div class="p-2 rounded-lg bg-white/10 backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-accent">verified</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Fair &amp; Unbiased</h4>
+                            <p class="text-slate-400 text-sm">AI-driven screening that focuses on merit and skills
+                                rather than background.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-2 rounded-lg bg-white/10 backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-accent">speed</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Instant Feedback</h4>
+                            <p class="text-slate-400 text-sm">Get real-time insights on your performance and areas for
+                                improvement.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-2 rounded-lg bg-white/10 backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-accent">rocket_launch</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Career Growth</h4>
+                            <p class="text-slate-400 text-sm">Join the platform that helps you land your dream job with
+                                confidence.</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="flex flex-col space-y-2">
-                    <label class="text-science-text font-mono text-[10px] uppercase tracking-widest font-bold">
-                        Email Address
-                    </label>
-                    <div class="relative">
-                        <input id="email" required
-                            class="form-input flex w-full min-w-0 resize-none text-science-text focus:outline-0 focus:ring-0 focus:border-science-accent border border-science-border bg-gray-50 h-11 placeholder:text-gray-300 px-4 pl-10 text-sm font-mono"
-                            placeholder="user@example.com" type="email" />
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span
-                                class="material-symbols-outlined text-science-muted text-[18px]">alternate_email</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col space-y-2">
-                    <label class="text-science-text font-mono text-[10px] uppercase tracking-widest font-bold">
-                        Password
-                    </label>
-                    <div class="relative">
-                        <input id="password" required
-                            class="form-input flex w-full min-w-0 resize-none text-science-text focus:outline-0 focus:ring-0 focus:border-science-accent border border-science-border bg-gray-50 h-11 placeholder:text-gray-300 px-4 pl-10 text-sm font-mono"
-                            placeholder="Min. 8 characters" type="password" />
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span class="material-symbols-outlined text-science-muted text-[18px]">password</span>
-                        </div>
-                    </div>
-                    <!-- Password Strength Indicator -->
-                    <div id="password-strength" class="hidden space-y-1 mt-1">
-                        <div class="flex gap-1">
-                            <div id="strength-bar-1" class="h-1 flex-1 bg-gray-200 transition-colors"></div>
-                            <div id="strength-bar-2" class="h-1 flex-1 bg-gray-200 transition-colors"></div>
-                            <div id="strength-bar-3" class="h-1 flex-1 bg-gray-200 transition-colors"></div>
-                            <div id="strength-bar-4" class="h-1 flex-1 bg-gray-200 transition-colors"></div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-1 text-[9px] font-mono">
-                            <span id="req-length" class="text-gray-400">✗ 8+ characters</span>
-                            <span id="req-upper" class="text-gray-400">✗ Uppercase</span>
-                            <span id="req-lower" class="text-gray-400">✗ Lowercase</span>
-                            <span id="req-digit" class="text-gray-400">✗ Number</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col space-y-2">
-                    <label class="text-science-text font-mono text-[10px] uppercase tracking-widest font-bold">
-                        Account Type
-                    </label>
-                    <div class="grid grid-cols-2 gap-4">
-                        <label class="cursor-pointer">
-                            <input type="radio" name="role" value="seeker" checked class="hidden peer" />
-                            <div
-                                class="border border-science-border p-3 text-center peer-checked:bg-science-accent peer-checked:text-white transition-all">
-                                <span class="text-[10px] font-mono uppercase tracking-widest">Candidate</span>
-                            </div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="role" value="recruiter" class="hidden peer" />
-                            <div
-                                class="border border-science-border p-3 text-center peer-checked:bg-science-accent peer-checked:text-white transition-all">
-                                <span class="text-[10px] font-mono uppercase tracking-widest">Recruiter</span>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <button type="submit" id="btn-register"
-                    class="flex w-full cursor-pointer items-center justify-center h-12 px-6 bg-science-accent hover:bg-black text-white text-sm font-mono uppercase tracking-widest transition-colors border border-transparent mt-4">
-                    Initialize Profile
-                </button>
-
-                <p id="error-msg"
-                    class="text-red-600 text-[10px] font-mono text-center hidden uppercase bg-red-50 border border-red-100 py-2">
-                </p>
-                <p id="success-msg"
-                    class="text-green-600 text-[10px] font-mono text-center hidden uppercase bg-green-50 border border-green-100 py-2">
-                </p>
-            </form>
-
-            <div class="mt-8 pt-8 border-t border-science-border flex flex-col items-center gap-4">
-                <p class="text-[10px] text-science-muted font-mono uppercase tracking-wider">Already have an account?
-                </p>
-                <a href="/login"
-                    class="text-xs font-mono text-science-accent hover:underline uppercase tracking-widest font-bold">Sign
-                    In Instead</a>
+            </div>
+            <div class="relative z-10 text-sm text-slate-400">
+                © 2026 InterviewAI Inc. All rights reserved.
             </div>
         </div>
-        <div class="bg-gray-50 px-8 py-4 border-t border-science-border text-center">
-            <span class="text-[10px] text-science-muted font-mono uppercase tracking-tighter">Legal: Data processed in
-                secured local infrastructure</span>
+        <!-- Right Panel: Registration Form -->
+        <div class="flex-1 flex flex-col justify-center items-center p-6 md:p-12">
+            <div
+                class="w-full max-w-xl space-y-8 bg-neutral-surface dark:bg-[#1e1a2e] p-8 md:p-12 rounded-3xl shadow-2xl border border-slate-100 dark:border-slate-800">
+                <div class="text-center">
+                    <h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Create your account
+                    </h2>
+                    <p class="mt-2 text-sm text-slate-500 dark:text-slate-400 uppercase tracking-widest font-bold">Start
+                        your AI journey today</p>
+                </div>
+                <form id="register-form" class="space-y-6">
+                    <!-- Name & Email Grid -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label
+                                class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400"
+                                for="full_name">Full Name</label>
+                            <input id="full_name" required
+                                class="flex h-12 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#141022] px-4 py-2 text-sm transition-all focus:ring-2 focus:ring-primary outline-none"
+                                placeholder="John Doe" type="text" />
+                        </div>
+                        <div class="space-y-2">
+                            <label
+                                class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400"
+                                for="email">Email Address</label>
+                            <input id="email" required
+                                class="flex h-12 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#141022] px-4 py-2 text-sm transition-all focus:ring-2 focus:ring-primary outline-none"
+                                placeholder="user@example.com" type="email" />
+                        </div>
+                    </div>
+                    <!-- Password Selection -->
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400"
+                            for="password">Password</label>
+                        <div class="relative">
+                            <input id="password" required
+                                class="flex h-12 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#141022] px-4 py-2 text-sm transition-all focus:ring-2 focus:ring-primary outline-none"
+                                placeholder="Min. 8 characters" type="password" />
+                            <div class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 px-1 cursor-pointer"
+                                onclick="togglePassword()">
+                                <span class="material-symbols-outlined text-xl"
+                                    id="password-toggle-icon">visibility_off</span>
+                            </div>
+                        </div>
+                        <!-- Password Strength Indicator -->
+                        <div id="password-strength" class="hidden space-y-2 mt-2">
+                            <div class="flex gap-1">
+                                <div id="strength-bar-1" class="h-1 flex-1 bg-slate-200 rounded-full transition-colors">
+                                </div>
+                                <div id="strength-bar-2" class="h-1 flex-1 bg-slate-200 rounded-full transition-colors">
+                                </div>
+                                <div id="strength-bar-3" class="h-1 flex-1 bg-slate-200 rounded-full transition-colors">
+                                </div>
+                                <div id="strength-bar-4" class="h-1 flex-1 bg-slate-200 rounded-full transition-colors">
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-[10px] font-bold uppercase tracking-tighter">
+                                <span id="req-length" class="text-slate-400">✗ 8+ characters</span>
+                                <span id="req-upper" class="text-slate-400">✗ Uppercase</span>
+                                <span id="req-lower" class="text-slate-400">✗ Lowercase</span>
+                                <span id="req-digit" class="text-slate-400">✗ Number</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- User Role Selection -->
+                    <div class="space-y-3">
+                        <p class="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">Join
+                            as a</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <label
+                                class="group relative flex cursor-pointer rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#141022] p-4 transition-all hover:bg-slate-100 dark:hover:bg-slate-800">
+                                <input class="peer sr-only" name="role" type="radio" value="seeker" checked />
+                                <div class="flex flex-col gap-1 peer-checked:text-primary">
+                                    <span class="text-sm font-bold uppercase tracking-widest">Candidate</span>
+                                    <span class="text-[10px] text-slate-500">I want to find a job</span>
+                                </div>
+                                <div
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-primary opacity-0 transition-opacity peer-checked:opacity-100">
+                                    <span class="material-symbols-outlined">check_circle</span>
+                                </div>
+                                <div
+                                    class="absolute inset-0 rounded-2xl border-2 border-transparent transition-all peer-checked:border-primary">
+                                </div>
+                            </label>
+                            <label
+                                class="group relative flex cursor-pointer rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#141022] p-4 transition-all hover:bg-slate-100 dark:hover:bg-slate-800">
+                                <input class="peer sr-only" name="role" type="radio" value="recruiter" />
+                                <div class="flex flex-col gap-1 peer-checked:text-primary">
+                                    <span class="text-sm font-bold uppercase tracking-widest">Recruiter</span>
+                                    <span class="text-[10px] text-slate-500">I am hiring talent</span>
+                                </div>
+                                <div
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-primary opacity-0 transition-opacity peer-checked:opacity-100">
+                                    <span class="material-symbols-outlined">check_circle</span>
+                                </div>
+                                <div
+                                    class="absolute inset-0 rounded-2xl border-2 border-transparent transition-all peer-checked:border-primary">
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Feedback Messages -->
+                    <p id="error-msg"
+                        class="hidden p-4 rounded-xl bg-red-50 dark:bg-red-900/10 text-red-600 dark:text-red-400 text-xs font-bold border border-red-100 dark:border-red-900/30 uppercase tracking-widest text-center">
+                    </p>
+                    <p id="success-msg"
+                        class="hidden p-4 rounded-xl bg-green-50 dark:bg-green-900/10 text-green-600 dark:text-green-400 text-xs font-bold border border-green-100 dark:border-green-900/30 uppercase tracking-widest text-center">
+                    </p>
+
+                    <button type="submit" id="btn-register"
+                        class="w-full bg-primary hover:bg-primary-dark text-white h-14 rounded-2xl text-base font-black transition-all shadow-xl shadow-primary/30 hover:shadow-2xl hover:-translate-y-0.5 mt-4">
+                        Initialize Profile
+                    </button>
+                    <div class="text-center pt-4">
+                        <p class="text-sm text-slate-500 dark:text-slate-400">
+                            Already have an account?
+                            <a class="font-bold text-primary hover:underline ml-1" href="/login">Sign in</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
     <script>
         // Check if already logged in
         const existingUser = JSON.parse(sessionStorage.getItem('user'));
         const existingToken = sessionStorage.getItem('token');
         if (existingToken && existingUser) {
             const role = existingUser.role.toLowerCase();
-            window.location.href = (role === 'admin' || role === 'recruiter') ? '/admin' : '/dashboard';
+            window.location.href = (role === 'admin' || role === 'recruiter') ? '/recruiter' : '/dashboard';
         }
 
         const registerForm = document.getElementById('register-form');
@@ -189,6 +252,18 @@
         const btnRegister = document.getElementById('btn-register');
         const passwordInput = document.getElementById('password');
         const strengthContainer = document.getElementById('password-strength');
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const icon = document.getElementById('password-toggle-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.textContent = 'visibility';
+            } else {
+                passwordInput.type = 'password';
+                icon.textContent = 'visibility_off';
+            }
+        }
 
         // Real-time password validation
         passwordInput.addEventListener('input', () => {
@@ -203,20 +278,20 @@
 
             // Update requirement indicators
             document.getElementById('req-length').innerHTML = hasLength ? '✓ 8+ characters' : '✗ 8+ characters';
-            document.getElementById('req-length').className = hasLength ? 'text-green-600' : 'text-gray-400';
+            document.getElementById('req-length').className = hasLength ? 'text-green-600' : 'text-slate-400';
             document.getElementById('req-upper').innerHTML = hasUpper ? '✓ Uppercase' : '✗ Uppercase';
-            document.getElementById('req-upper').className = hasUpper ? 'text-green-600' : 'text-gray-400';
+            document.getElementById('req-upper').className = hasUpper ? 'text-green-600' : 'text-slate-400';
             document.getElementById('req-lower').innerHTML = hasLower ? '✓ Lowercase' : '✗ Lowercase';
-            document.getElementById('req-lower').className = hasLower ? 'text-green-600' : 'text-gray-400';
+            document.getElementById('req-lower').className = hasLower ? 'text-green-600' : 'text-slate-400';
             document.getElementById('req-digit').innerHTML = hasDigit ? '✓ Number' : '✗ Number';
-            document.getElementById('req-digit').className = hasDigit ? 'text-green-600' : 'text-gray-400';
+            document.getElementById('req-digit').className = hasDigit ? 'text-green-600' : 'text-slate-400';
 
             // Update strength bars
             const bars = ['strength-bar-1', 'strength-bar-2', 'strength-bar-3', 'strength-bar-4'];
             const colors = ['bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-green-500'];
             bars.forEach((bar, i) => {
                 const el = document.getElementById(bar);
-                el.className = 'h-1 flex-1 transition-colors ' + (i < score ? colors[Math.min(score - 1, 3)] : 'bg-gray-200');
+                el.className = 'h-1 flex-1 transition-colors rounded-full ' + (i < score ? colors[Math.min(score - 1, 3)] : 'bg-slate-200 dark:bg-slate-700');
             });
         });
 
@@ -247,13 +322,14 @@
                 const data = await response.json();
 
                 if (!response.ok) {
-                    throw new Error(data.detail || 'Registration failed');
+                    const detail = data.detail;
+                    const errorStr = typeof detail === 'string' ? detail : (Array.isArray(detail) ? detail[0].msg : 'Registration failed');
+                    throw new Error(errorStr);
                 }
 
-                successMsg.innerText = 'Account Created. Redirecting...';
+                successMsg.innerText = 'Account Created Successfully. Redirecting to Login...';
                 successMsg.classList.remove('hidden');
 
-                // Auto-login or redirect to login after 2 seconds
                 setTimeout(() => {
                     window.location.href = '/login';
                 }, 1500);

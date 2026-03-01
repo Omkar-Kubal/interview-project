@@ -1,259 +1,360 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>AI Interview - Questionnaire</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet" />
+    <title>Assessment Questionnaire - InterviewAI</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "science-bg": "#f4f4f5",
-                        "science-card": "#ffffff",
-                        "science-border": "#e4e4e7",
-                        "science-text": "#18181b",
-                        "science-muted": "#71717a",
-                        "science-accent": "#27272a"
+                        "primary": "#5925f4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e1a2e",
                     },
                     fontFamily: {
-                        "sans": ["Inter", "sans-serif"],
-                        "mono": ["IBM Plex Mono", "monospace"]
+                        "display": ["Inter", "sans-serif"]
                     },
-                    borderRadius: { DEFAULT: "0px", none: "0px" }
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
                 },
             },
         }
     </script>
-    <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-
-        *,
-        *::before,
-        *::after {
-            border-radius: 0 !important;
-        }
-    </style>
 </head>
 
-<body class="relative flex min-h-screen w-full flex-col bg-science-bg text-science-text font-sans antialiased">
-
-    <!-- HEADER -->
-    <header class="flex items-center justify-between border-b border-science-border px-6 py-4 bg-white">
-        <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-science-accent text-[24px]">quiz</span>
-            <h2 class="text-science-text text-sm font-mono uppercase tracking-widest font-semibold">
-                Technical Assessment
-            </h2>
-        </div>
-        <div class="flex items-center gap-4">
-            <div id="progress-badge"
-                class="flex items-center gap-2 px-3 py-1 bg-blue-50 border border-blue-200 text-xs font-mono text-blue-600">
-                <span class="material-symbols-outlined text-[14px]">assignment</span>
-                <span id="progress-text">Question 1 of 10</span>
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Top Navigation Bar -->
+    <header
+        class="w-full bg-surface-light dark:bg-surface-dark border-b border-slate-200 dark:border-slate-800 px-6 py-4 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3 text-slate-900 dark:text-slate-100">
+                <div class="size-8 text-primary">
+                    <span class="material-symbols-outlined text-3xl">psychology</span>
+                </div>
+                <h2 class="text-xl font-bold tracking-tight">InterviewAI</h2>
             </div>
-            <div id="timer-badge"
-                class="flex items-center gap-2 px-3 py-1 bg-gray-100 border border-gray-300 text-xs font-mono">
-                <span class="material-symbols-outlined text-[14px]">timer</span>
-                <span id="timer-text">02:00</span>
+            <!-- Context Info (Job & Timer) -->
+            <div class="flex items-center gap-8 hidden md:flex">
+                <div class="text-center">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">
+                        Assessment Status</p>
+                    <p id="assessment-status" class="text-sm font-semibold text-slate-800 dark:text-slate-200">Active
+                        Session</p>
+                </div>
+                <div class="h-8 w-px bg-slate-200 dark:bg-slate-700"></div>
+                <div class="text-center">
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Question
+                        Time</p>
+                    <p id="timer-text" class="text-sm font-bold text-slate-800 dark:text-slate-200 font-mono">00:00</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div id="user-avatar"
+                    class="size-10 rounded-full bg-primary/20 flex items-center justify-center border-2 border-slate-100 dark:border-slate-800 shadow-sm text-primary font-bold">
+                    UN
+                </div>
             </div>
         </div>
     </header>
-
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 flex flex-col p-6">
-        <div class="max-w-[900px] w-full mx-auto flex-1 flex flex-col">
-
-            <!-- Question Card -->
-            <div id="question-card" class="bg-white border border-science-border p-8 flex-1 flex flex-col">
-                <div class="flex items-center gap-3 mb-6">
-                    <span id="q-type-badge"
-                        class="px-3 py-1 bg-black text-white text-[10px] font-mono uppercase">MCQ</span>
-                    <span id="q-domain" class="text-xs font-mono text-science-muted uppercase">AI-ML</span>
-                </div>
-
-                <h3 id="q-text" class="text-xl font-medium text-science-text mb-8">
-                    Loading question...
-                </h3>
-
-                <!-- MCQ Options -->
-                <div id="mcq-container" class="flex flex-col gap-3 flex-1">
-                    <!-- Options will be injected here -->
-                </div>
-
-                <!-- Text Answer -->
-                <div id="text-container" class="hidden flex-1">
-                    <textarea id="text-answer" rows="6" placeholder="Type your answer here..."
-                        class="w-full border border-science-border p-4 font-mono text-sm focus:outline-none focus:border-black"></textarea>
-                </div>
-
-                <!-- Video/Audio Answer -->
-                <div id="media-container" class="hidden flex-1 flex flex-col items-center justify-center gap-4">
-                    <div id="media-preview"
-                        class="w-full max-w-md aspect-video bg-black flex items-center justify-center">
-                        <video id="media-video" class="w-full h-full object-cover hidden" autoplay muted></video>
-                        <div id="media-placeholder" class="text-white/50 text-sm font-mono">Click Record to Begin</div>
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl mx-auto w-full p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Left Column: Question & Answer Area -->
+        <div class="lg:col-span-8 flex flex-col gap-6">
+            <!-- Progress Header -->
+            <div
+                class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
+                <div class="flex justify-between items-end mb-3">
+                    <div>
+                        <span id="q-domain-badge"
+                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary mb-2 uppercase">
+                            <span class="material-symbols-outlined text-[16px]">terminal</span>
+                            General
+                        </span>
+                        <h1 id="progress-text" class="text-lg font-semibold text-slate-800 dark:text-slate-100">Question
+                            1 of 0</h1>
                     </div>
-                    <div class="flex gap-4">
-                        <button id="btn-record" onclick="startRecording()"
-                            class="px-6 py-2 bg-red-500 text-white text-sm font-mono uppercase hover:bg-red-600">
-                            <span class="material-symbols-outlined text-sm align-middle mr-1">fiber_manual_record</span>
-                            Record
-                        </button>
-                        <button id="btn-stop-record" onclick="stopRecording()" disabled
-                            class="px-6 py-2 bg-gray-300 text-gray-500 text-sm font-mono uppercase cursor-not-allowed">
-                            <span class="material-symbols-outlined text-sm align-middle mr-1">stop</span>
-                            Stop
-                        </button>
+                    <span id="percent-text" class="text-sm font-medium text-slate-500 dark:text-slate-400">0%
+                        Completed</span>
+                </div>
+                <div class="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-primary rounded-full transition-all duration-500"
+                        style="width: 0%"></div>
+                </div>
+            </div>
+            <!-- Active Question Card -->
+            <div
+                class="bg-surface-light dark:bg-surface-dark rounded-xl p-8 shadow-sm border border-slate-100 dark:border-slate-800 relative overflow-hidden flex-1 flex flex-col min-h-[400px]">
+                <div id="question-loading" class="flex-1 flex flex-col items-center justify-center text-slate-400">
+                    <div class="size-10 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4">
+                    </div>
+                    <p class="font-bold uppercase tracking-widest text-xs">Initializing Question System...</p>
+                </div>
+
+                <div id="question-content" class="hidden flex-1 flex flex-col">
+                    <div class="mb-6">
+                        <span id="q-type-badge"
+                            class="text-[10px] font-black uppercase tracking-[0.2em] text-primary">TEXT RESPONSE</span>
+                        <h3 id="q-text"
+                            class="text-2xl font-bold text-slate-900 dark:text-slate-100 mt-2 leading-tight">
+                            Question text will appear here.
+                        </h3>
+                    </div>
+
+                    <!-- Answer Interface Container -->
+                    <div class="flex-1 flex flex-col">
+                        <!-- MCQ Container -->
+                        <div id="mcq-container" class="hidden space-y-3">
+                            <!-- Dynamic Buttons -->
+                        </div>
+
+                        <!-- Text Container -->
+                        <div id="text-container" class="hidden flex-1 flex flex-col">
+                            <textarea id="text-answer"
+                                class="w-full flex-1 min-h-[200px] p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 focus:ring-2 focus:ring-primary focus:border-transparent resize-none font-display"
+                                placeholder="Type your response here..."></textarea>
+                            <div class="mt-2 text-right text-xs text-slate-400" id="word-count">0 words</div>
+                        </div>
+
+                        <!-- Media Container (Audio/Video) -->
+                        <div id="media-container"
+                            class="hidden flex-1 flex flex-col items-center justify-center gap-6 py-6">
+                            <div id="media-preview-box"
+                                class="w-full max-w-md aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl relative border-4 border-slate-100 dark:border-slate-800">
+                                <video id="media-video" class="w-full h-full object-cover hidden" autoplay
+                                    muted></video>
+                                <div id="media-placeholder"
+                                    class="absolute inset-0 flex flex-col items-center justify-center text-white/40 gap-4">
+                                    <span class="material-symbols-outlined text-5xl">videocam_off</span>
+                                    <p class="font-bold uppercase tracking-widest text-xs">Awaiting Activation</p>
+                                </div>
+                                <!-- Recording pulse -->
+                                <div id="recording-indicator"
+                                    class="hidden absolute top-4 left-4 flex items-center gap-2 bg-red-500/80 backdrop-blur-md px-2 py-1 rounded text-[10px] font-bold text-white uppercase tracking-widest">
+                                    <span class="size-2 bg-white rounded-full animate-pulse"></span> REC
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <button id="btn-record" onclick="startRecording()"
+                                    class="flex items-center gap-2 px-8 py-3 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold shadow-lg shadow-red-500/20 transition-all">
+                                    <span class="material-symbols-outlined">fiber_manual_record</span> Record
+                                </button>
+                                <button id="btn-stop-record" onclick="stopRecording()" disabled
+                                    class="flex items-center gap-2 px-8 py-3 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-400 font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <span class="material-symbols-outlined">stop</span> Stop
+                                </button>
+                            </div>
+                            <p id="media-status" class="text-xs font-bold text-slate-500 uppercase tracking-widest">
+                                Prepare your response and click record</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Navigation -->
-            <div class="flex justify-between items-center mt-6 pt-6 border-t border-science-border">
+            <!-- Bottom Navigation -->
+            <div class="flex items-center justify-between mt-4">
                 <button id="btn-prev" onclick="prevQuestion()" disabled
-                    class="px-6 py-3 border border-black text-black text-sm font-mono uppercase hover:bg-black hover:text-white disabled:opacity-30 disabled:cursor-not-allowed">
+                    class="flex items-center gap-2 px-6 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors font-bold disabled:opacity-30">
+                    <span class="material-symbols-outlined">arrow_back</span>
                     Previous
                 </button>
-                <button id="btn-next" onclick="nextQuestion()"
-                    class="px-6 py-3 bg-black text-white text-sm font-mono uppercase hover:bg-gray-800">
-                    Next
-                </button>
-                <button id="btn-submit" onclick="submitAll()"
-                    class="hidden px-6 py-3 bg-green-600 text-white text-sm font-mono uppercase hover:bg-green-700">
-                    Submit All
-                </button>
+                <div class="flex gap-4">
+                    <button id="btn-next" onclick="nextQuestion()"
+                        class="flex items-center gap-2 px-8 py-3 rounded-lg bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/30 transition-all font-bold">
+                        Next Question
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                    <button id="btn-submit-final" onclick="submitAll()"
+                        class="hidden flex items-center gap-2 px-8 py-3 rounded-lg bg-green-600 hover:bg-green-700 text-white shadow-lg shadow-green-500/30 transition-all font-bold">
+                        Submit Final Assessment
+                        <span class="material-symbols-outlined">verified</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Right Column: Navigator -->
+        <div class="lg:col-span-4 space-y-6">
+            <div
+                class="bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
+                <h3 class="text-base font-bold text-slate-900 dark:text-slate-100 mb-4 uppercase tracking-widest">
+                    Question Map</h3>
+                <div id="question-navigator" class="grid grid-cols-4 gap-3">
+                    <!-- Dynamic dots will be added here -->
+                </div>
+                <div class="mt-8 space-y-3 pt-6 border-t border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3">
+                        <div class="size-3 rounded-full bg-green-500"></div>
+                        <span
+                            class="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest">Completed</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="size-3 rounded-full bg-primary ring-2 ring-primary ring-offset-2 dark:ring-offset-surface-dark">
+                        </div>
+                        <span
+                            class="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest">Active</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="size-3 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+                        </div>
+                        <span
+                            class="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest">Pending</span>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800">
+                <div class="flex items-start gap-4">
+                    <span class="material-symbols-outlined text-primary">lightbulb</span>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900 dark:text-slate-200 uppercase tracking-wide">
+                            Candidate Tip</h4>
+                        <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                            For technical questions, clarify your assumptions and explain your thought process clearly.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
+    <footer
+        class="mt-auto py-6 text-center text-[10px] text-slate-500 dark:text-slate-600 border-t border-slate-100 dark:border-slate-800 bg-surface-light dark:bg-surface-dark font-bold uppercase tracking-widest">
+        <p>© 2026 InterviewAI • Progress Securely Syncing</p>
+    </footer>
 
     <script>
         // State
         let questions = [];
         let currentIndex = 0;
-        let answers = {}; // { questionId: answerValue }
+        let answers = {};
         let applicationId = null;
         let mediaRecorder = null;
         let recordedChunks = [];
         let timerInterval = null;
-        let timeRemaining = 120;
+        let timeRemaining = 0;
 
-        // Init
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        const token = sessionStorage.getItem('token');
+
+        // Init Logic
         async function init() {
-            const user = JSON.parse(sessionStorage.getItem('user'));
-            const token = sessionStorage.getItem('token');
             applicationId = new URLSearchParams(window.location.search).get('application_id');
-
             if (!token || !user || !applicationId) {
-                alert('Missing authentication or application. Redirecting...');
                 window.location.href = '/dashboard';
                 return;
             }
 
-            // Fetch job_id from application
-            const appRes = await fetch(`/api/applications/me?seeker_id=${user.id}`, {
-                headers: { 'Authorization': `Bearer ${token}` }
+            document.getElementById('user-avatar').innerText = user.full_name.split(' ').map(n => n[0]).join('');
+
+            try {
+                // Fetch application to get job_id
+                const response = await fetch('/api/applications/me', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const apps = await response.json();
+                const app = apps.find(a => a.id == applicationId);
+
+                if (!app) throw new Error('Application missing');
+
+                // Fetch questions
+                const qRes = await fetch(`/api/questions/job/${app.job_id}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!qRes.ok) throw new Error('No questions found');
+
+                questions = await qRes.json();
+                document.getElementById('question-loading').classList.add('hidden');
+                document.getElementById('question-content').classList.remove('hidden');
+
+                renderNavigator();
+                renderQuestion();
+            } catch (err) {
+                console.error(err);
+                alert('Failed to initialize assessment.');
+                window.location.href = '/dashboard';
+            }
+        }
+
+        function renderNavigator() {
+            const nav = document.getElementById('question-navigator');
+            nav.innerHTML = '';
+            questions.forEach((_, idx) => {
+                const btn = document.createElement('button');
+                btn.className = getNavBtnStyle(idx);
+                btn.innerText = idx + 1;
+                btn.onclick = () => {
+                    saveCurrentAnswer();
+                    currentIndex = idx;
+                    renderQuestion();
+                };
+                nav.appendChild(btn);
             });
-            const apps = await appRes.json();
-            const app = apps.find(a => a.id == applicationId);
+        }
 
-            if (!app) {
-                alert('Application not found');
-                window.location.href = '/dashboard';
-                return;
+        function getNavBtnStyle(idx) {
+            const base = 'aspect-square rounded-xl flex items-center justify-center text-xs font-bold transition-all ';
+            if (idx === currentIndex) {
+                return base + 'bg-primary text-white ring-2 ring-primary ring-offset-4 dark:ring-offset-surface-dark shadow-xl shadow-primary/20';
             }
-
-            // Fetch questions for job
-            const qRes = await fetch(`/api/questions/job/${app.job_id}`, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-
-            if (!qRes.ok) {
-                alert('No questionnaire found for this job.');
-                window.location.href = '/dashboard';
-                return;
+            if (answers[questions[idx].id]) {
+                return base + 'bg-green-500 text-white';
             }
-
-            questions = await qRes.json();
-            renderQuestion();
+            return base + 'bg-slate-100 dark:bg-slate-800 text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700';
         }
 
         function renderQuestion() {
             if (questions.length === 0) return;
-
             const q = questions[currentIndex];
+
+            // Progress UI
+            const percent = Math.round((Object.keys(answers).length / questions.length) * 100);
             document.getElementById('progress-text').innerText = `Question ${currentIndex + 1} of ${questions.length}`;
-            document.getElementById('q-type-badge').innerText = q.question_type.toUpperCase();
-            document.getElementById('q-domain').innerText = q.domain;
+            document.getElementById('percent-text').innerText = `${percent}% Completed`;
+            document.getElementById('progress-bar').style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+
+            // Content UI
+            document.getElementById('q-domain-badge').innerHTML = `<span class="material-symbols-outlined text-[16px] mr-1">terminal</span> ${q.domain || 'General'}`;
+            document.getElementById('q-type-badge').innerText = q.question_type.replace('_', ' ');
             document.getElementById('q-text').innerText = q.question_text;
 
-            // Reset containers
+            // Reset inputs
             document.getElementById('mcq-container').classList.add('hidden');
             document.getElementById('text-container').classList.add('hidden');
             document.getElementById('media-container').classList.add('hidden');
 
-            // Show appropriate input
             if (q.question_type === 'mcq') {
                 renderMCQ(q);
             } else if (q.question_type === 'text') {
                 document.getElementById('text-container').classList.remove('hidden');
-                document.getElementById('text-answer').value = answers[q.id] || '';
+                const area = document.getElementById('text-answer');
+                area.value = answers[q.id] || '';
+                updateWordCount(area.value);
             } else {
                 document.getElementById('media-container').classList.remove('hidden');
-                // Reset media UI state for this question
                 resetMediaUI(q);
             }
 
-            // Timer
-            startTimer(q.time_limit_sec);
-
             // Navigation
             document.getElementById('btn-prev').disabled = currentIndex === 0;
-            document.getElementById('btn-next').classList.toggle('hidden', currentIndex === questions.length - 1);
-            document.getElementById('btn-submit').classList.toggle('hidden', currentIndex !== questions.length - 1);
-        }
+            const isLast = currentIndex === questions.length - 1;
+            document.getElementById('btn-next').classList.toggle('hidden', isLast);
+            document.getElementById('btn-submit-final').classList.toggle('hidden', !isLast);
 
-        function resetMediaUI(q) {
-            // Reset video element
-            const video = document.getElementById('media-video');
-            video.srcObject = null;
-            video.classList.add('hidden');
-
-            // Reset placeholder - check if already answered
-            const placeholder = document.getElementById('media-placeholder');
-            if (answers[q.id] === 'recorded') {
-                placeholder.innerText = '✓ Answer Recorded';
-            } else {
-                placeholder.innerText = 'Click Record to Begin';
-            }
-            placeholder.classList.remove('hidden');
-
-            // Reset record button
-            const btnRecord = document.getElementById('btn-record');
-            btnRecord.disabled = false;
-            btnRecord.classList.remove('opacity-50');
-
-            // Reset stop button
-            const btnStop = document.getElementById('btn-stop-record');
-            btnStop.disabled = true;
-            btnStop.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
-            btnStop.classList.remove('bg-black', 'text-white');
-
-            // Stop any ongoing recording
-            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
-                mediaRecorder.stop();
-                mediaRecorder.stream.getTracks().forEach(t => t.stop());
-            }
+            // Timer
+            startTimer(q.time_limit_sec || 120);
+            renderNavigator();
         }
 
         function renderMCQ(q) {
@@ -261,28 +362,38 @@
             container.classList.remove('hidden');
             container.innerHTML = '';
 
-            if (!q.options) return;
-
             q.options.forEach((opt, idx) => {
-                const selected = answers[q.id] === idx;
-                const div = document.createElement('div');
-                div.className = `p-4 border cursor-pointer transition-all ${selected ? 'border-black bg-black text-white' : 'border-science-border hover:border-black'}`;
-                div.innerHTML = `<span class="font-mono mr-3">${String.fromCharCode(65 + idx)}.</span>${opt}`;
-                div.onclick = () => {
+                const active = answers[q.id] === idx;
+                const btn = document.createElement('button');
+                btn.className = `w-full p-4 rounded-xl border text-left flex items-center gap-4 transition-all ${active ? 'bg-primary/5 border-primary text-primary font-bold' : 'bg-slate-50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-800 hover:border-slate-400'}`;
+                btn.innerHTML = `
+                <div class="size-6 rounded-full border-2 flex items-center justify-center ${active ? 'border-primary' : 'border-slate-300'}">
+                    <div class="size-3 rounded-full ${active ? 'bg-primary' : ''}"></div>
+                </div>
+                <span class="text-sm">${opt}</span>
+            `;
+                btn.onclick = () => {
                     answers[q.id] = idx;
-                    renderMCQ(q);
+                    renderQuestion();
                 };
-                container.appendChild(div);
+                container.appendChild(btn);
             });
         }
+
+        function updateWordCount(text) {
+            const count = text.trim() ? text.trim().split(/\s+/).length : 0;
+            document.getElementById('word-count').innerText = `${count} words`;
+        }
+
+        document.getElementById('text-answer').addEventListener('input', (e) => updateWordCount(e.target.value));
 
         function startTimer(seconds) {
             if (timerInterval) clearInterval(timerInterval);
             timeRemaining = seconds;
-            updateTimerDisplay();
+            updateTimerUI();
             timerInterval = setInterval(() => {
                 timeRemaining--;
-                updateTimerDisplay();
+                updateTimerUI();
                 if (timeRemaining <= 0) {
                     clearInterval(timerInterval);
                     nextQuestion();
@@ -290,11 +401,11 @@
             }, 1000);
         }
 
-        function updateTimerDisplay() {
-            const mins = Math.floor(timeRemaining / 60);
-            const secs = timeRemaining % 60;
-            document.getElementById('timer-text').innerText =
-                `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        function updateTimerUI() {
+            const m = Math.floor(timeRemaining / 60);
+            const s = timeRemaining % 60;
+            const display = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            document.getElementById('timer-text').innerText = display;
         }
 
         function saveCurrentAnswer() {
@@ -302,7 +413,6 @@
             if (q.question_type === 'text') {
                 answers[q.id] = document.getElementById('text-answer').value;
             }
-            // MCQ is saved on click, media is saved on stop
         }
 
         function nextQuestion() {
@@ -321,13 +431,38 @@
             }
         }
 
+        // Media Logic
+        function resetMediaUI(q) {
+            const placeholder = document.getElementById('media-placeholder');
+            const video = document.getElementById('media-video');
+            const status = document.getElementById('media-status');
+            const btnRec = document.getElementById('btn-record');
+            const btnStop = document.getElementById('btn-stop-record');
+
+            video.classList.add('hidden');
+            video.srcObject = null;
+            placeholder.classList.remove('hidden');
+            document.getElementById('recording-indicator').classList.add('hidden');
+
+            if (answers[q.id] === 'recorded') {
+                placeholder.innerHTML = '<span class="material-symbols-outlined text-5xl text-green-500">check_circle</span><p class="font-bold uppercase tracking-widest text-xs text-green-500">Response Recorded</p>';
+                status.innerText = 'You can re-record if needed';
+            } else {
+                placeholder.innerHTML = '<span class="material-symbols-outlined text-5xl">videocam_off</span><p class="font-bold uppercase tracking-widest text-xs">Awaiting Activation</p>';
+                status.innerText = 'Prepare your response and click record';
+            }
+
+            btnRec.disabled = false;
+            btnRec.classList.remove('opacity-50');
+            btnStop.disabled = true;
+            btnStop.classList.add('bg-slate-200', 'dark:bg-slate-800', 'text-slate-400');
+            btnStop.classList.remove('bg-slate-900', 'text-white');
+        }
+
         async function startRecording() {
             try {
                 const q = questions[currentIndex];
-                const constraints = q.question_type === 'video'
-                    ? { video: true, audio: true }
-                    : { audio: true };
-
+                const constraints = { audio: true, video: q.question_type === 'video' };
                 const stream = await navigator.mediaDevices.getUserMedia(constraints);
 
                 if (q.question_type === 'video') {
@@ -337,20 +472,25 @@
                     document.getElementById('media-placeholder').classList.add('hidden');
                 }
 
+                document.getElementById('recording-indicator').classList.remove('hidden');
+
                 recordedChunks = [];
                 mediaRecorder = new MediaRecorder(stream);
                 mediaRecorder.ondataavailable = (e) => recordedChunks.push(e.data);
                 mediaRecorder.onstop = () => saveMediaAnswer();
                 mediaRecorder.start();
 
-                document.getElementById('btn-record').disabled = true;
-                document.getElementById('btn-record').classList.add('opacity-50');
-                document.getElementById('btn-stop-record').disabled = false;
-                document.getElementById('btn-stop-record').classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed');
-                document.getElementById('btn-stop-record').classList.add('bg-black', 'text-white');
+                const btnRec = document.getElementById('btn-record');
+                const btnStop = document.getElementById('btn-stop-record');
+                btnRec.disabled = true;
+                btnRec.classList.add('opacity-50');
+                btnStop.disabled = false;
+                btnStop.classList.remove('bg-slate-200', 'dark:bg-slate-800', 'text-slate-400');
+                btnStop.classList.add('bg-slate-900', 'text-white');
+                document.getElementById('media-status').innerText = 'Recording live...';
 
             } catch (err) {
-                alert('Could not access camera/microphone: ' + err.message);
+                alert('Could not access media: ' + err.message);
             }
         }
 
@@ -369,49 +509,68 @@
             formData.append('question_id', q.id);
             formData.append('media_file', blob, `answer_${q.id}.webm`);
 
-            const token = sessionStorage.getItem('token');
-            await fetch('/api/questions/answer/media', {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${token}` },
-                body: formData
-            });
+            document.getElementById('media-status').innerText = 'Uploading response...';
 
-            answers[q.id] = 'recorded';
-            document.getElementById('media-placeholder').innerText = '✓ Answer Recorded';
-            document.getElementById('media-placeholder').classList.remove('hidden');
-            document.getElementById('media-video').classList.add('hidden');
+            try {
+                await fetch('/api/questions/answer/media', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${token}` },
+                    body: formData
+                });
+                answers[q.id] = 'recorded';
+                renderQuestion();
+            } catch (err) {
+                alert('Upload failed. Please try again.');
+                resetMediaUI(q);
+            }
         }
 
         async function submitAll() {
             saveCurrentAnswer();
-            const token = sessionStorage.getItem('token');
+            const btn = document.getElementById('btn-submit-final');
+            btn.disabled = true;
+            btn.innerText = 'Submitting...';
 
-            // Submit all text/MCQ answers
-            for (const q of questions) {
-                if (q.question_type === 'mcq' || q.question_type === 'text') {
-                    const val = answers[q.id];
-                    if (val !== undefined && val !== null && val !== '') {
-                        await fetch('/api/questions/answer/text', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token}`
-                            },
-                            body: JSON.stringify({
-                                application_id: parseInt(applicationId),
-                                question_id: q.id,
-                                answer_text: String(val)
-                            })
-                        });
+            try {
+                // Submit Text/MCQ answers
+                for (const q of questions) {
+                    if (q.question_type === 'mcq' || q.question_type === 'text') {
+                        const val = answers[q.id];
+                        if (val !== undefined && val !== null && val !== '') {
+                            await fetch('/api/questions/answer/text', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': `Bearer ${token}`
+                                },
+                                body: JSON.stringify({
+                                    application_id: parseInt(applicationId),
+                                    question_id: q.id,
+                                    answer_text: String(val)
+                                })
+                            });
+                        }
                     }
                 }
-            }
 
-            alert('Assessment submitted successfully!');
-            window.location.href = '/dashboard';
+                // Finalize Status
+                const finishRes = await fetch(`/api/applications/${applicationId}/finish`, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (!finishRes.ok) throw new Error('Failed to finalist status');
+
+                alert('Assessment complete! Thank you.');
+                window.location.href = '/dashboard';
+
+            } catch (err) {
+                alert('Submission failed. Some answers were saved.');
+                btn.disabled = false;
+                btn.innerText = 'Submit Final Assessment';
+            }
         }
 
-        // Start
         init();
     </script>
 </body>

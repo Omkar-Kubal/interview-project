@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InterviewAI - Registration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5925f4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Green Success Toast (Static for Demo) -->
+<div class="fixed top-5 right-5 z-50 animate-bounce">
+<div class="flex items-center w-full max-w-xs p-4 text-emerald-900 bg-emerald-100 rounded-lg shadow dark:text-emerald-100 dark:bg-emerald-800" role="alert">
+<div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-emerald-500 bg-emerald-200 rounded-lg dark:bg-emerald-700 dark:text-emerald-200">
+<span class="material-symbols-outlined text-sm font-bold">check</span>
+<span class="sr-only">Check icon</span>
+</div>
+<div class="ms-3 text-sm font-medium">Account created! Redirecting...</div>
+<button aria-label="Close" class="ms-auto -mx-1.5 -my-1.5 bg-emerald-100 text-emerald-500 rounded-lg focus:ring-2 focus:ring-emerald-400 p-1.5 hover:bg-emerald-200 inline-flex items-center justify-center h-8 w-8 dark:bg-emerald-800 dark:text-emerald-400 dark:hover:bg-emerald-700" type="button">
+<span class="sr-only">Close</span>
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+<!-- Main Container: Split Layout -->
+<div class="flex min-h-screen w-full">
+<!-- Left Side: Branding & Image (Hidden on mobile, visible on lg screens) -->
+<div class="hidden lg:flex w-1/2 bg-indigo-900 relative overflow-hidden flex-col justify-between p-12 text-white">
+<!-- Background Decoration -->
+<div class="absolute inset-0 z-0 opacity-40">
+<div class="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full bg-primary blur-[120px]"></div>
+<div class="absolute top-[40%] -right-[10%] w-[60%] h-[60%] rounded-full bg-indigo-500 blur-[100px]"></div>
+</div>
+<!-- Header Logo -->
+<div class="relative z-10 flex items-center gap-3">
+<div class="size-8 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/20">
+<span class="material-symbols-outlined text-white">graphic_eq</span>
+</div>
+<h1 class="text-2xl font-bold tracking-tight">InterviewAI</h1>
+</div>
+<!-- Testimonial / Value Prop -->
+<div class="relative z-10 max-w-md">
+<div class="mb-6">
+<span class="material-symbols-outlined text-4xl text-indigo-300">format_quote</span>
+</div>
+<h2 class="text-3xl font-semibold leading-relaxed mb-4">
+                    "This platform completely transformed how we hire. The AI insights are incredibly accurate."
+                </h2>
+<div class="flex items-center gap-4 mt-8">
+<div class="h-12 w-12 rounded-full bg-indigo-700 border-2 border-indigo-500 overflow-hidden" data-alt="Professional woman smiling" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbX0AFRPGw4JWmAx1m9ftRjBGbpj2AqCW-W_DmDDqQiKT6H3v2BjXjv2ePDDFWfUQo-TlyLNlCUwBbgxvmG2DxdCBjBSF0ttsSAfdrCQ5Fjlq9N6af4iXYjFpJA4Obc6mYk1VDSvKpPlBXSjHcek93dxjl19vuVr61iGFBQagvafM3Pklzem7d_eEpZ0bJ6jw9k4a1fiWqsY3bRAAIdqySP-MSp3P_ptFQr4VaZMmAMOj9NGnIAXWd_gAiMG86ypR8wCO5AKtpc2U'); background-size: cover; background-position: center;">
+</div>
+<div>
+<p class="font-semibold text-white">Sarah Jenkins</p>
+<p class="text-indigo-200 text-sm">HR Director, TechFlow</p>
+</div>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="relative z-10 text-indigo-300 text-sm flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+<!-- Right Side: Registration Form -->
+<div class="flex-1 flex flex-col justify-center items-center p-6 sm:p-12 lg:p-24 bg-background-light dark:bg-background-dark overflow-y-auto">
+<div class="w-full max-w-md space-y-8">
+<!-- Mobile Logo (visible only on small screens) -->
+<div class="lg:hidden flex justify-center mb-6">
+<div class="flex items-center gap-2 text-slate-900 dark:text-white">
+<span class="material-symbols-outlined text-primary text-3xl">graphic_eq</span>
+<span class="text-xl font-bold">InterviewAI</span>
+</div>
+</div>
+<div class="text-center lg:text-left">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Create your account</h2>
+<p class="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                        Join thousands of professionals finding their perfect match.
+                    </p>
+</div>
+<!-- Role Selector -->
+<div class="grid grid-cols-2 gap-3 p-1 bg-slate-200/50 dark:bg-slate-800/50 rounded-xl">
+<label class="cursor-pointer">
+<input checked="" class="peer sr-only" name="role" type="radio"/>
+<div class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg transition-all duration-200 text-slate-500 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-700/50 peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:shadow-sm peer-checked:text-primary dark:peer-checked:text-white peer-checked:font-medium">
+<span class="material-symbols-outlined text-[20px]">person</span>
+<span>Candidate</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" name="role" type="radio"/>
+<div class="flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg transition-all duration-200 text-slate-500 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-700/50 peer-checked:bg-white dark:peer-checked:bg-slate-700 peer-checked:shadow-sm peer-checked:text-primary dark:peer-checked:text-white peer-checked:font-medium">
+<span class="material-symbols-outlined text-[20px]">business_center</span>
+<span>Recruiter</span>
+</div>
+</label>
+</div>
+<form action="#" class="space-y-5" method="POST">
+<!-- Full Name -->
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5" for="fullname">Full Name</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-primary/20 focus:border-primary sm:text-sm" id="fullname" name="fullname" placeholder="e.g. Jane Doe" required="" type="text"/>
+</div>
+</div>
+<!-- Email -->
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-primary/20 focus:border-primary sm:text-sm" id="email" name="email" placeholder="name@company.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password -->
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5" for="password">Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<input class="block w-full pl-10 pr-10 py-3 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-primary/20 focus:border-primary sm:text-sm" id="password" name="password" placeholder="Create a password" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+<!-- Password Strength Checklist -->
+<div class="mt-3 grid grid-cols-2 gap-2 text-xs">
+<div class="flex items-center text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined text-[14px] mr-1.5">check_circle</span>
+<span>8+ characters</span>
+</div>
+<div class="flex items-center text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined text-[14px] mr-1.5">radio_button_unchecked</span>
+<span>Uppercase letter</span>
+</div>
+<div class="flex items-center text-slate-400 dark:text-slate-500">
+<span class="material-symbols-outlined text-[14px] mr-1.5">radio_button_unchecked</span>
+<span>Lowercase letter</span>
+</div>
+<div class="flex items-center text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined text-[14px] mr-1.5">check_circle</span>
+<span>Number</span>
+</div>
+</div>
+</div>
+<!-- Confirm Password -->
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5" for="confirm-password">Confirm Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">lock_reset</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 rounded-lg border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-2 focus:ring-primary/20 focus:border-primary sm:text-sm" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required="" type="password"/>
+</div>
+</div>
+<!-- Terms Checkbox -->
+<div class="flex items-start">
+<div class="flex items-center h-5">
+<input class="h-4 w-4 text-primary focus:ring-primary border-slate-300 rounded dark:border-slate-600 dark:bg-slate-800" id="terms" name="terms" type="checkbox"/>
+</div>
+<div class="ml-3 text-sm">
+<label class="font-medium text-slate-700 dark:text-slate-300" for="terms">I agree to the <a class="text-primary hover:text-indigo-600 hover:underline" href="#">Terms</a> and <a class="text-primary hover:text-indigo-600 hover:underline" href="#">Privacy Policy</a></label>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full flex justify-center py-3.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-primary hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 transform hover:-translate-y-0.5" type="submit">
+                        Create Account
+                    </button>
+</form>
+<div class="mt-6">
+<div class="relative">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-slate-200 dark:border-slate-700"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-2 bg-background-light dark:bg-background-dark text-slate-500">Or continue with</span>
+</div>
+</div>
+<div class="mt-6 grid grid-cols-2 gap-3">
+<a class="flex items-center justify-center w-full px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm bg-white dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors" href="#">
+<svg aria-hidden="true" class="h-5 w-5 mr-2" viewbox="0 0 24 24">
+<path d="M12.0003 20.45c4.67 0 8.4503-3.78 8.4503-8.45 0-4.67-3.78-8.45-8.4503-8.45-4.67 0-8.45 3.78-8.45 8.45 0 4.67 3.78 8.45 8.45 8.45Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M16.48 15.57c-1.34 1.34-3.14 2.15-5.11 2.15-2.29 0-4.32-1.09-5.63-2.8m2.26-6.79c1.07-1.12 2.58-1.81 4.24-1.81 1.74 0 3.32.76 4.41 1.98" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+                            Google
+                        </a>
+<a class="flex items-center justify-center w-full px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg shadow-sm bg-white dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors" href="#">
+<svg aria-hidden="true" class="h-5 w-5 mr-2" fill="currentColor" viewbox="0 0 24 24">
+<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+</svg>
+                           LinkedIn
+                        </a>
+</div>
+</div>
+<div class="text-center text-sm text-slate-500">
+                    Already have an account? <a class="font-semibold text-primary hover:text-indigo-600" href="#">Log in here</a>
+</div>
+</div>
+</div>
+</div>
+</body></html>

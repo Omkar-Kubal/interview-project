@@ -1,140 +1,209 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>AI Interview - Sign In</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    <title>InterviewAI Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
         rel="stylesheet" />
     <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
-    <script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "science-bg": "#f4f4f5",
-                        "science-card": "#ffffff",
-                        "science-border": "#e4e4e7",
-                        "science-text": "#18181b",
-                        "science-muted": "#71717a",
-                        "science-accent": "#27272a"
+                        "primary": "#5925f4",
+                        "primary-dark": "#4318c4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                        "neutral-surface": "#ffffff",
                     },
                     fontFamily: {
-                        "sans": ["Inter", "sans-serif"],
-                        "mono": ["IBM Plex Mono", "monospace"]
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"]
                     },
-                    borderRadius: { DEFAULT: "0px", none: "0px" }
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
                 },
             },
         }
     </script>
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        /* Custom scrollbar for better look */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        *,
-        *::before,
-        *::after {
-            border-radius: 0 !important;
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
         }
     </style>
 </head>
 
 <body
-    class="relative flex min-h-screen w-full flex-col bg-science-bg text-science-text font-sans antialiased items-center justify-center p-6">
-
-    <div
-        class="w-full max-w-[440px] bg-science-card border border-science-border shadow-sm flex flex-col relative z-10">
-        <div class="bg-gray-50 border-b border-science-border px-6 py-3 flex justify-between items-center">
-            <span class="text-xs font-mono text-science-muted uppercase tracking-wider">Access: AUTH_MODULE</span>
-            <span class="material-symbols-outlined text-science-muted text-[18px]">lock</span>
-        </div>
-        <div class="p-10 flex flex-col">
-            <div class="mb-8 self-center border border-science-border p-4 bg-white text-science-accent inline-flex">
-                <span class="material-symbols-outlined text-[32px]">shield_person</span>
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 h-screen w-full overflow-hidden">
+    <div class="flex w-full h-full">
+        <!-- Left Panel: Dark Brand Area -->
+        <div
+            class="hidden lg:flex flex-col w-1/2 bg-slate-900 relative overflow-hidden justify-between p-12 text-white">
+            <!-- Animated Gradient Background -->
+            <div class="absolute inset-0 z-0 bg-gradient-to-br from-slate-900 via-[#2e1d68] to-primary opacity-90"
+                data-alt="Abstract dark blue and purple gradient background"></div>
+            <!-- Pattern Overlay -->
+            <div
+                class="absolute inset-0 z-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay">
             </div>
-            <h1 class="text-science-text font-mono text-2xl font-bold leading-tight mb-2 tracking-tight text-center">
-                SIGN IN
-            </h1>
-            <p class="text-science-muted text-xs text-center uppercase tracking-widest mb-8">
-                Multimodal Interview Portal
-            </p>
-
-            <form id="login-form" class="space-y-6">
-                <div class="flex flex-col space-y-2">
-                    <label class="text-science-text font-mono text-[10px] uppercase tracking-widest font-bold">
-                        Email Address
-                    </label>
-                    <div class="relative">
-                        <input id="email" required
-                            class="form-input flex w-full min-w-0 resize-none text-science-text focus:outline-0 focus:ring-0 focus:border-science-accent border border-science-border bg-gray-50 h-11 placeholder:text-gray-300 px-4 pl-10 text-sm font-mono"
-                            placeholder="user@example.com" type="email" />
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span
-                                class="material-symbols-outlined text-science-muted text-[18px]">alternate_email</span>
-                        </div>
-                    </div>
-                    <span id="email-error" class="text-red-500 text-[9px] font-mono hidden"></span>
+            <a href="/" class="relative z-10 flex items-center gap-3">
+                <div class="size-8 text-primary bg-white rounded-lg flex items-center justify-center">
+                    <svg class="w-5 h-5" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd"
+                            d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                            fill="currentColor" fill-rule="evenodd"></path>
+                        <path clip-rule="evenodd"
+                            d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                            fill="currentColor" fill-rule="evenodd"></path>
+                    </svg>
                 </div>
-
-                <div class="flex flex-col space-y-2">
-                    <label class="text-science-text font-mono text-[10px] uppercase tracking-widest font-bold">
-                        Password
-                    </label>
-                    <div class="relative">
-                        <input id="password" required
-                            class="form-input flex w-full min-w-0 resize-none text-science-text focus:outline-0 focus:ring-0 focus:border-science-accent border border-science-border bg-gray-50 h-11 placeholder:text-gray-300 px-4 pl-10 text-sm font-mono"
-                            placeholder="••••••••" type="password" />
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span class="material-symbols-outlined text-science-muted text-[18px]">password</span>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit" id="btn-login"
-                    class="flex w-full cursor-pointer items-center justify-center h-12 px-6 bg-science-accent hover:bg-black text-white text-sm font-mono uppercase tracking-widest transition-colors border border-transparent">
-                    Authenticate
-                </button>
-
-                <p id="error-msg"
-                    class="text-red-600 text-[10px] font-mono text-center hidden uppercase bg-red-50 border border-red-100 py-2">
+                <h2 class="text-2xl font-bold tracking-tight">InterviewAI</h2>
+            </a>
+            <div class="relative z-10 max-w-lg mt-auto mb-20">
+                <h1 class="text-5xl font-black leading-tight tracking-tight mb-6">
+                    Master your next interview.
+                </h1>
+                <p class="text-lg text-slate-300 font-medium leading-relaxed">
+                    Join thousands of candidates using AI-powered insights to prepare smarter, speak confidently, and
+                    land their dream jobs.
                 </p>
-            </form>
-
-            <div class="mt-8 pt-8 border-t border-science-border flex flex-col items-center gap-4">
-                <p class="text-[10px] text-science-muted font-mono uppercase tracking-wider">New to the platform?</p>
-                <a href="/register"
-                    class="text-xs font-mono text-science-accent hover:underline uppercase tracking-widest font-bold">Create
-                    Account</a>
+            </div>
+            <div class="relative z-10 text-sm text-slate-400">
+                © 2026 InterviewAI Inc. All rights reserved.
             </div>
         </div>
-        <div class="bg-gray-50 px-8 py-4 border-t border-science-border text-center">
-            <span class="text-[10px] text-science-muted font-mono uppercase">System: v2.0.1_AUTH</span>
+        <!-- Right Panel: Login Form -->
+        <div
+            class="flex-1 flex flex-col justify-center items-center p-6 bg-background-light dark:bg-background-dark overflow-y-auto">
+            <div
+                class="w-full max-w-md space-y-8 bg-neutral-surface dark:bg-[#1e1a2e] p-8 md:p-10 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800">
+                <!-- Mobile Logo (Visible only on small screens) -->
+                <div class="lg:hidden flex justify-center mb-6">
+                    <div class="flex items-center gap-3 text-slate-900 dark:text-white">
+                        <div class="size-8 text-primary">
+                            <svg class="w-full h-full" fill="none" viewbox="0 0 48 48"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd"
+                                    d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                                    fill="currentColor" fill-rule="evenodd"></path>
+                                <path clip-rule="evenodd"
+                                    d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                                    fill="currentColor" fill-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-bold">InterviewAI</h2>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Welcome back</h2>
+                    <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Please enter your details to sign in.</p>
+                </div>
+                <form id="login-form" class="space-y-6">
+                    <!-- Email Field -->
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none text-slate-900 dark:text-slate-100"
+                            for="email">Email Address</label>
+                        <input id="email" required
+                            class="flex h-12 w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-background-light dark:bg-[#141022] px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary placeholder:text-slate-400 text-slate-900 dark:text-white"
+                            placeholder="user@example.com" type="email" />
+                        <span id="email-error" class="hidden text-[10px] text-red-500 font-medium"></span>
+                    </div>
+                    <!-- Password Field -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <label class="text-sm font-medium leading-none text-slate-900 dark:text-slate-100"
+                                for="password">Password</label>
+                            <a class="text-sm font-semibold text-primary hover:text-primary-dark hover:underline"
+                                href="#">Forgot Password?</a>
+                        </div>
+                        <div class="relative">
+                            <input id="password" required
+                                class="flex h-12 w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-background-light dark:bg-[#141022] px-3 py-2 pr-10 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary placeholder:text-slate-400 text-slate-900 dark:text-white"
+                                placeholder="Enter your password" type="password" />
+                            <button
+                                class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+                                type="button" onclick="togglePassword()">
+                                <span class="material-symbols-outlined text-xl"
+                                    id="password-toggle-icon">visibility_off</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Error Message -->
+                    <div id="error-msg"
+                        class="hidden flex items-center gap-2 p-3 text-sm text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-lg border border-red-100 dark:border-red-900/50">
+                        <span class="material-symbols-outlined text-lg">error</span>
+                        <p class="font-medium" id="error-text">Incorrect email or password</p>
+                    </div>
+                    <!-- Submit Button -->
+                    <button type="submit" id="btn-login"
+                        class="inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-bold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-white hover:bg-primary-dark h-12 w-full shadow-lg shadow-primary/25">
+                        Log In
+                    </button>
+                    <!-- Footer -->
+                    <div class="text-center text-sm text-slate-500 dark:text-slate-400">
+                        Don't have an account?
+                        <a class="font-semibold text-primary hover:text-primary-dark hover:underline"
+                            href="/register">Register now</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
     <script>
         // Check if already logged in
         const existingUser = JSON.parse(sessionStorage.getItem('user'));
         const existingToken = sessionStorage.getItem('token');
         if (existingToken && existingUser) {
             const role = existingUser.role.toLowerCase();
-            window.location.href = (role === 'admin' || role === 'recruiter') ? '/admin' : '/dashboard';
+            window.location.href = (role === 'admin' || role === 'recruiter') ? '/recruiter' : '/dashboard';
         }
 
         const loginForm = document.getElementById('login-form');
         const errorMsg = document.getElementById('error-msg');
+        const errorText = document.getElementById('error-text');
         const btnLogin = document.getElementById('btn-login');
         const emailInput = document.getElementById('email');
         const emailError = document.getElementById('email-error');
 
-        // Enhancement #7: Inline email validation
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const icon = document.getElementById('password-toggle-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.textContent = 'visibility';
+            } else {
+                passwordInput.type = 'password';
+                icon.textContent = 'visibility_off';
+            }
+        }
+
         emailInput.addEventListener('blur', () => {
             const email = emailInput.value;
             if (email && !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
@@ -158,7 +227,6 @@
             btnLogin.disabled = true;
 
             try {
-                // Prepare form data for OAuth2
                 const formData = new URLSearchParams();
                 formData.append('username', email); // FastAPI OAuth2 uses 'username'
                 formData.append('password', password);
@@ -177,19 +245,17 @@
                     throw new Error(data.detail || 'Authentication failed');
                 }
 
-                // Store token and user data
                 sessionStorage.setItem('token', data.access_token);
                 sessionStorage.setItem('user', JSON.stringify(data.user));
 
-                // Redirect based on role
                 const role = data.user.role.toLowerCase();
-                window.location.href = (role === 'admin' || role === 'recruiter') ? '/admin' : '/dashboard';
+                window.location.href = (role === 'admin' || role === 'recruiter') ? '/recruiter' : '/dashboard';
 
             } catch (error) {
                 console.error('Login error:', error);
-                errorMsg.innerText = error.message;
+                errorText.innerText = error.message;
                 errorMsg.classList.remove('hidden');
-                btnLogin.innerText = 'Authenticate';
+                btnLogin.innerText = 'Log In';
                 btnLogin.disabled = false;
             }
         });

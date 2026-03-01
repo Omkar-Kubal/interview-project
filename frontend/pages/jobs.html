@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Job Board | Signal Capture</title>
+    <title>Job Board - InterviewAI</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
         rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <script id="tailwind-config">
         tailwind.config = {
@@ -17,177 +18,144 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#000000",
-                        "secondary": "#333333",
-                        "background-light": "#ffffff",
-                        "background-dark": "#0a0a0a",
-                        "surface": "#f4f4f5",
-                        "border-color": "#e4e4e7"
+                        "primary": "#5925f4",
+                        "primary-dark": "#3f1ab0",
+                        "primary-light": "#e0d6fd",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e1a2e",
                     },
                     fontFamily: {
-                        "sans": ["Inter", "sans-serif"],
-                        "mono": ["JetBrains Mono", "monospace"]
+                        "display": ["Inter", "sans-serif"]
                     },
-                    borderRadius: {
-                        "DEFAULT": "0px",
-                        "none": "0px"
-                    },
-                    boxShadow: {
-                        "none": "none"
-                    }
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
                 },
             },
         }
     </script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: #000000;
-        }
-
-        .mono-label {
-            font-family: 'JetBrains Mono', monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-    </style>
 </head>
 
-<body class="bg-white min-h-screen text-gray-900 antialiased selection:bg-gray-200 selection:text-black">
-    <header class="sticky top-0 z-50 bg-white border-b border-black h-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-            <div class="flex items-center justify-between h-full">
-                <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='/'">
-                    <div class="bg-black text-white p-1 flex items-center justify-center size-8">
-                        <svg class="size-5" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-linecap="square"
-                                stroke-linejoin="miter" stroke-width="2"></path>
-                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-linecap="square"
-                                stroke-linejoin="miter" stroke-width="2"></path>
-                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-linecap="square"
-                                stroke-linejoin="miter" stroke-width="2"></path>
-                        </svg>
-                    </div>
-                    <span class="text-lg font-bold text-black tracking-tight font-mono">SIGNAL_CAPTURE</span>
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <header
+        class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark px-6 lg:px-10 py-3 shadow-sm">
+        <div class="flex items-center gap-4 text-primary cursor-pointer" onclick="window.location.href='/'">
+            <div class="size-8 flex items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <span class="material-symbols-outlined text-2xl">bubble_chart</span>
+            </div>
+            <h2 class="text-slate-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">InterviewAI
+            </h2>
+        </div>
+        <div class="hidden lg:flex flex-1 justify-end gap-8">
+            <nav class="flex items-center gap-9">
+                <a class="text-primary text-sm font-bold leading-normal transition-colors" href="/jobs">Find Jobs</a>
+                <a id="nav-dashboard"
+                    class="hidden text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+                    href="/dashboard">Dashboard</a>
+                <a id="nav-profile"
+                    class="hidden text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+                    href="/profile">Profile</a>
+                <a id="nav-settings"
+                    class="hidden text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium leading-normal transition-colors"
+                    href="/settings">Settings</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <div id="auth-section" class="flex gap-3">
+                    <button onclick="window.location.href='/login'"
+                        class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-surface-light dark:bg-surface-dark border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-900 dark:text-white text-sm font-bold leading-normal transition-colors">
+                        <span class="truncate">Sign In</span>
+                    </button>
+                    <button onclick="window.location.href='/register'"
+                        class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary hover:bg-primary-dark text-white text-sm font-bold leading-normal shadow-md shadow-primary/20 transition-colors">
+                        <span class="truncate">Get Started</span>
+                    </button>
                 </div>
-                <nav class="hidden md:flex items-center gap-8">
-                    <a class="text-sm font-medium text-black border-b-2 border-black py-5 mono-label"
-                        href="/jobs">Jobs</a>
-                    <a id="nav-dashboard"
-                        class="text-sm font-medium text-gray-500 hover:text-black transition-colors mono-label hidden"
-                        href="/dashboard">Dashboard</a>
-                </nav>
-                <div class="flex items-center gap-4">
-                    <div id="auth-section" class="flex items-center gap-4">
-                        <button onclick="window.location.href='/login'"
-                            class="bg-black text-white px-5 py-2 text-xs font-bold hover:bg-gray-800 transition-colors mono-label border border-black">
-                            Sign In
-                        </button>
-                    </div>
-                    <div id="authenticated-section" class="hidden flex items-center gap-4">
-                        <button onclick="sessionStorage.clear(); window.location.reload();"
-                            class="bg-white text-black px-5 py-2 text-xs font-bold hover:bg-gray-100 transition-colors mono-label border border-black">
-                            Logout
-                        </button>
-                    </div>
-                    <div id="user-profile"
-                        class="size-8 bg-gray-200 border border-black bg-cover bg-center grayscale hidden">
+                <div id="authenticated-section" class="hidden flex items-center gap-4">
+                    <button onclick="sessionStorage.clear(); window.location.reload();"
+                        class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-9 px-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 text-sm font-bold leading-normal tracking-[0.015em] transition-colors">
+                        <span class="truncate">Logout</span>
+                    </button>
+                    <div id="user-avatar"
+                        class="size-10 rounded-full bg-primary flex items-center justify-center text-white font-bold ring-2 ring-primary/20 uppercase">
+                        UN
                     </div>
                 </div>
             </div>
         </div>
     </header>
-
-    <main class="max-w-6xl mx-auto px-4 py-12">
-        <section class="mb-12">
-            <div class="mb-8 border-l-4 border-black pl-4">
-                <h1 class="text-4xl font-bold text-black tracking-tight uppercase">ROLE_DISCOVERY</h1>
-                <p class="text-gray-500 font-mono text-sm mt-1">Initialize parameters to filter available positions.</p>
+    <!-- Main Content -->
+    <main class="flex flex-1 flex-col max-w-[1440px] mx-auto w-full px-4 md:px-6 lg:px-8 py-8">
+        <!-- Hero Search Section -->
+        <div
+            class="mb-10 w-full rounded-2xl bg-gradient-to-r from-primary to-[#7c4dff] p-8 md:p-12 text-center shadow-lg shadow-primary/25 relative overflow-hidden">
+            <div
+                class="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2">
             </div>
-            <div class="bg-white p-6 border border-black flex flex-col md:flex-row gap-6 items-end">
-                <div class="w-full flex-1">
-                    <label class="flex flex-col text-left group">
-                        <span
-                            class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 font-mono group-focus-within:text-black">Keyword_Input</span>
-                        <div class="relative">
-                            <span
-                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">terminal</span>
-                            <input id="search-keyword"
-                                class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-300 focus:border-black focus:ring-0 text-black placeholder:text-gray-400 font-mono text-sm transition-colors"
-                                placeholder="TITLE, SKILL, OR ID" type="text" />
-                        </div>
-                    </label>
-                </div>
-                <div class="w-full md:w-72">
-                    <label class="flex flex-col text-left group">
-                        <span
-                            class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 font-mono group-focus-within:text-black">Geo_Lock</span>
-                        <div class="relative">
-                            <span
-                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">radar</span>
-                            <input id="search-location"
-                                class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-300 focus:border-black focus:ring-0 text-black placeholder:text-gray-400 font-mono text-sm transition-colors"
-                                placeholder="COORDINATES / CITY" type="text" />
-                        </div>
-                    </label>
+            <div
+                class="absolute bottom-0 right-0 w-96 h-96 bg-white opacity-5 rounded-full translate-x-1/3 translate-y-1/3">
+            </div>
+            <h1 class="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-4 relative z-10">Find your next dream
+                role</h1>
+            <p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto relative z-10">Browse thousands of job openings from
+                top AI companies and startups.</p>
+            <div
+                class="relative z-10 mx-auto flex max-w-4xl flex-col md:flex-row gap-2 rounded-xl bg-surface-light dark:bg-surface-dark p-2 shadow-xl">
+                <div
+                    class="flex flex-1 items-center gap-2 rounded-lg bg-slate-50 dark:bg-slate-800/50 px-3 py-2 border border-transparent focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+                    <span class="material-symbols-outlined text-slate-400">search</span>
+                    <input id="search-keyword"
+                        class="w-full bg-transparent border-none p-0 text-slate-900 dark:text-white placeholder:text-slate-400 focus:ring-0 text-base"
+                        placeholder="Job title, keywords, or company" type="text" />
                 </div>
                 <button id="btn-search"
-                    class="w-full md:w-auto px-8 h-[46px] bg-black text-white font-bold hover:bg-gray-800 transition-all flex items-center justify-center gap-2 mono-label text-sm border border-black">
-                    EXECUTE_SEARCH
+                    class="bg-primary hover:bg-primary-dark text-white rounded-lg px-8 py-3 font-semibold transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+                    Search Jobs
                 </button>
             </div>
-        </section>
-
-        <div class="space-y-0 border-t border-gray-200">
-            <div class="flex justify-between items-center py-4 px-1 border-b border-gray-200 bg-gray-50/50">
-                <p id="results-count" class="text-xs font-mono text-gray-500 uppercase">Status: <span
-                        class="text-black font-bold">DETECTING POSITIONS...</span></p>
-            </div>
-
-            <div id="jobs-container" class="flex flex-col">
-                <!-- Jobs populated here -->
-                <div class="p-12 text-center font-mono text-gray-400 uppercase text-xs tracking-widest">
-                    Initializing Data Stream...
+        </div>
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sidebar Filters (Static for now) -->
+            <aside class="w-full lg:w-64 flex-shrink-0 space-y-6">
+                <div
+                    class="bg-surface-light dark:bg-surface-dark rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <h3 class="font-bold text-slate-900 dark:text-white text-sm uppercase tracking-wider mb-4">Domain
+                    </h3>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input checked=""
+                                class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-slate-50 dark:bg-slate-800"
+                                type="checkbox" />
+                            <span class="text-sm text-slate-600 dark:text-slate-400">All Categories</span>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input
+                                class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary bg-slate-50 dark:bg-slate-800"
+                                type="checkbox" />
+                            <span class="text-sm text-slate-600 dark:text-slate-400">Engineering</span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+            <!-- Job Grid -->
+            <div class="flex-1">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 id="results-count" class="text-xl font-bold text-slate-900 dark:text-white">Detecting Jobs...
+                    </h2>
+                </div>
+                <div id="jobs-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic Cards -->
                 </div>
             </div>
         </div>
     </main>
-
-    <footer class="mt-12 border-t border-black py-12 bg-white">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center gap-2">
-                <div class="size-4 bg-black"></div>
-                <span class="text-sm font-bold text-black uppercase tracking-wider font-mono">Signal_Capture_System
-                    v2.0.1</span>
-            </div>
-            <p class="text-xs text-gray-400 font-mono">© 2026 AI Screening Infrastructure.</p>
-        </div>
-    </footer>
-
     <script>
         const jobsContainer = document.getElementById('jobs-container');
         const resultsCount = document.getElementById('results-count');
         const searchKeyword = document.getElementById('search-keyword');
         const btnSearch = document.getElementById('btn-search');
 
-        // Auth state
         const user = JSON.parse(sessionStorage.getItem('user'));
         const token = sessionStorage.getItem('token');
 
@@ -195,9 +163,9 @@
             document.getElementById('auth-section').classList.add('hidden');
             document.getElementById('authenticated-section').classList.remove('hidden');
             document.getElementById('nav-dashboard').classList.remove('hidden');
-            const profile = document.getElementById('user-profile');
-            profile.classList.remove('hidden');
-            profile.title = user.full_name;
+            document.getElementById('nav-profile').classList.remove('hidden');
+            document.getElementById('nav-settings').classList.remove('hidden');
+            document.getElementById('user-avatar').innerText = user.full_name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
         }
 
         async function fetchJobs() {
@@ -206,67 +174,48 @@
                 const jobs = await response.json();
                 renderJobs(jobs);
             } catch (error) {
-                console.error('Failed to fetch jobs:', error);
-                jobsContainer.innerHTML = `
-                    <div class="p-12 text-center font-mono text-red-500 uppercase text-xs tracking-widest bg-red-50 border border-red-100 mt-4">
-                        Data Stream Failure: ${error.message}
-                    </div>
-                `;
+                console.error(error);
+                jobsContainer.innerHTML = '<div class="col-span-full py-20 text-center text-red-500">Failed to load jobs</div>';
             }
         }
 
         function renderJobs(jobs) {
-            if (jobs.length === 0) {
-                jobsContainer.innerHTML = '<div class="p-12 text-center font-mono text-gray-400 uppercase text-xs tracking-widest">No matching slots available.</div>';
-                resultsCount.innerHTML = 'Status: <span class="text-black font-bold">0 POSITIONS DETECTED</span>';
+            const query = searchKeyword.value.toLowerCase();
+            const filtered = jobs.filter(j => j.title.toLowerCase().includes(query) || j.description.toLowerCase().includes(query));
+
+            resultsCount.innerText = `${filtered.length} Jobs Found`;
+
+            if (filtered.length === 0) {
+                jobsContainer.innerHTML = '<div class="col-span-full py-20 text-center text-slate-400 font-bold uppercase tracking-widest text-sm">No matching positions detected</div>';
                 return;
             }
 
-            resultsCount.innerHTML = `Status: <span class="text-black font-bold">${jobs.length} POSITION${jobs.length > 1 ? 'S' : ''} DETECTED</span>`;
-
-            jobsContainer.innerHTML = jobs.map(job => `
-                <div class="group relative bg-white border-b border-x border-gray-200 p-6 hover:bg-gray-50 hover:border-gray-400 transition-all duration-150">
-                    <div class="flex flex-col md:flex-row gap-6">
-                        <div class="size-16 bg-white border border-gray-200 flex items-center justify-center p-2 flex-shrink-0 grayscale group-hover:grayscale-0 transition-all uppercase font-mono text-[10px] text-center">
-                            SYS_ADMIN
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                                <div>
-                                    <h3 class="text-xl font-bold text-black group-hover:underline decoration-2 underline-offset-4">${job.title}</h3>
-                                    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-2">
-                                        <span class="text-xs font-mono text-gray-600 flex items-center gap-1.5 uppercase tracking-wide">
-                                            <span class="material-symbols-outlined text-[16px]">domain</span> ${job.location || 'Remote'}
-                                        </span>
-                                        <span class="text-xs font-mono text-gray-600 flex items-center gap-1.5 uppercase tracking-wide">
-                                            <span class="material-symbols-outlined text-[16px]">attach_money</span> ${job.salary_range || 'TBD'}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-2 self-start">
-                                    <span class="px-2 py-1 border border-black bg-black text-white text-[10px] font-bold uppercase tracking-wider font-mono">Active</span>
-                                </div>
-                            </div>
-                            <div class="mt-4 text-xs text-gray-600 font-sans line-clamp-2 max-w-2xl">
-                                ${job.description}
-                            </div>
-                            <div class="flex items-center justify-end gap-3 mt-6">
-                                <button onclick="window.location.href='/apply?job_id=${job.id}'" class="px-6 h-10 bg-white border border-black text-black font-bold text-xs uppercase hover:bg-black hover:text-white transition-colors font-mono">
-                                    Initialize_Application
-                                </button>
-                            </div>
-                        </div>
+            jobsContainer.innerHTML = filtered.map(job => `
+            <div class="group flex flex-col bg-surface-light dark:bg-surface-dark rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-1.5 h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="flex items-start justify-between mb-4">
+                    <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined text-3xl">work</span>
                     </div>
-                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-black transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom"></div>
                 </div>
-            `).join('');
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary transition-colors">${job.title}</h3>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Open Position</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="px-2 py-1 rounded-md text-[10px] font-bold uppercase tracking-widest bg-slate-100 dark:bg-slate-800 text-slate-500">${job.location || 'Remote'}</span>
+                </div>
+                <p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-3 mb-8 flex-grow">
+                    ${job.description}
+                </p>
+                <button onclick="window.location.href='/apply?job_id=${job.id}'" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-bold text-sm transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40">
+                    Apply Now
+                </button>
+            </div>
+        `).join('');
         }
 
-        btnSearch.addEventListener('click', () => {
-            fetchJobs(); // Simple reload for now, actual filtering can be added
-        });
+        btnSearch.addEventListener('click', fetchJobs);
+        searchKeyword.addEventListener('keypress', (e) => { if (e.key === 'Enter') fetchJobs(); });
 
-        // Initial fetch
         fetchJobs();
     </script>
 </body>

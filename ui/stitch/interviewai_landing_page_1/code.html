@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>InterviewAI - Hire Smarter, Interview Fairer</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#5925f4",
+                        "primary-dark": "#4018b5",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#110d1c",
+                        "surface-dark": "#1a1628",
+                        "accent": "#00d4ff",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "lg": "0.5rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 w-full bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Logo -->
+<div class="flex items-center gap-2">
+<div class="text-primary size-8">
+<span class="material-symbols-outlined text-3xl">smart_toy</span>
+</div>
+<span class="text-slate-900 dark:text-white text-xl font-bold tracking-tight">InterviewAI</span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors" href="#">Jobs</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-white transition-colors" href="#">For Recruiters</a>
+</nav>
+<!-- Auth Buttons -->
+<div class="flex items-center gap-4">
+<a class="text-sm font-medium text-slate-900 dark:text-white hover:text-primary transition-colors" href="#">Login</a>
+<button class="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-lg text-sm font-semibold transition-all shadow-lg shadow-primary/30">
+                        Register
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative pt-16 pb-20 lg:pt-24 lg:pb-28 overflow-hidden">
+<div class="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-background-dark bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
+<div class="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-primary opacity-20 blur-[100px]"></div>
+</div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<!-- Hero Content -->
+<div class="flex flex-col gap-6 text-center lg:text-left">
+<div class="inline-flex items-center justify-center lg:justify-start gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary w-fit mx-auto lg:mx-0">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-xs font-semibold tracking-wide uppercase">AI-Powered Hiring V2.0 is Live</span>
+</div>
+<h1 class="text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+                        Hire <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Smarter.</span><br/>
+                        Interview <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Fairer.</span>
+</h1>
+<p class="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        The AI-powered platform that streamlines your hiring process and helps candidates shine with unbiased, data-driven insights.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl text-base font-bold transition-all shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-0.5">
+<span class="material-symbols-outlined text-[20px]">search</span>
+                            Find Jobs
+                        </button>
+<button class="flex items-center justify-center gap-2 bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white px-8 py-4 rounded-xl text-base font-bold transition-all hover:bg-slate-50 dark:hover:bg-slate-800 hover:-translate-y-0.5">
+                            Post a Job
+                        </button>
+</div>
+<!-- Stats Bar (Glassmorphism) -->
+<div class="mt-8 grid grid-cols-3 gap-4 p-4 rounded-2xl bg-white/40 dark:bg-white/5 backdrop-blur-lg border border-white/20 dark:border-white/10 shadow-sm">
+<div class="text-center lg:text-left px-2">
+<p class="text-2xl font-bold text-slate-900 dark:text-white">500+</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Jobs Posted</p>
+</div>
+<div class="text-center lg:text-left px-2 border-l border-slate-200 dark:border-slate-700">
+<p class="text-2xl font-bold text-slate-900 dark:text-white">2k+</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Candidates</p>
+</div>
+<div class="text-center lg:text-left px-2 border-l border-slate-200 dark:border-slate-700">
+<p class="text-2xl font-bold text-slate-900 dark:text-white">98%</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Uptime</p>
+</div>
+</div>
+</div>
+<!-- Hero Image -->
+<div class="relative w-full aspect-square lg:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 group" data-alt="Dashboard interface showing AI interview analytics and candidate scoring">
+<!-- Using a gradient placeholder as requested since external images can be flaky, but normally this would be an app screenshot -->
+<div class="absolute inset-0 bg-gradient-to-br from-surface-dark to-black opacity-90"></div>
+<!-- Abstract UI representation -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-full h-full bg-[url('https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&amp;w=2070&amp;auto=format&amp;fit=crop')] bg-cover bg-center opacity-80 mix-blend-overlay"></div>
+</div>
+<!-- Floating Cards Decoration -->
+<div class="absolute top-10 right-10 bg-white dark:bg-surface-dark p-4 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 animate-[bounce_3s_infinite]">
+<div class="flex items-center gap-3">
+<div class="bg-green-100 dark:bg-green-900/30 p-2 rounded-lg text-green-600 dark:text-green-400">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Excellent Fit</p>
+<p class="text-xs text-slate-500">98% Match Score</p>
+</div>
+</div>
+</div>
+<div class="absolute bottom-10 left-10 bg-white dark:bg-surface-dark p-4 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 animate-[bounce_4s_infinite]">
+<div class="flex items-center gap-3">
+<div class="bg-blue-100 dark:bg-blue-900/30 p-2 rounded-lg text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined">mic</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Voice Analysis</p>
+<p class="text-xs text-slate-500">Processing...</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Logo Cloud -->
+<section class="py-10 border-y border-slate-200 dark:border-slate-800 bg-white dark:bg-surface-dark/50">
+<div class="max-w-7xl mx-auto px-4 text-center">
+<p class="text-sm font-semibold text-slate-500 mb-6 uppercase tracking-widest">Trusted by innovative teams</p>
+<div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+<!-- Simple SVG Logos for placeholder -->
+<div class="h-8 w-auto flex items-center font-bold text-xl text-slate-700 dark:text-slate-300"><span class="material-symbols-outlined mr-1">spa</span> Lotus</div>
+<div class="h-8 w-auto flex items-center font-bold text-xl text-slate-700 dark:text-slate-300"><span class="material-symbols-outlined mr-1">bolt</span> Energy</div>
+<div class="h-8 w-auto flex items-center font-bold text-xl text-slate-700 dark:text-slate-300"><span class="material-symbols-outlined mr-1">diamond</span> Crystal</div>
+<div class="h-8 w-auto flex items-center font-bold text-xl text-slate-700 dark:text-slate-300"><span class="material-symbols-outlined mr-1">rocket_launch</span> Orbit</div>
+<div class="h-8 w-auto flex items-center font-bold text-xl text-slate-700 dark:text-slate-300"><span class="material-symbols-outlined mr-1">stadia_controller</span> Nexus</div>
+</div>
+</div>
+</section>
+<!-- How It Works (Split Section) -->
+<section class="py-24 bg-slate-50 dark:bg-background-dark relative">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">Streamlined for Everyone</h2>
+<p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Whether you're looking for your dream job or your next star employee, our AI makes the process seamless.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-8 lg:gap-16">
+<!-- Candidate Flow -->
+<div class="bg-white dark:bg-surface-dark rounded-3xl p-8 lg:p-10 shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-4 mb-8">
+<div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">person</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">For Candidates</h3>
+</div>
+<div class="space-y-8 relative before:absolute before:left-4 before:top-2 before:h-full before:w-0.5 before:bg-slate-100 dark:before:bg-slate-800 before:content-['']">
+<!-- Step 1 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 h-8 w-8 rounded-full bg-white dark:bg-surface-dark border-2 border-primary flex items-center justify-center z-10">
+<span class="text-xs font-bold text-primary">1</span>
+</div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Create Smart Profile</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Upload your resume. Our AI parses skills and suggests optimal roles instantly.</p>
+</div>
+<!-- Step 2 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 h-8 w-8 rounded-full bg-white dark:bg-surface-dark border-2 border-primary flex items-center justify-center z-10">
+<span class="text-xs font-bold text-primary">2</span>
+</div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Take AI Interview</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Complete a structured, bias-free video interview at your convenience.</p>
+</div>
+<!-- Step 3 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 h-8 w-8 rounded-full bg-white dark:bg-surface-dark border-2 border-primary flex items-center justify-center z-10">
+<span class="text-xs font-bold text-primary">3</span>
+</div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Get Matched</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Receive interview feedback and get matched with top companies.</p>
+</div>
+</div>
+</div>
+<!-- Recruiter Flow -->
+<div class="bg-white dark:bg-surface-dark rounded-3xl p-8 lg:p-10 shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-4 mb-8">
+<div class="h-12 w-12 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+<span class="material-symbols-outlined text-2xl">business_center</span>
+</div>
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white">For Recruiters</h3>
+</div>
+<div class="space-y-8 relative before:absolute before:left-4 before:top-2 before:h-full before:w-0.5 before:bg-slate-100 dark:before:bg-slate-800 before:content-['']">
+<!-- Step 1 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 h-8 w-8 rounded-full bg-white dark:bg-surface-dark border-2 border-accent flex items-center justify-center z-10">
+<span class="text-xs font-bold text-accent">1</span>
+</div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Post Requirements</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Define the role. Our AI generates screening questions automatically.</p>
+</div>
+<!-- Step 2 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 h-8 w-8 rounded-full bg-white dark:bg-surface-dark border-2 border-accent flex items-center justify-center z-10">
+<span class="text-xs font-bold text-accent">2</span>
+</div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Automated Screening</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Let AI conduct initial rounds, scoring candidates on key competencies.</p>
+</div>
+<!-- Step 3 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1 h-8 w-8 rounded-full bg-white dark:bg-surface-dark border-2 border-accent flex items-center justify-center z-10">
+<span class="text-xs font-bold text-accent">3</span>
+</div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Hire the Best</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Review highlights, detailed reports, and make data-backed offers.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="py-24 bg-white dark:bg-background-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="mb-16">
+<span class="text-primary font-semibold tracking-wider uppercase text-sm">Platform Capabilities</span>
+<h2 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mt-2 max-w-lg">Advanced Technology for Human Potential</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Feature 1 -->
+<div class="group p-8 rounded-2xl bg-slate-50 dark:bg-surface-dark hover:bg-white dark:hover:bg-surface-dark border border-slate-100 dark:border-slate-800 hover:border-primary/20 hover:shadow-xl transition-all duration-300">
+<div class="h-14 w-14 bg-blue-100 dark:bg-blue-900/20 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">graphic_eq</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">AI Signal Capture</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Analyzes verbal and non-verbal cues to assess confidence, communication skills, and emotional intelligence.
+                    </p>
+</div>
+<!-- Feature 2 -->
+<div class="group p-8 rounded-2xl bg-slate-50 dark:bg-surface-dark hover:bg-white dark:hover:bg-surface-dark border border-slate-100 dark:border-slate-800 hover:border-primary/20 hover:shadow-xl transition-all duration-300">
+<div class="h-14 w-14 bg-purple-100 dark:bg-purple-900/20 rounded-xl flex items-center justify-center text-purple-600 dark:text-purple-400 mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">description</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Smart Resume Screening</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Parses thousands of CVs in seconds to match the perfect candidates against job requirements without bias.
+                    </p>
+</div>
+<!-- Feature 3 -->
+<div class="group p-8 rounded-2xl bg-slate-50 dark:bg-surface-dark hover:bg-white dark:hover:bg-surface-dark border border-slate-100 dark:border-slate-800 hover:border-primary/20 hover:shadow-xl transition-all duration-300">
+<div class="h-14 w-14 bg-emerald-100 dark:bg-emerald-900/20 rounded-xl flex items-center justify-center text-emerald-600 dark:text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">verified_user</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Integrity Monitoring</h3>
+<p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Real-time proctoring and integrity checks ensure the candidate is genuine and the assessment is fair.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="relative overflow-hidden rounded-3xl bg-primary dark:bg-primary px-8 py-16 text-center shadow-2xl">
+<!-- Decorative Circles -->
+<div class="absolute -left-12 -top-12 h-64 w-64 rounded-full bg-white opacity-10 blur-3xl"></div>
+<div class="absolute -right-12 -bottom-12 h-64 w-64 rounded-full bg-accent opacity-20 blur-3xl"></div>
+<div class="relative z-10 max-w-2xl mx-auto">
+<h2 class="text-3xl md:text-4xl font-black text-white mb-6">Ready to Transform Your Hiring?</h2>
+<p class="text-white/80 text-lg mb-8">Join thousands of companies and candidates who have already switched to the future of recruitment.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-white text-primary hover:bg-slate-100 px-8 py-4 rounded-xl text-base font-bold transition-colors">
+                            Get Started for Free
+                        </button>
+<button class="bg-transparent border border-white text-white hover:bg-white/10 px-8 py-4 rounded-xl text-base font-bold transition-colors">
+                            Request Demo
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-white dark:bg-surface-dark pt-16 pb-8 border-t border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+<div class="col-span-2 lg:col-span-2">
+<div class="flex items-center gap-2 mb-4">
+<div class="text-primary size-6">
+<span class="material-symbols-outlined text-2xl">smart_toy</span>
+</div>
+<span class="text-slate-900 dark:text-white text-xl font-bold">InterviewAI</span>
+</div>
+<p class="text-slate-500 text-sm max-w-xs mb-6">
+                        Making hiring human again through artificial intelligence. Unbiased, efficient, and effective.
+                    </p>
+<div class="flex gap-4">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a> <!-- X/Twitter placeholder -->
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">group</span></a> <!-- LinkedIn placeholder -->
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">videocam</span></a> <!-- Youtube placeholder -->
+</div>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-4">Platform</h4>
+<ul class="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+<li><a class="hover:text-primary" href="#">For Candidates</a></li>
+<li><a class="hover:text-primary" href="#">For Recruiters</a></li>
+<li><a class="hover:text-primary" href="#">Pricing</a></li>
+<li><a class="hover:text-primary" href="#">Case Studies</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-4">Company</h4>
+<ul class="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+<li><a class="hover:text-primary" href="#">About Us</a></li>
+<li><a class="hover:text-primary" href="#">Careers</a></li>
+<li><a class="hover:text-primary" href="#">Blog</a></li>
+<li><a class="hover:text-primary" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white mb-4">Legal</h4>
+<ul class="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+<li><a class="hover:text-primary" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary" href="#">Cookie Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-slate-500">© 2023 InterviewAI Inc. All rights reserved.</p>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-green-500"></span>
+<span class="text-sm text-slate-500">System Status: Operational</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
